@@ -1,3 +1,7 @@
+from six.moves import urllib
+opener = urllib.request.build_opener()
+opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+urllib.request.install_opener(opener)
 from torch.utils.data import Subset
 from PIL import Image
 from torchvision.datasets import MNIST
