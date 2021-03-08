@@ -1,5 +1,6 @@
 from .mnist import MNIST_Dataset
 from .cifar10 import CIFAR10_Dataset
+from .campus import Campustown_Dataset
 
 
 def load_dataset(dataset_name, data_path, normal_class):
