@@ -8,7 +8,7 @@ from torchvision.datasets import MNIST
 import sys
 sys.path.append("/home/yeong95/svdd/deep-svdd-campus_town/src")
 from base.torchvision_dataset import TorchvisionDataset
-from preprocessing import get_target_label_idx, global_contrast_normalization
+from .preprocessing import get_target_label_idx, global_contrast_normalization
 
 import torchvision.transforms as transforms
 

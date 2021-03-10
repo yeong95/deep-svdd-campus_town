@@ -3,18 +3,21 @@ from PIL import Image
 import sys
 sys.path.append("/home/yeong95/svdd/deep-svdd-campus_town/src")
 from base.torchvision_dataset import TorchvisionDataset
-from preprocessing import get_target_label_idx, global_contrast_normalization
+from .preprocessing import get_target_label_idx, global_contrast_normalization
 import numpy as np
 import torchvision.transforms as transforms
 import torch
+from torch.utils.data import Dataset
+import os 
 # load data
-data_path = r'/home/yeong95/svdd/deep-svdd-campus_town/data/라면 데이터/라면_이미지_640'
-train_data_name = 'train_img.npy'
-test_data_name = 'test_img.npy'
-test_label_name = 'test_label.npy'
-train_data = np.load(os.path.join(data_path,train_data_name)).reshape(300,640,640)
-test_data = np.load(os.path.join(data_path,test_data_name)).reshape(140,640,640)
-test_label = np.load(os.path.join(data_path,test_label_name))
+# data_path = r'/home/yeong95/svdd/deep-svdd-campus_town/data/라면 데이터/라면_이미지_640'
+# train_data_name = 'train_img.npy'
+# test_data_name = 'test_img.npy'
+# test_label_name = 'test_label.npy'
+# train_data = np.load(os.path.join(data_path,train_data_name)).reshape(300,640,640)
+# test_data = np.load(os.path.join(data_path,test_data_name)).reshape(140,640,640)
+# test_label = np.load(os.path.join(data_path,test_label_name))
+
 # compute min-max
 # min_ = 10000
 # max_ = -10000
@@ -29,8 +32,8 @@ test_label = np.load(os.path.join(data_path,test_label_name))
    
 class Campustown_Dataset(TorchvisionDataset):
 
-    def __init__(self, traindata=None, testdata=None, testlabel=None):
-        super().__init__()
+    def __init__(self, root, traindata=None, testdata=None, testlabel=None):
+        super().__init__(root)
 
         self.n_classes = 2  # 0: normal, 1: outlier
 
@@ -40,15 +43,24 @@ class Campustown_Dataset(TorchvisionDataset):
         # preprocessing GCN (with L1 norm) and min-max feature scaling to [0,1]
         transform = transforms.Compose([transforms.ToTensor(),
                                         transforms.Lambda(lambda x: global_contrast_normalization(x, scale='l1')),
-                                        transforms.Normalize([min_max[0],
-                                                              min_max[1]-min_max[0]])
+                                        transforms.Normalize([min_max[0][0]],
+                                                              [min_max[0][1]-min_max[0][0]])])
         
-        self.train_set = MyCampus(train=True, transform=transform, train_data=traindata)
-        self.test_set = MyCampus(train=False, transform=transform, test_data=testdata, test_label=testlabel)
+        self.train_set = MyCampus(train=True, transform=transform, train_data=traindata, test_data=testdata, test_label=testlabel)
+        self.test_set = MyCampus(train=False, transform=transform, train_data=traindata, test_data=testdata, test_label=testlabel)
     
-class MyCampus:
-    def __init__(self, *args, **kwargs):
-
+class MyCampus(Dataset):
+    def __init__(self, train, transform=None, train_data=None, test_data=None, test_label=None):
+        self.train = train
+        self.train_data = torch.from_numpy(train_data)
+        self.test_data = torch.from_numpy(test_data)
+        self.test_label = torch.from_numpy(test_label)
+        self.transform = transform
+    def __len__(self):
+        if self.train:
+            return len(self.train_data)
+        else:
+            return len(self.test_data)
     def __getitem__(self, index):
         """
         Args:
@@ -56,9 +68,7 @@ class MyCampus:
         Returns:
             triple: (image, target, index) where target is index of the target class.
         """
-        self.train_data = torch.from_numpy(train_data)
-        self.test_data = torch.from_numpy(test_data)
-        self.test_label = torch.from_numpy(test_label)
+        
         if self.train:
             img, target = self.train_data[index], 0
         else:
@@ -74,10 +84,9 @@ class MyCampus:
         return img, target, index  # only line changed
 
 
-campus_dataset = Campustown_Dataset(train_data,test_data,test_label)
 
 
-
+# campus_dataset = Campustown_Dataset(data_path, train_data, test_data, test_label)
 
 # show sample image
 # for i in range(len(campus_dataset)):

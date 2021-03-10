@@ -3,19 +3,20 @@ import torch
 import logging
 import random
 import numpy as np
+import os
 
 from utils.config import Config
 from utils.visualization.plot_images_grid import plot_images_grid
 from deepSVDD import DeepSVDD
-from datasets.main import load_dataset
+from datasets.main import load_dataset, load_campus_dataset
 
 
 ################################################################################
 # Settings
 ################################################################################
 @click.command()
-@click.argument('dataset_name', type=click.Choice(['mnist', 'cifar10']))
-@click.argument('net_name', type=click.Choice(['mnist_LeNet', 'cifar10_LeNet', 'cifar10_LeNet_ELU']))
+@click.argument('dataset_name', type=click.Choice(['mnist', 'cifar10', 'campus']))
+@click.argument('net_name', type=click.Choice(['mnist_LeNet', 'cifar10_LeNet', 'cifar10_LeNet_ELU', 'campus_LeNet']))
 @click.argument('xp_path', type=click.Path(exists=True))
 @click.argument('data_path', type=click.Path(exists=True))
 @click.option('--load_config', type=click.Path(exists=True), default=None,
@@ -111,7 +112,16 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     logger.info('Number of dataloader workers: %d' % n_jobs_dataloader)
 
     # Load data
-    dataset = load_dataset(dataset_name, data_path, normal_class)
+    if dataset_name == 'campus':
+        train_data_name = 'train_img.npy'
+        test_data_name = 'test_img.npy'
+        test_label_name = 'test_label.npy'
+        train_data = np.load(os.path.join(data_path,train_data_name)).reshape(300,640,640)
+        test_data = np.load(os.path.join(data_path,test_data_name)).reshape(140,640,640)
+        test_label = np.load(os.path.join(data_path,test_label_name))
+        dataset = load_campus_dataset(dataset_name, data_path, train_data, test_data, test_label)
+    else:
+        dataset = load_dataset(dataset_name, data_path, normal_class)
 
     # Initialize DeepSVDD model and set neural network \phi
     deep_SVDD = DeepSVDD(cfg.settings['objective'], cfg.settings['nu'])
