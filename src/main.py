@@ -4,11 +4,13 @@ import logging
 import random
 import numpy as np
 import os
+import pickle
 
 from utils.config import Config
 from utils.visualization.plot_images_grid import plot_images_grid
 from deepSVDD import DeepSVDD
 from datasets.main import load_dataset, load_campus_dataset
+from datasets.load_image import train_test_numpy_load
 
 
 ################################################################################
@@ -61,15 +63,15 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     Deep SVDD, a fully deep method for anomaly detection.
 
     :arg DATASET_NAME: Name of the dataset to load.
-    :arg NET_NAME: Name of the neural network to use.
-    :arg XP_PATH: Export path for logging the experiment.
-    :arg DATA_PATH: Root path of data.
-    """
+    :arg NET_NAME: Name of the neural n etwork to use.
+    :arg XP_PATH: Export path for loggi ng the experiment.
+    :arg DATA_PATH: Root path of data.  
+    """ 
 
-    # Get configuration
-    cfg = Config(locals().copy())
+    # Get configuration 
+    cfg = Config(locals().copy())   
 
-    # Set up logging
+    # Set up logging    
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
@@ -113,13 +115,10 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
 
     # Load data
     if dataset_name == 'campus':
-        train_data_name = 'train_img.npy'
-        test_data_name = 'test_img.npy'
-        test_label_name = 'test_label.npy'
-        train_data = np.load(os.path.join(data_path,train_data_name)).reshape(300,640,640)
-        test_data = np.load(os.path.join(data_path,test_data_name)).reshape(140,640,640)
-        test_label = np.load(os.path.join(data_path,test_label_name))
-        dataset = load_campus_dataset(dataset_name, data_path, train_data, test_data, test_label)
+        train_path = 'train/OK'
+        test_path = 'test'
+        train_image, test_image, test_label = train_test_numpy_load(data_path,train_path,test_path)
+        dataset = load_campus_dataset(dataset_name, data_path, train_image, test_image, test_label)        
     else:
         dataset = load_dataset(dataset_name, data_path, normal_class)
 
@@ -131,7 +130,7 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
         deep_SVDD.load_model(model_path=load_model, load_ae=True)
         logger.info('Loading model from %s.' % load_model)
 
-    logger.info('Pretraining: %s' % pretrain)
+    # logger.info('Pretraining: %s' % pretrain)
     if pretrain:
         # Log pretraining details
         logger.info('Pretraining optimizer: %s' % cfg.settings['ae_optimizer_name'])
@@ -177,9 +176,10 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     # Plot most anomalous and most normal (within-class) test samples
     indices, labels, scores = zip(*deep_SVDD.results['test_scores'])
     indices, labels, scores = np.array(indices), np.array(labels), np.array(scores)
-    idx_sorted = indices[labels == 0][np.argsort(scores[labels == 0])]  # sorted from lowest to highest anomaly score
+    idx_sorted = indices[labels == 0][np.argsort(scores[labels == 0])]  # sorted from lowest to highest anomaly score in normal class
+    idx_sorted_anomal = indices[labels == 1][np.argsort(scores[labels == 1])]
 
-    if dataset_name in ('mnist', 'cifar10'):
+    if dataset_name in ('mnist', 'cifar10', 'campus'):
 
         if dataset_name == 'mnist':
             X_normals = dataset.test_set.test_data[idx_sorted[:32], ...].unsqueeze(1)
@@ -188,9 +188,22 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
         if dataset_name == 'cifar10':
             X_normals = torch.tensor(np.transpose(dataset.test_set.test_data[idx_sorted[:32], ...], (0, 3, 1, 2)))
             X_outliers = torch.tensor(np.transpose(dataset.test_set.test_data[idx_sorted[-32:], ...], (0, 3, 1, 2)))
-
-        plot_images_grid(X_normals, export_img=xp_path + '/normals', title='Most normal examples', padding=2)
-        plot_images_grid(X_outliers, export_img=xp_path + '/outliers', title='Most anomalous examples', padding=2)
+            
+        if dataset_name == 'campus':
+            test_score_path = os.path.join(xp_path, 'test_score.pickle')
+            with open(test_score_path, 'wb') as f:
+                pickle.dump(deep_SVDD.results['test_scores'], f, pickle.HIGHEST_PROTOCOL)
+            test_data = dataset.test_set.test_data.reshape(140,1,640,640)
+            X_normlas = torch.tensor(test_data[idx_sorted[:1],...])
+            X_outliers = torch.tensor(test_data[idx_sorted[-1:],...])
+            X_normlas_anomal = torch.tensor(test_data[idx_sorted_anomal[:1],...])
+            X_outliers_anomal = torch.tensor(test_data[idx_sorted_anomal[-1:],...])
+        
+        if dataset_name == 'campus':
+            pass
+        else:            
+            plot_images_grid(X_normals, export_img=xp_path + '/normals', title='Most normal examples', padding=2)
+            plot_images_grid(X_outliers, export_img=xp_path + '/outliers', title='Most anomalous examples', padding=2)
 
     # Save results, model, and configuration
     deep_SVDD.save_results(export_json=xp_path + '/results.json')
@@ -200,4 +213,4 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
 
 if __name__ == '__main__':
     main()
-    # main(mnist, mnist_LeNet, ../log/mnist_test, ../data, objective=one-class, lr=0.0001, n_epochs=150, lr_milestone=50, batch_size=200, weight_decay=0.5e-6, pretrain=True, ae_lr=0.0001, ae_n_epochs=150, ae_lr_milestone=50, ae_batch_size =200, ae_weight_decay= 0.5e-3, normal_class=3)
+    
