@@ -13,12 +13,8 @@ from datasets.main import load_dataset, load_campus_dataset
 from datasets.load_image import train_test_numpy_load
 from sklearn.metrics import roc_auc_score
 import matplotlib.pyplot as plt
-from sklearn.metrics import roc_auc_score
 
-?roc_auc_score
 from sklearn.metrics import roc_auc_score
-
-?roc_auc_score
 from sklearn.metrics import roc_curve, auc
 
 
@@ -203,11 +199,11 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
             test_score_path = os.path.join(xp_path, 'test_score.pickle')
             with open(test_score_path, 'wb') as f:
                 pickle.dump(deep_SVDD.results['test_scores'], f, pickle.HIGHEST_PROTOCOL)
-            test_data = dataset.test_set.test_data.reshape(140,1,640,640)
-            X_normlas = torch.tensor(test_data[idx_sorted[:1],...])
-            X_outliers = torch.tensor(test_data[idx_sorted[-1:],...])
-            X_normlas_anomal = torch.tensor(test_data[idx_sorted_anomal[:1],...])
-            X_outliers_anomal = torch.tensor(test_data[idx_sorted_anomal[-1:],...])
+            # test_data = dataset.test_set.test_data.reshape(140,1,640,640)
+            # X_normlas = torch.tensor(test_data[idx_sorted[:1],...])
+            # X_outliers = torch.tensor(test_data[idx_sorted[-1:],...])
+            # X_normlas_anomal = torch.tensor(test_data[idx_sorted_anomal[:1],...])
+            # X_outliers_anomal = torch.tensor(test_data[idx_sorted_anomal[-1:],...])
         
         if dataset_name == 'campus':
             fpr = dict()
@@ -217,16 +213,15 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
             roc_auc = auc(fpr, tpr)
             plt.figure()
             lw=2
-            plt.plot(fpr,tpr, color='darkorange', lw=lw, label='ROC curve (area= %0.2f)' %roc_auc)
+            plt.plot(fpr,tpr, color='darkorange', lw=lw, label='ROC curve (area= %0.2f)' %roc_auc)  
             plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
             plt.xlim([0.0, 1.0])
             plt.ylim([0.0, 1.05])
-            plt.xlabel('False Positive Rate')
+            plt.xlabel('False Positive Rate')   
             plt.ylabel('True Positive Rate')
             plt.title('Receiver operating characteristic example')
             plt.legend(loc="lower right")           
-            plt.savefig(os.path.join(xp_path,'auc_roc.png'))            
-            
+            plt.savefig(os.path.join(xp_path,'auc_roc.png'))             
         else:            
             plot_images_grid(X_normals, export_img=xp_path + '/normals', title='Most normal examples', padding=2)
             plot_images_grid(X_outliers, export_img=xp_path + '/outliers', title='Most anomalous examples', padding=2)

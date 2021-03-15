@@ -90,13 +90,13 @@ class DeepSVDD(object):
                  n_jobs_dataloader: int = 0):
         """Pretrains the weights for the Deep SVDD network \phi via autoencoder."""
 
-        self.ae_net = build_autoencoder(self.net_name)
-        self.ae_optimizer_name = optimizer_name
-        self.ae_trainer = AETrainer(optimizer_name, lr=lr, n_epochs=n_epochs, lr_milestones=lr_milestones,
-                                    batch_size=batch_size, weight_decay=weight_decay, device=device,
-                                    n_jobs_dataloader=n_jobs_dataloader)
-        self.ae_net = self.ae_trainer.train(dataset, self.ae_net)
-        self.ae_trainer.test(dataset, self.ae_net)
+        # self.ae_net = build_autoencoder(self.net_name)
+        # self.ae_optimizer_name = optimizer_name
+        # self.ae_trainer = AETrainer(optimizer_name, lr=lr, n_epochs=n_epochs, lr_milestones=lr_milestones,
+        #                             batch_size=batch_size, weight_decay=weight_decay, device=device,
+        #                             n_jobs_dataloader=n_jobs_dataloader)
+        # self.ae_net = self.ae_trainer.train(dataset, self.ae_net)
+        # self.ae_trainer.test(dataset, self.ae_net)
         self.init_network_weights_from_pretraining()
 
     def init_network_weights_from_pretraining(self):
@@ -130,7 +130,7 @@ class DeepSVDD(object):
 
         self.R = model_dict['R']
         self.c = model_dict['c']
-        self.net.load_state_dict(model_dict['net_dict'])
+        # self.net.load_state_dict(model_dict['net_dict'])
         if load_ae:
             if self.ae_net is None:
                 self.ae_net = build_autoencoder(self.net_name)
