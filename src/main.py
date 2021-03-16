@@ -27,6 +27,8 @@ from datasets.load_image import train_test_numpy_load
               help='Model file path (default: None).')
 @click.option('--objective', type=click.Choice(['one-class', 'soft-boundary']), default='one-class',
               help='Specify Deep SVDD objective ("one-class" or "soft-boundary").')
+@click.option('--data_load', type=click.Choice([True, False]), default=True,
+              help='load train/test pickle data.')
 @click.option('--nu', type=float, default=0.1, help='Deep SVDD hyperparameter nu (must be 0 < nu <= 1).')
 @click.option('--device', type=str, default='cuda', help='Computation device to use ("cpu", "cuda", "cuda:2", etc.).')
 @click.option('--seed', type=int, default=-1, help='Set seed. If -1, use randomization.')
@@ -115,9 +117,9 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
 
     # Load data
     if dataset_name == 'campus':
-        train_path = 'train/OK'
+        train_path = 'train'
         test_path = 'test'
-        train_image, test_image, test_label = train_test_numpy_load(data_path,train_path,test_path)
+        train_image, train_class, test_image, test_label, test_class = train_test_numpy_load(data_path,train_path,test_path,data_load)
         dataset = load_campus_dataset(dataset_name, data_path, train_image, test_image, test_label)        
     else:
         dataset = load_dataset(dataset_name, data_path, normal_class)
@@ -200,7 +202,7 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
             X_outliers_anomal = torch.tensor(test_data[idx_sorted_anomal[-1:],...])
         
         if dataset_name == 'campus':
-            pass
+            pass        
         else:            
             plot_images_grid(X_normals, export_img=xp_path + '/normals', title='Most normal examples', padding=2)
             plot_images_grid(X_outliers, export_img=xp_path + '/outliers', title='Most anomalous examples', padding=2)

@@ -138,5 +138,5 @@ class DeepSVDD(object):
 
     def save_results(self, export_json):
         """Save results dict to a JSON-file."""
-        with open(export_json, 'w') as fp:
+        with open(export_json, 'w') as fp:  
             json.dump(self.results, fp)
