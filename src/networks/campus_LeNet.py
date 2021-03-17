@@ -13,7 +13,7 @@ class CAMPUS_LeNet(BaseNet):
         self.rep_dim = 100
         self.pool = nn.MaxPool2d(4, 4)
 
-        self.conv1 = nn.Conv2d(1, 8, 5, bias=False, padding=2)
+        self.conv1 = nn.Conv2d(3, 8, 5, bias=False, padding=2)
         self.bn1 = nn.BatchNorm2d(8, eps=1e-04, affine=False)
         self.conv2 = nn.Conv2d(8, 4, 5, bias=False, padding=2)
         self.bn2 = nn.BatchNorm2d(4, eps=1e-04, affine=False)
@@ -42,7 +42,7 @@ class CAMPUS_LeNet_Autoencoder(BaseNet):
         self.pool = nn.MaxPool2d(4, 4)
 
         # Encoder (must match the Deep SVDD network above)
-        self.conv1 = nn.Conv2d(1, 8, 5, bias=False, padding=2)
+        self.conv1 = nn.Conv2d(3, 8, 5, bias=False, padding=2)
         self.bn1 = nn.BatchNorm2d(8, eps=1e-04, affine=False)
         self.conv2 = nn.Conv2d(8, 4, 5, bias=False, padding=2)
         self.bn2 = nn.BatchNorm2d(4, eps=1e-04, affine=False)
@@ -57,7 +57,7 @@ class CAMPUS_LeNet_Autoencoder(BaseNet):
         self.bn4 = nn.BatchNorm2d(4, eps=1e-04, affine=False)
         self.deconv3 = nn.ConvTranspose2d(4, 8, 5, bias=False, padding=2)
         self.bn5 = nn.BatchNorm2d(8, eps=1e-04, affine=False)
-        self.deconv4 = nn.ConvTranspose2d(8, 1, 5, bias=False, padding=2)
+        self.deconv4 = nn.ConvTranspose2d(8, 3, 5, bias=False, padding=2)
 
     def forward(self, x):
         x = self.conv1(x)

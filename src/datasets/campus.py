@@ -11,21 +11,21 @@ from torch.utils.data import Dataset
 import os 
 
 
-data_path = r'/home/yeong95/svdd/deep-svdd-campus_town/data/두부 데이터셋'
-with open(os.path.join(data_path,'train_image.pickle'), 'rb') as f:
-    train_data = pickle.load(f)
+# data_path = r'/home/yeong95/svdd/deep-svdd-campus_town/data/두부 데이터셋'
+# with open(os.path.join(data_path,'train_image.pickle'), 'rb') as f:
+#     train_data = pickle.load(f)
 
-compute min-max
-min_ = 10000
-max_ = -10000
-for data in train_data:
-    torch_data = global_contrast_normalization(torch.from_numpy(data), 'l1')
-    min_tmp = torch.min(torch_data)
-    max_tmp = torch.max(torch_data)
-    if min_ >= min_tmp:
-        min_= min_tmp
-    if max_ <= max_tmp:
-        max_ = max_tmp
+# #compute min-max
+# min_ = 10000
+# max_ = -10000
+# for data in train_data:
+#     torch_data = global_contrast_normalization(torch.from_numpy(data).type(torch.float32), 'l1')
+#     min_tmp = torch.min(torch_data)
+#     max_tmp = torch.max(torch_data)
+#     if min_ >= min_tmp:
+#         min_= min_tmp
+#     if max_ <= max_tmp:
+#         max_ = max_tmp
    
 class Campustown_Dataset(TorchvisionDataset):
 
@@ -35,7 +35,7 @@ class Campustown_Dataset(TorchvisionDataset):
         self.n_classes = 2  # 0: normal, 1: outlier
 
         # Pre-computed min and max values (after applying GCN) from train data per class
-        min_max = [(-3.9348, 0.7229)]
+        min_max = [(-2.9073, 2.5115)]
 
         # preprocessing GCN (with L1 norm) and min-max feature scaling to [0,1]
         transform = transforms.Compose([transforms.ToTensor(),
@@ -69,11 +69,11 @@ class MyCampus(Dataset):
         if self.train:
             img, target = self.train_data[index], 0
         else:
-            img, target = self.test_data[index], self.test_label[index][0]
+            img, target = self.test_data[index], self.test_label[index]
 
         # doing this so that it is consistent with all other datasets
         # to return a PIL Image
-        img = Image.fromarray(img.numpy(), mode='L')
+        img = Image.fromarray(img.numpy(), mode='RGB')
 
         if self.transform is not None:
             img = self.transform(img)
@@ -95,7 +95,6 @@ class MyCampus(Dataset):
 # ax.axis('off')
 # io.imshow(sample)
 # plt.show()
-
 # if i == 3:
 #     plt.show()
 #     break
