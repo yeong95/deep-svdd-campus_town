@@ -11,6 +11,7 @@ def train_test_numpy_load(data_path,train_path,test_path,load):
         os.chdir(data_path)
         with open('train_image.pickle', 'rb') as f:
             train_image = pickle.load(f)
+            train_image = train_image[:1000]
         with open('train_class.pickle', 'rb') as f:
             train_class = pickle.load(f)
         with open('test_image.pickle', 'rb') as f:
@@ -19,6 +20,7 @@ def train_test_numpy_load(data_path,train_path,test_path,load):
             test_label = pickle.load(f)
         with open('test_class.pickle', 'rb') as f:
             test_class = pickle.load(f)
+        os.chdir(r'/content/deep-svdd-campus_town/src') # reset to original path
         return train_image, train_class, test_image, test_label, test_class 
     
     os.chdir(os.path.join(data_path,train_path))

@@ -9,13 +9,14 @@ import time
 import torch
 import torch.optim as optim
 import numpy as np
+import os
 
 
 class DeepSVDDTrainer(BaseTrainer):
 
     def __init__(self, objective, R, c, nu: float, optimizer_name: str = 'adam', lr: float = 0.001, n_epochs: int = 150,
                  lr_milestones: tuple = (), batch_size: int = 128, weight_decay: float = 1e-6, device: str = 'cuda',
-                 n_jobs_dataloader: int = 0):
+                 n_jobs_dataloader: int = 0, export_model=None):
         super().__init__(optimizer_name, lr, n_epochs, lr_milestones, batch_size, weight_decay, device,
                          n_jobs_dataloader)
 
@@ -35,6 +36,9 @@ class DeepSVDDTrainer(BaseTrainer):
         self.test_auc = None
         self.test_time = None
         self.test_scores = None
+
+        # saved model path 
+        self.export_model = export_model
 
     def train(self, dataset: BaseADDataset, net: BaseNet):
         logger = logging.getLogger()
@@ -95,6 +99,13 @@ class DeepSVDDTrainer(BaseTrainer):
 
                 loss_epoch += loss.item()
                 n_batches += 1
+
+            # save model temporarily in middle of training 
+
+            if (epoch+1)%10 ==0:
+              os.makedirs(self.export_model+'/model_tmp_saved', exist_ok=True) 
+              model_name = 'model_'+str(epoch+1)+'.tar'
+              torch.save({'net_dict' : net.state_dict()}, self.export_model+'/model_tmp_saved/'+model_name )
 
             # log epoch statistics
             epoch_train_time = time.time() - epoch_start_time

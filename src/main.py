@@ -125,6 +125,7 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
         train_path = 'train/OK'
         test_path = 'test'
         train_image, train_class, test_image, test_label, test_class = train_test_numpy_load(data_path,train_path,test_path,data_load)
+        logger.info('Train shape: {}' .format(train_image.shape))
         dataset = load_campus_dataset(dataset_name, data_path, train_image, test_image, test_label)        
     else:
         dataset = load_dataset(dataset_name, data_path, normal_class)
@@ -175,7 +176,8 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
                     batch_size=cfg.settings['batch_size'],
                     weight_decay=cfg.settings['weight_decay'],
                     device=device,
-                    n_jobs_dataloader=n_jobs_dataloader)
+                    n_jobs_dataloader=n_jobs_dataloader,
+                    export_model_path=xp_path)
 
     # Test model
     deep_SVDD.test(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader)
@@ -185,7 +187,6 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     indices, labels, scores = np.array(indices), np.array(labels), np.array(scores)
     idx_sorted = indices[labels == 0][np.argsort(scores[labels == 0])]  # sorted from lowest to highest anomaly score in normal class
     idx_sorted_anomal = indices[labels == 1][np.argsort(scores[labels == 1])]
-    os.chdir(r'/home/yeong95/svdd/deep-svdd-campus_town/src') # reset to original path
     if dataset_name in ('mnist', 'cifar10', 'campus'):
 
         if dataset_name == 'mnist':
