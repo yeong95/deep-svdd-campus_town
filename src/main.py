@@ -12,6 +12,11 @@ from deepSVDD import DeepSVDD
 from datasets.main import load_dataset, load_campus_dataset
 from datasets.load_image import train_test_numpy_load
 
+import matplotlib.pyplot as plt
+from sklearn.metrics import roc_auc_score
+from sklearn.metrics import roc_curve, auc
+
+
 
 ################################################################################
 # Settings
@@ -25,10 +30,10 @@ from datasets.load_image import train_test_numpy_load
               help='Config JSON-file path (default: None).')
 @click.option('--load_model', type=click.Path(exists=True), default=None,
               help='Model file path (default: None).')
-@click.option('--objective', type=click.Choice(['one-class', 'soft-boundary']), default='one-class',
-              help='Specify Deep SVDD objective ("one-class" or "soft-boundary").')
 @click.option('--data_load', type=bool, default=True,
               help='load train/test pickle data.')
+@click.option('--objective', type=click.Choice(['one-class', 'soft-boundary']), default='one-class',
+              help='Specify Deep SVDD objective ("one-class" or "soft-boundary").')
 @click.option('--nu', type=float, default=0.1, help='Deep SVDD hyperparameter nu (must be 0 < nu <= 1).')
 @click.option('--device', type=str, default='cuda', help='Computation device to use ("cpu", "cuda", "cuda:2", etc.).')
 @click.option('--seed', type=int, default=-1, help='Set seed. If -1, use randomization.')
@@ -55,12 +60,12 @@ from datasets.load_image import train_test_numpy_load
 @click.option('--ae_weight_decay', type=float, default=1e-6,
               help='Weight decay (L2 penalty) hyperparameter for autoencoder objective.')
 @click.option('--n_jobs_dataloader', type=int, default=0,
-              help='Number of workers for data loading. 0 means that the data will be loaded in the main process.')
+              help='Number of workers for data loading. 0 means  that the data will be loaded in the main process.')
 @click.option('--normal_class', type=int, default=0,
               help='Specify the normal class of the dataset (all other classes are considered anomalous).')
 def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, objective, nu, device, seed,
          optimizer_name, lr, n_epochs, lr_milestone, batch_size, weight_decay, pretrain, ae_optimizer_name, ae_lr,
-         ae_n_epochs, ae_lr_milestone, ae_batch_size, ae_weight_decay, n_jobs_dataloader, normal_class,data_load):
+         ae_n_epochs, ae_lr_milestone, ae_batch_size, ae_weight_decay, n_jobs_dataloader, normal_class, data_load):
     """
     Deep SVDD, a fully deep method for anomaly detection.
 
@@ -117,7 +122,7 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
 
     # Load data
     if dataset_name == 'campus':
-        train_path = 'train'
+        train_path = 'train/OK'
         test_path = 'test'
         train_image, train_class, test_image, test_label, test_class = train_test_numpy_load(data_path,train_path,test_path,data_load)
         dataset = load_campus_dataset(dataset_name, data_path, train_image, test_image, test_label)        
@@ -180,7 +185,7 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     indices, labels, scores = np.array(indices), np.array(labels), np.array(scores)
     idx_sorted = indices[labels == 0][np.argsort(scores[labels == 0])]  # sorted from lowest to highest anomaly score in normal class
     idx_sorted_anomal = indices[labels == 1][np.argsort(scores[labels == 1])]
-
+    os.chdir(r'/home/yeong95/svdd/deep-svdd-campus_town/src') # reset to original path
     if dataset_name in ('mnist', 'cifar10', 'campus'):
 
         if dataset_name == 'mnist':
@@ -195,14 +200,29 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
             test_score_path = os.path.join(xp_path, 'test_score.pickle')
             with open(test_score_path, 'wb') as f:
                 pickle.dump(deep_SVDD.results['test_scores'], f, pickle.HIGHEST_PROTOCOL)
-            test_data = dataset.test_set.test_data.reshape(140,1,640,640)
-            X_normlas = torch.tensor(test_data[idx_sorted[:1],...])
-            X_outliers = torch.tensor(test_data[idx_sorted[-1:],...])
-            X_normlas_anomal = torch.tensor(test_data[idx_sorted_anomal[:1],...])
-            X_outliers_anomal = torch.tensor(test_data[idx_sorted_anomal[-1:],...])
+            # test_data = dataset.test_set.test_data.reshape(140,1,640,640)
+            # X_normlas = torch.tensor(test_data[idx_sorted[:1],...])
+            # X_outliers = torch.tensor(test_data[idx_sorted[-1:],...])
+            # X_normlas_anomal = torch.tensor(test_data[idx_sorted_anomal[:1],...])
+            # X_outliers_anomal = torch.tensor(test_data[idx_sorted_anomal[-1:],...])
         
         if dataset_name == 'campus':
-            pass        
+            fpr = dict()
+            tpr = dict()
+            roc_auc = dict()
+            fpr, tpr, threshold = roc_curve(labels, scores)
+            roc_auc = auc(fpr, tpr)
+            plt.figure()
+            lw=2
+            plt.plot(fpr,tpr, color='darkorange', lw=lw, label='ROC curve (area= %0.2f)' %roc_auc)  
+            plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
+            plt.xlim([0.0, 1.0])
+            plt.ylim([0.0, 1.05])
+            plt.xlabel('False Positive Rate')   
+            plt.ylabel('True Positive Rate')
+            plt.title('Receiver operating characteristic example')
+            plt.legend(loc="lower right")           
+            plt.savefig(os.path.join(xp_path,'auc_roc.png'))             
         else:            
             plot_images_grid(X_normals, export_img=xp_path + '/normals', title='Most normal examples', padding=2)
             plot_images_grid(X_outliers, export_img=xp_path + '/outliers', title='Most anomalous examples', padding=2)

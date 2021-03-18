@@ -67,7 +67,9 @@ def train_test_numpy_load(data_path,train_path,test_path,load):
     with open('test_label.pickle','wb') as f:
         pickle.dump(test_label,f,pickle.HIGHEST_PROTOCOL)
     with open('test_class.pickle','wb') as f:
-        pickle.dump(test_class,f,pickle.HIGHEST_PROTOCOL)   
+        pickle.dump(test_class,f,pickle.HIGHEST_PROTOCOL) 
+    
+    os.chdir(r'/home/yeong95/svdd/deep-svdd-campus_town/src') # reset to original path   
     
     return train_image, train_class, test_image, test_label, test_class
 
@@ -78,16 +80,3 @@ if __name__ == '__main__':
     test_path = 'test'
     load = False
     train_image, train_class, test_image, test_label, test_class = train_test_numpy_load(data_path,train_path,test_path,load)
-    
-
-            
-    
-        
-        
-        
-    
-    
-
-
-
-
