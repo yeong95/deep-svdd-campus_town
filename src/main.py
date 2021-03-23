@@ -12,6 +12,9 @@ from deepSVDD import DeepSVDD
 from datasets.main import load_dataset, load_campus_dataset
 from datasets.load_image import train_test_numpy_load
 
+from sklearn.metrics import roc_auc_score
+from sklearn.metrics import roc_curve, auc
+import matplotlib.pyplot as plt
 
 ################################################################################
 # Settings
@@ -160,15 +163,15 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     logger.info('Training weight decay: %g' % cfg.settings['weight_decay'])
 
     # Train model on dataset
-    deep_SVDD.train(dataset,
-                    optimizer_name=cfg.settings['optimizer_name'],
-                    lr=cfg.settings['lr'],
-                    n_epochs=cfg.settings['n_epochs'],
-                    lr_milestones=cfg.settings['lr_milestone'],
-                    batch_size=cfg.settings['batch_size'],
-                    weight_decay=cfg.settings['weight_decay'],
-                    device=device,
-                    n_jobs_dataloader=n_jobs_dataloader)
+    # deep_SVDD.train(dataset,
+    #                 optimizer_name=cfg.settings['optimizer_name'],
+    #                 lr=cfg.settings['lr'],
+    #                 n_epochs=cfg.settings['n_epochs'],
+    #                 lr_milestones=cfg.settings['lr_milestone'],
+    #                 batch_size=cfg.settings['batch_size'],
+    #                 weight_decay=cfg.settings['weight_decay'],
+    #                 device=device,
+    #                 n_jobs_dataloader=n_jobs_dataloader)
 
     # Test model
     deep_SVDD.test(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader)
@@ -200,7 +203,22 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
             X_outliers_anomal = torch.tensor(test_data[idx_sorted_anomal[-1:],...])
         
         if dataset_name == 'campus':
-            pass
+            fpr = dict()
+            tpr = dict()
+            roc_auc = dict()
+            fpr, tpr, threshold = roc_curve(labels, scores)
+            roc_auc = auc(fpr, tpr)
+            plt.figure()
+            lw=2
+            plt.plot(fpr,tpr, color='darkorange', lw=lw, label='ROC curve (area= %0.2f)' %roc_auc)  
+            plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
+            plt.xlim([0.0, 1.0])
+            plt.ylim([0.0, 1.05])
+            plt.xlabel('False Positive Rate')   
+            plt.ylabel('True Positive Rate')
+            plt.title('Receiver operating characteristic example')
+            plt.legend(loc="lower right")           
+            plt.savefig(os.path.join(xp_path,'auc_roc.png'))    
         else:            
             plot_images_grid(X_normals, export_img=xp_path + '/normals', title='Most normal examples', padding=2)
             plot_images_grid(X_outliers, export_img=xp_path + '/outliers', title='Most anomalous examples', padding=2)
