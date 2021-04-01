@@ -10,7 +10,11 @@ import torch
 import torch.optim as optim
 import numpy as np
 import os
+import pickle
 
+from sklearn.manifold import TSNE
+# %matplotlib inline
+import matplotlib.pyplot as plt
 
 class DeepSVDDTrainer(BaseTrainer):
 
@@ -164,7 +168,42 @@ class DeepSVDDTrainer(BaseTrainer):
         logger.info('Test set AUC: {:.2f}%'.format(100. * self.test_auc))
 
         logger.info('Finished testing.')
-
+    
+    def t_sne(self, dataset: BaseADDataset, net: BaseNet, center):
+        logger = logging.getLogger()
+        
+        data_path = r'/home/yeong95/svdd/deep-svdd-campus_town/data/두부 데이터셋'
+        save_path = r'/home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test'
+        with open(os.path.join(data_path,'test_class.pickle'), 'rb') as f:
+            test_class = pickle.load(f)
+        test_class = np.array(test_class)
+        
+        # Set device for network
+        net = net.to(self.device)
+        _, test_loader = dataset.loaders(batch_size=self.batch_size, num_workers=self.n_jobs_dataloader)
+        
+        # t_sne
+        logger.info('Start plot t_sne')
+        t_sne_list = []
+        for data in test_loader:
+            inputs, labels, idx = data
+            inputs = inputs.to(self.device)
+            import pdb; pdb.set_trace()
+            outputs = net(inputs)
+            tsne = TSNE(n_components=2)
+            t_sne_list.append(tsne.fit_transform(outputs))
+        
+        t_sne_list = np.array(t_sne_list)
+        tsne = TSNE(n_components=2)
+        tsne_results = tsne.fit_transform(t_sne_list)
+        plt.figure(figsize=(16,10))
+        colors = 'r', 'g', 'b', 'c', 'm', 'y', 'k', 'w', 'orange', 'purple'
+        for c, label in zip(colors, set(test_class)):
+            plt.scatter(tsne_results[test_class==label, 0], tsne_results[test_class==label, 1], c=c, label=label)
+        plt.legend()
+        plt.savefig(os.path.join(save_path,'t_sne.png'))        
+        
+        
     def init_center_c(self, train_loader: DataLoader, net: BaseNet, eps=0.1):
         """Initialize hypersphere center c as the mean from an initial forward pass on the data."""
         n_samples = 0

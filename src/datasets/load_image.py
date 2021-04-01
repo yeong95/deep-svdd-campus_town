@@ -8,19 +8,17 @@ import pickle
 def train_test_numpy_load(data_path,train_path,test_path,load):
     
     if load:
-        os.chdir(data_path)
-        with open('train_image.pickle', 'rb') as f:
+        with open(os.path.join(data_path,'train_image.pickle'), 'rb') as f:
             train_image = pickle.load(f)
             train_image = train_image[:1000]
-        with open('train_class.pickle', 'rb') as f:
+        with open(os.path.join(data_path,'train_class.pickle'), 'rb') as f:
             train_class = pickle.load(f)
-        with open('test_image.pickle', 'rb') as f:
+        with open(os.path.join(data_path,'test_image.pickle'), 'rb') as f:
             test_image = pickle.load(f)
-        with open('test_label.pickle', 'rb') as f:
+        with open(os.path.join(data_path,'test_label.pickle'), 'rb') as f:
             test_label = pickle.load(f)
-        with open('test_class.pickle', 'rb') as f:
+        with open(os.path.join(data_path,'test_class.pickle'), 'rb') as f:
             test_class = pickle.load(f)
-        os.chdir(r'/content/deep-svdd-campus_town/src') # reset to original path
         return train_image, train_class, test_image, test_label, test_class 
     
     os.chdir(os.path.join(data_path,train_path))
@@ -71,7 +69,7 @@ def train_test_numpy_load(data_path,train_path,test_path,load):
     with open('test_class.pickle','wb') as f:
         pickle.dump(test_class,f,pickle.HIGHEST_PROTOCOL) 
     
-    os.chdir(r'/home/yeong95/svdd/deep-svdd-campus_town/src') # reset to original path   
+    os.chdir('../src') # reset to original path   
     
     return train_image, train_class, test_image, test_label, test_class
 

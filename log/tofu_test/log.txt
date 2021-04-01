@@ -348,3 +348,193 @@
 2021-03-18 13:06:49,774 - root - INFO - Testing time: 11.188
 2021-03-18 13:06:49,776 - root - INFO - Test set AUC: 83.71%
 2021-03-18 13:06:49,776 - root - INFO - Finished testing.
+2021-04-01 14:49:59,999 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-01 14:50:00,000 - root - INFO - Data path is ../data/두부 데이터셋.
+2021-04-01 14:50:00,000 - root - INFO - Export path is ../log/tofu_test.
+2021-04-01 14:50:00,000 - root - INFO - Dataset: campus
+2021-04-01 14:50:00,000 - root - INFO - Normal class: 0
+2021-04-01 14:50:00,000 - root - INFO - Network: campus_LeNet
+2021-04-01 14:50:00,000 - root - INFO - Deep SVDD objective: one-class
+2021-04-01 14:50:00,000 - root - INFO - Nu-paramerter: 0.10
+2021-04-01 14:50:00,000 - root - INFO - Computation device: cpu
+2021-04-01 14:50:00,000 - root - INFO - Number of dataloader workers: 0
+2021-04-01 14:56:45,584 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-01 14:56:45,584 - root - INFO - Data path is ../data/두부 데이터셋.
+2021-04-01 14:56:45,584 - root - INFO - Export path is ../log/tofu_test.
+2021-04-01 14:56:45,584 - root - INFO - Dataset: campus
+2021-04-01 14:56:45,584 - root - INFO - Normal class: 0
+2021-04-01 14:56:45,584 - root - INFO - Network: campus_LeNet
+2021-04-01 14:56:45,584 - root - INFO - Deep SVDD objective: one-class
+2021-04-01 14:56:45,584 - root - INFO - Nu-paramerter: 0.10
+2021-04-01 14:56:45,584 - root - INFO - Computation device: cpu
+2021-04-01 14:56:45,584 - root - INFO - Number of dataloader workers: 0
+2021-04-01 14:56:48,267 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-04-01 15:02:09,902 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-01 15:02:09,903 - root - INFO - Data path is ../data/두부 데이터셋.
+2021-04-01 15:02:09,903 - root - INFO - Export path is ../log/tofu_test.
+2021-04-01 15:02:09,903 - root - INFO - Dataset: campus
+2021-04-01 15:02:09,903 - root - INFO - Normal class: 0
+2021-04-01 15:02:09,903 - root - INFO - Network: campus_LeNet
+2021-04-01 15:02:09,903 - root - INFO - Deep SVDD objective: one-class
+2021-04-01 15:02:09,903 - root - INFO - Nu-paramerter: 0.10
+2021-04-01 15:02:09,903 - root - INFO - Computation device: cpu
+2021-04-01 15:02:09,903 - root - INFO - Number of dataloader workers: 0
+2021-04-01 15:02:12,580 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-04-01 15:02:12,590 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
+2021-04-01 15:02:12,590 - root - INFO - Training optimizer: adam
+2021-04-01 15:02:12,590 - root - INFO - Training learning rate: 0.001
+2021-04-01 15:02:12,590 - root - INFO - Training epochs: 50
+2021-04-01 15:02:12,591 - root - INFO - Training learning rate scheduler milestones: ()
+2021-04-01 15:02:12,591 - root - INFO - Training batch size: 128
+2021-04-01 15:02:12,591 - root - INFO - Training weight decay: 1e-06
+2021-04-01 15:02:32,328 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-01 15:02:32,328 - root - INFO - Data path is ../data/두부 데이터셋.
+2021-04-01 15:02:32,328 - root - INFO - Export path is ../log/tofu_test.
+2021-04-01 15:02:32,328 - root - INFO - Dataset: campus
+2021-04-01 15:02:32,328 - root - INFO - Normal class: 0
+2021-04-01 15:02:32,328 - root - INFO - Network: campus_LeNet
+2021-04-01 15:02:32,328 - root - INFO - Deep SVDD objective: one-class
+2021-04-01 15:02:32,328 - root - INFO - Nu-paramerter: 0.10
+2021-04-01 15:02:32,328 - root - INFO - Computation device: cpu
+2021-04-01 15:02:32,328 - root - INFO - Number of dataloader workers: 0
+2021-04-01 15:02:35,073 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-04-01 15:02:35,077 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
+2021-04-01 15:02:35,078 - root - INFO - Training optimizer: adam
+2021-04-01 15:02:35,078 - root - INFO - Training learning rate: 0.001
+2021-04-01 15:02:35,078 - root - INFO - Training epochs: 50
+2021-04-01 15:02:35,078 - root - INFO - Training learning rate scheduler milestones: ()
+2021-04-01 15:02:35,078 - root - INFO - Training batch size: 128
+2021-04-01 15:02:35,078 - root - INFO - Training weight decay: 1e-06
+2021-04-01 15:02:53,039 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-01 15:02:53,039 - root - INFO - Data path is ../data/두부 데이터셋.
+2021-04-01 15:02:53,039 - root - INFO - Export path is ../log/tofu_test.
+2021-04-01 15:02:53,039 - root - INFO - Dataset: campus
+2021-04-01 15:02:53,039 - root - INFO - Normal class: 0
+2021-04-01 15:02:53,040 - root - INFO - Network: campus_LeNet
+2021-04-01 15:02:53,040 - root - INFO - Deep SVDD objective: one-class
+2021-04-01 15:02:53,040 - root - INFO - Nu-paramerter: 0.10
+2021-04-01 15:02:53,040 - root - INFO - Computation device: cpu
+2021-04-01 15:02:53,040 - root - INFO - Number of dataloader workers: 0
+2021-04-01 15:03:01,816 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-04-01 15:03:01,820 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
+2021-04-01 15:03:01,820 - root - INFO - Training optimizer: adam
+2021-04-01 15:03:01,821 - root - INFO - Training learning rate: 0.001
+2021-04-01 15:03:01,821 - root - INFO - Training epochs: 50
+2021-04-01 15:03:01,821 - root - INFO - Training learning rate scheduler milestones: ()
+2021-04-01 15:03:01,821 - root - INFO - Training batch size: 128
+2021-04-01 15:03:01,821 - root - INFO - Training weight decay: 1e-06
+2021-04-01 15:03:01,822 - root - INFO - Start plot t_sne
+2021-04-01 15:06:47,358 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-01 15:06:47,359 - root - INFO - Data path is ../data/두부 데이터셋.
+2021-04-01 15:06:47,359 - root - INFO - Export path is ../log/tofu_test.
+2021-04-01 15:06:47,359 - root - INFO - Dataset: campus
+2021-04-01 15:06:47,359 - root - INFO - Normal class: 0
+2021-04-01 15:06:47,359 - root - INFO - Network: campus_LeNet
+2021-04-01 15:06:47,360 - root - INFO - Deep SVDD objective: one-class
+2021-04-01 15:06:47,360 - root - INFO - Nu-paramerter: 0.10
+2021-04-01 15:06:47,360 - root - INFO - Computation device: cpu
+2021-04-01 15:06:47,360 - root - INFO - Number of dataloader workers: 0
+2021-04-01 15:07:00,251 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-04-01 15:07:00,267 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
+2021-04-01 15:07:00,268 - root - INFO - Training optimizer: adam
+2021-04-01 15:07:00,268 - root - INFO - Training learning rate: 0.001
+2021-04-01 15:07:00,268 - root - INFO - Training epochs: 50
+2021-04-01 15:07:00,268 - root - INFO - Training learning rate scheduler milestones: ()
+2021-04-01 15:07:00,268 - root - INFO - Training batch size: 128
+2021-04-01 15:07:00,268 - root - INFO - Training weight decay: 1e-06
+2021-04-01 15:07:00,269 - root - INFO - Start plot t_sne
+2021-04-01 15:07:30,762 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-01 15:07:30,762 - root - INFO - Data path is ../data/두부 데이터셋.
+2021-04-01 15:07:30,762 - root - INFO - Export path is ../log/tofu_test.
+2021-04-01 15:07:30,763 - root - INFO - Dataset: campus
+2021-04-01 15:07:30,763 - root - INFO - Normal class: 0
+2021-04-01 15:07:30,763 - root - INFO - Network: campus_LeNet
+2021-04-01 15:07:30,763 - root - INFO - Deep SVDD objective: one-class
+2021-04-01 15:07:30,763 - root - INFO - Nu-paramerter: 0.10
+2021-04-01 15:07:30,763 - root - INFO - Computation device: cpu
+2021-04-01 15:07:30,763 - root - INFO - Number of dataloader workers: 0
+2021-04-01 15:07:43,621 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-04-01 15:07:43,637 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
+2021-04-01 15:07:43,637 - root - INFO - Training optimizer: adam
+2021-04-01 15:07:43,637 - root - INFO - Training learning rate: 0.001
+2021-04-01 15:07:43,637 - root - INFO - Training epochs: 50
+2021-04-01 15:07:43,637 - root - INFO - Training learning rate scheduler milestones: ()
+2021-04-01 15:07:43,637 - root - INFO - Training batch size: 128
+2021-04-01 15:07:43,637 - root - INFO - Training weight decay: 1e-06
+2021-04-01 15:09:11,593 - root - INFO - Start plot t_sne
+2021-04-01 15:11:02,884 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-01 15:11:02,885 - root - INFO - Data path is ../data/두부 데이터셋.
+2021-04-01 15:11:02,885 - root - INFO - Export path is ../log/tofu_test.
+2021-04-01 15:11:02,885 - root - INFO - Dataset: campus
+2021-04-01 15:11:02,885 - root - INFO - Normal class: 0
+2021-04-01 15:11:02,885 - root - INFO - Network: campus_LeNet
+2021-04-01 15:11:02,885 - root - INFO - Deep SVDD objective: one-class
+2021-04-01 15:11:02,885 - root - INFO - Nu-paramerter: 0.10
+2021-04-01 15:11:02,885 - root - INFO - Computation device: cpu
+2021-04-01 15:11:02,885 - root - INFO - Number of dataloader workers: 0
+2021-04-01 15:11:15,703 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-04-01 15:11:15,720 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
+2021-04-01 15:11:15,720 - root - INFO - Training optimizer: adam
+2021-04-01 15:11:15,720 - root - INFO - Training learning rate: 0.001
+2021-04-01 15:11:15,720 - root - INFO - Training epochs: 50
+2021-04-01 15:11:15,720 - root - INFO - Training learning rate scheduler milestones: ()
+2021-04-01 15:11:15,720 - root - INFO - Training batch size: 128
+2021-04-01 15:11:15,720 - root - INFO - Training weight decay: 1e-06
+2021-04-01 15:11:20,637 - root - INFO - Start plot t_sne
+2021-04-01 15:12:10,176 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-01 15:12:10,177 - root - INFO - Data path is ../data/두부 데이터셋.
+2021-04-01 15:12:10,177 - root - INFO - Export path is ../log/tofu_test.
+2021-04-01 15:12:10,177 - root - INFO - Dataset: campus
+2021-04-01 15:12:10,177 - root - INFO - Normal class: 0
+2021-04-01 15:12:10,177 - root - INFO - Network: campus_LeNet
+2021-04-01 15:12:10,177 - root - INFO - Deep SVDD objective: one-class
+2021-04-01 15:12:10,177 - root - INFO - Nu-paramerter: 0.10
+2021-04-01 15:12:10,177 - root - INFO - Computation device: cpu
+2021-04-01 15:12:10,177 - root - INFO - Number of dataloader workers: 0
+2021-04-01 15:12:25,173 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-04-01 15:12:25,189 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
+2021-04-01 15:12:25,189 - root - INFO - Training optimizer: adam
+2021-04-01 15:12:25,189 - root - INFO - Training learning rate: 0.001
+2021-04-01 15:12:25,189 - root - INFO - Training epochs: 50
+2021-04-01 15:12:25,189 - root - INFO - Training learning rate scheduler milestones: ()
+2021-04-01 15:12:25,189 - root - INFO - Training batch size: 64
+2021-04-01 15:12:25,189 - root - INFO - Training weight decay: 1e-06
+2021-04-01 15:13:25,384 - root - INFO - Start plot t_sne
+2021-04-01 15:14:46,558 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-01 15:14:46,559 - root - INFO - Data path is ../data/두부 데이터셋.
+2021-04-01 15:14:46,559 - root - INFO - Export path is ../log/tofu_test.
+2021-04-01 15:14:46,559 - root - INFO - Dataset: campus
+2021-04-01 15:14:46,559 - root - INFO - Normal class: 0
+2021-04-01 15:14:46,559 - root - INFO - Network: campus_LeNet
+2021-04-01 15:14:46,559 - root - INFO - Deep SVDD objective: one-class
+2021-04-01 15:14:46,559 - root - INFO - Nu-paramerter: 0.10
+2021-04-01 15:14:46,559 - root - INFO - Computation device: cpu
+2021-04-01 15:14:46,559 - root - INFO - Number of dataloader workers: 0
+2021-04-01 15:14:59,814 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-04-01 15:14:59,830 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
+2021-04-01 15:14:59,830 - root - INFO - Training optimizer: adam
+2021-04-01 15:14:59,830 - root - INFO - Training learning rate: 0.001
+2021-04-01 15:14:59,830 - root - INFO - Training epochs: 50
+2021-04-01 15:14:59,830 - root - INFO - Training learning rate scheduler milestones: ()
+2021-04-01 15:14:59,830 - root - INFO - Training batch size: 32
+2021-04-01 15:14:59,830 - root - INFO - Training weight decay: 1e-06
+2021-04-01 15:14:59,831 - root - INFO - Start plot t_sne
+2021-04-01 15:16:27,587 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-01 15:16:27,588 - root - INFO - Data path is ../data/두부 데이터셋.
+2021-04-01 15:16:27,588 - root - INFO - Export path is ../log/tofu_test.
+2021-04-01 15:16:27,588 - root - INFO - Dataset: campus
+2021-04-01 15:16:27,588 - root - INFO - Normal class: 0
+2021-04-01 15:16:27,588 - root - INFO - Network: campus_LeNet
+2021-04-01 15:16:27,588 - root - INFO - Deep SVDD objective: one-class
+2021-04-01 15:16:27,589 - root - INFO - Nu-paramerter: 0.10
+2021-04-01 15:16:27,589 - root - INFO - Computation device: cpu
+2021-04-01 15:16:27,589 - root - INFO - Number of dataloader workers: 0
+2021-04-01 15:16:40,314 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-04-01 15:16:40,340 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
+2021-04-01 15:16:40,341 - root - INFO - Training optimizer: adam
+2021-04-01 15:16:40,341 - root - INFO - Training learning rate: 0.001
+2021-04-01 15:16:40,341 - root - INFO - Training epochs: 50
+2021-04-01 15:16:40,341 - root - INFO - Training learning rate scheduler milestones: ()
+2021-04-01 15:16:40,341 - root - INFO - Training batch size: 2
+2021-04-01 15:16:40,341 - root - INFO - Training weight decay: 1e-06
+2021-04-01 15:16:40,342 - root - INFO - Start plot t_sne
