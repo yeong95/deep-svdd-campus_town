@@ -11,6 +11,12 @@ from utils.visualization.plot_images_grid import plot_images_grid
 from deepSVDD import DeepSVDD
 from datasets.main import load_dataset, load_campus_dataset
 from datasets.load_image import train_test_numpy_load
+from sklearn.metrics import roc_auc_score
+import matplotlib.pyplot as plt
+
+from sklearn.metrics import roc_auc_score
+from sklearn.metrics import roc_curve, auc
+
 
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_auc_score
