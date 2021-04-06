@@ -4,6 +4,9 @@
 # 두부 데이터
 두부 데이터셋/
 
+# wsl
+.vscode/extensions/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

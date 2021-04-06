@@ -141,7 +141,7 @@ class DeepSVDDTrainer(BaseTrainer):
             for data in test_loader:
                 inputs, labels, idx = data
                 inputs = inputs.to(self.device)
-                outputs = net(inputs.detach().numpy())
+                outputs = net(inputs)
                 dist = torch.sum((outputs - self.c) ** 2, dim=1)
                 if self.objective == 'soft-boundary':
                     scores = dist - self.R ** 2

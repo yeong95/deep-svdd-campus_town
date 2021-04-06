@@ -1,1052 +1,355 @@
-2021-03-18 11:53:58,793 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-03-18 11:53:58,793 - root - INFO - Data path is /content/gdrive/MyDrive/campustown_data/tofu_dataset.
-2021-03-18 11:53:58,793 - root - INFO - Export path is ../log/tofu_test.
-2021-03-18 11:53:58,793 - root - INFO - Dataset: campus
-2021-03-18 11:53:58,793 - root - INFO - Normal class: 0
-2021-03-18 11:53:58,793 - root - INFO - Network: campus_LeNet
-2021-03-18 11:53:58,793 - root - INFO - Deep SVDD objective: one-class
-2021-03-18 11:53:58,793 - root - INFO - Nu-paramerter: 0.10
-2021-03-18 11:53:58,817 - root - INFO - Computation device: cuda
-2021-03-18 11:53:58,817 - root - INFO - Number of dataloader workers: 0
-2021-03-18 11:55:04,401 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-03-18 11:55:04,401 - root - INFO - Data path is /content/gdrive/MyDrive/campustown_data/tofu_dataset.
-2021-03-18 11:55:04,401 - root - INFO - Export path is ../log/tofu_test.
-2021-03-18 11:55:04,401 - root - INFO - Dataset: campus
-2021-03-18 11:55:04,401 - root - INFO - Normal class: 0
-2021-03-18 11:55:04,401 - root - INFO - Network: campus_LeNet
-2021-03-18 11:55:04,401 - root - INFO - Deep SVDD objective: one-class
-2021-03-18 11:55:04,401 - root - INFO - Nu-paramerter: 0.10
-2021-03-18 11:55:04,425 - root - INFO - Computation device: cuda
-2021-03-18 11:55:04,426 - root - INFO - Number of dataloader workers: 0
-2021-03-18 11:55:13,469 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-03-18 11:55:13,471 - root - INFO - Pretraining optimizer: adam
-2021-03-18 11:55:13,471 - root - INFO - Pretraining learning rate: 0.0001
-2021-03-18 11:55:13,471 - root - INFO - Pretraining epochs: 150
-2021-03-18 11:55:13,472 - root - INFO - Pretraining learning rate scheduler milestones: (50,)
-2021-03-18 11:55:13,472 - root - INFO - Pretraining batch size: 64
-2021-03-18 11:55:13,472 - root - INFO - Pretraining weight decay: 0.0005
-2021-03-18 11:55:15,096 - root - INFO - Starting pretraining...
-2021-03-18 11:55:32,176 - root - INFO -   Epoch 1/150	 Time: 17.079	 Loss: 1114639.07031250
-2021-03-18 11:55:47,045 - root - INFO -   Epoch 2/150	 Time: 14.869	 Loss: 1055564.39843750
-2021-03-18 11:56:01,888 - root - INFO -   Epoch 3/150	 Time: 14.843	 Loss: 980955.43750000
-2021-03-18 11:56:16,650 - root - INFO -   Epoch 4/150	 Time: 14.761	 Loss: 905949.29687500
-2021-03-18 11:56:31,395 - root - INFO -   Epoch 5/150	 Time: 14.745	 Loss: 844421.34375000
-2021-03-18 11:56:46,154 - root - INFO -   Epoch 6/150	 Time: 14.759	 Loss: 794092.82031250
-2021-03-18 11:57:01,034 - root - INFO -   Epoch 7/150	 Time: 14.879	 Loss: 753662.34375000
-2021-03-18 11:57:15,937 - root - INFO -   Epoch 8/150	 Time: 14.903	 Loss: 721950.12500000
-2021-03-18 11:57:30,762 - root - INFO -   Epoch 9/150	 Time: 14.825	 Loss: 697737.51562500
-2021-03-18 11:57:45,573 - root - INFO -   Epoch 10/150	 Time: 14.811	 Loss: 677696.44921875
-2021-03-18 11:58:00,370 - root - INFO -   Epoch 11/150	 Time: 14.797	 Loss: 660078.44140625
-2021-03-18 11:58:15,188 - root - INFO -   Epoch 12/150	 Time: 14.817	 Loss: 644688.17968750
-2021-03-18 11:58:29,995 - root - INFO -   Epoch 13/150	 Time: 14.807	 Loss: 631042.37890625
-2021-03-18 11:58:44,935 - root - INFO -   Epoch 14/150	 Time: 14.939	 Loss: 619614.57421875
-2021-03-18 11:58:59,752 - root - INFO -   Epoch 15/150	 Time: 14.817	 Loss: 610128.07812500
-2021-03-18 11:59:14,581 - root - INFO -   Epoch 16/150	 Time: 14.829	 Loss: 601561.66015625
-2021-03-18 11:59:29,435 - root - INFO -   Epoch 17/150	 Time: 14.854	 Loss: 594464.27734375
-2021-03-18 11:59:44,307 - root - INFO -   Epoch 18/150	 Time: 14.872	 Loss: 588038.35546875
-2021-03-18 11:59:59,214 - root - INFO -   Epoch 19/150	 Time: 14.906	 Loss: 582367.89453125
-2021-03-18 12:00:14,097 - root - INFO -   Epoch 20/150	 Time: 14.883	 Loss: 576846.71093750
-2021-03-18 12:00:28,836 - root - INFO -   Epoch 21/150	 Time: 14.739	 Loss: 572180.10156250
-2021-03-18 12:00:43,659 - root - INFO -   Epoch 22/150	 Time: 14.822	 Loss: 567855.85937500
-2021-03-18 12:00:58,414 - root - INFO -   Epoch 23/150	 Time: 14.755	 Loss: 563932.35937500
-2021-03-18 12:01:13,270 - root - INFO -   Epoch 24/150	 Time: 14.856	 Loss: 560377.82812500
-2021-03-18 12:01:28,052 - root - INFO -   Epoch 25/150	 Time: 14.782	 Loss: 556927.27734375
-2021-03-18 12:01:42,922 - root - INFO -   Epoch 26/150	 Time: 14.870	 Loss: 554050.22656250
-2021-03-18 12:01:58,304 - root - INFO -   Epoch 27/150	 Time: 15.381	 Loss: 550917.57421875
-2021-03-18 12:02:13,306 - root - INFO -   Epoch 28/150	 Time: 15.001	 Loss: 548314.91015625
-2021-03-18 12:02:28,189 - root - INFO -   Epoch 29/150	 Time: 14.883	 Loss: 545709.53515625
-2021-03-18 12:02:43,067 - root - INFO -   Epoch 30/150	 Time: 14.878	 Loss: 543111.35937500
-2021-03-18 12:02:57,855 - root - INFO -   Epoch 31/150	 Time: 14.788	 Loss: 541105.12890625
-2021-03-18 12:03:12,691 - root - INFO -   Epoch 32/150	 Time: 14.836	 Loss: 539048.08593750
-2021-03-18 12:03:27,533 - root - INFO -   Epoch 33/150	 Time: 14.841	 Loss: 536925.80078125
-2021-03-18 12:03:42,417 - root - INFO -   Epoch 34/150	 Time: 14.884	 Loss: 535028.78125000
-2021-03-18 12:03:57,415 - root - INFO -   Epoch 35/150	 Time: 14.998	 Loss: 533350.82031250
-2021-03-18 12:04:12,319 - root - INFO -   Epoch 36/150	 Time: 14.904	 Loss: 531575.74218750
-2021-03-18 12:04:27,126 - root - INFO -   Epoch 37/150	 Time: 14.807	 Loss: 529917.30468750
-2021-03-18 12:04:41,986 - root - INFO -   Epoch 38/150	 Time: 14.860	 Loss: 528745.24414062
-2021-03-18 12:04:56,821 - root - INFO -   Epoch 39/150	 Time: 14.835	 Loss: 526988.48242188
-2021-03-18 12:05:11,596 - root - INFO -   Epoch 40/150	 Time: 14.775	 Loss: 525656.85742188
-2021-03-18 12:05:26,380 - root - INFO -   Epoch 41/150	 Time: 14.784	 Loss: 524239.91601562
-2021-03-18 12:05:41,271 - root - INFO -   Epoch 42/150	 Time: 14.890	 Loss: 523175.73242188
-2021-03-18 12:05:56,249 - root - INFO -   Epoch 43/150	 Time: 14.978	 Loss: 521821.25195312
-2021-03-18 12:06:11,094 - root - INFO -   Epoch 44/150	 Time: 14.845	 Loss: 520610.08593750
-2021-03-18 12:06:25,918 - root - INFO -   Epoch 45/150	 Time: 14.824	 Loss: 519676.70703125
-2021-03-18 12:06:40,891 - root - INFO -   Epoch 46/150	 Time: 14.972	 Loss: 518507.49804688
-2021-03-18 12:06:55,646 - root - INFO -   Epoch 47/150	 Time: 14.755	 Loss: 517529.86914062
-2021-03-18 12:07:10,436 - root - INFO -   Epoch 48/150	 Time: 14.789	 Loss: 516341.40429688
-2021-03-18 12:07:25,239 - root - INFO -   Epoch 49/150	 Time: 14.803	 Loss: 515684.83203125
-2021-03-18 12:07:39,983 - root - INFO -   Epoch 50/150	 Time: 14.744	 Loss: 514481.73632812
-2021-03-18 12:07:39,983 - root - INFO -   LR scheduler: new learning rate is 1e-05
-2021-03-18 12:07:54,761 - root - INFO -   Epoch 51/150	 Time: 14.777	 Loss: 514022.35156250
-2021-03-18 12:08:09,580 - root - INFO -   Epoch 52/150	 Time: 14.819	 Loss: 514201.11914062
-2021-03-18 12:08:24,345 - root - INFO -   Epoch 53/150	 Time: 14.765	 Loss: 513778.78125000
-2021-03-18 12:08:39,118 - root - INFO -   Epoch 54/150	 Time: 14.773	 Loss: 513755.05078125
-2021-03-18 12:08:53,882 - root - INFO -   Epoch 55/150	 Time: 14.764	 Loss: 513518.42187500
-2021-03-18 12:09:08,671 - root - INFO -   Epoch 56/150	 Time: 14.788	 Loss: 513521.10351562
-2021-03-18 12:09:23,499 - root - INFO -   Epoch 57/150	 Time: 14.828	 Loss: 513592.94726562
-2021-03-18 12:09:38,308 - root - INFO -   Epoch 58/150	 Time: 14.809	 Loss: 513382.69726562
-2021-03-18 12:09:53,056 - root - INFO -   Epoch 59/150	 Time: 14.747	 Loss: 513497.20117188
-2021-03-18 12:10:07,836 - root - INFO -   Epoch 60/150	 Time: 14.780	 Loss: 513180.42187500
-2021-03-18 12:10:22,597 - root - INFO -   Epoch 61/150	 Time: 14.761	 Loss: 513009.59960938
-2021-03-18 12:10:37,480 - root - INFO -   Epoch 62/150	 Time: 14.883	 Loss: 512995.09570312
-2021-03-18 12:10:52,284 - root - INFO -   Epoch 63/150	 Time: 14.804	 Loss: 512948.21875000
-2021-03-18 12:11:07,105 - root - INFO -   Epoch 64/150	 Time: 14.821	 Loss: 512754.93164062
-2021-03-18 12:11:21,900 - root - INFO -   Epoch 65/150	 Time: 14.794	 Loss: 512721.29492188
-2021-03-18 12:11:36,636 - root - INFO -   Epoch 66/150	 Time: 14.736	 Loss: 512724.84570312
-2021-03-18 12:11:51,400 - root - INFO -   Epoch 67/150	 Time: 14.764	 Loss: 512610.16796875
-2021-03-18 12:12:06,234 - root - INFO -   Epoch 68/150	 Time: 14.833	 Loss: 512452.74218750
-2021-03-18 12:12:21,031 - root - INFO -   Epoch 69/150	 Time: 14.797	 Loss: 512381.17578125
-2021-03-18 12:12:35,804 - root - INFO -   Epoch 70/150	 Time: 14.772	 Loss: 512298.21289062
-2021-03-18 12:12:50,500 - root - INFO -   Epoch 71/150	 Time: 14.696	 Loss: 512213.98437500
-2021-03-18 12:13:05,235 - root - INFO -   Epoch 72/150	 Time: 14.735	 Loss: 512132.58593750
-2021-03-18 12:13:20,151 - root - INFO -   Epoch 73/150	 Time: 14.916	 Loss: 511962.78906250
-2021-03-18 12:13:34,969 - root - INFO -   Epoch 74/150	 Time: 14.818	 Loss: 512042.66406250
-2021-03-18 12:13:49,755 - root - INFO -   Epoch 75/150	 Time: 14.786	 Loss: 511769.90039062
-2021-03-18 12:14:04,584 - root - INFO -   Epoch 76/150	 Time: 14.829	 Loss: 511797.62500000
-2021-03-18 12:14:19,442 - root - INFO -   Epoch 77/150	 Time: 14.858	 Loss: 511656.54492188
-2021-03-18 12:14:34,450 - root - INFO -   Epoch 78/150	 Time: 15.008	 Loss: 511457.63476562
-2021-03-18 12:14:49,511 - root - INFO -   Epoch 79/150	 Time: 15.061	 Loss: 511379.56445312
-2021-03-18 12:15:04,329 - root - INFO -   Epoch 80/150	 Time: 14.817	 Loss: 511349.83984375
-2021-03-18 12:15:48,960 - root - INFO -   Epoch 83/150	 Time: 14.856	 Loss: 511100.37890625
-2021-03-18 12:16:03,902 - root - INFO -   Epoch 84/150	 Time: 14.942	 Loss: 510885.30664062
-2021-03-18 12:16:18,887 - root - INFO -   Epoch 85/150	 Time: 14.985	 Loss: 511046.45898438
-2021-03-18 12:16:33,723 - root - INFO -   Epoch 86/150	 Time: 14.835	 Loss: 510742.42187500
-2021-03-18 12:16:48,552 - root - INFO -   Epoch 87/150	 Time: 14.829	 Loss: 510623.04687500
-2021-03-18 12:17:03,317 - root - INFO -   Epoch 88/150	 Time: 14.765	 Loss: 510500.38671875
-2021-03-18 12:17:18,181 - root - INFO -   Epoch 89/150	 Time: 14.863	 Loss: 510491.95898438
-2021-03-18 12:17:33,042 - root - INFO -   Epoch 90/150	 Time: 14.861	 Loss: 510484.21484375
-2021-03-18 12:17:47,853 - root - INFO -   Epoch 91/150	 Time: 14.811	 Loss: 510337.29296875
-2021-03-18 12:18:02,624 - root - INFO -   Epoch 92/150	 Time: 14.771	 Loss: 510073.33984375
-2021-03-18 12:18:17,433 - root - INFO -   Epoch 93/150	 Time: 14.808	 Loss: 510030.60546875
-2021-03-18 12:18:32,226 - root - INFO -   Epoch 94/150	 Time: 14.794	 Loss: 509991.82617188
-2021-03-18 12:18:47,145 - root - INFO -   Epoch 95/150	 Time: 14.918	 Loss: 509896.44531250
-2021-03-18 12:19:01,966 - root - INFO -   Epoch 96/150	 Time: 14.821	 Loss: 509740.20703125
-2021-03-18 12:19:16,797 - root - INFO -   Epoch 97/150	 Time: 14.830	 Loss: 509601.66796875
-2021-03-18 12:19:31,619 - root - INFO -   Epoch 98/150	 Time: 14.822	 Loss: 509598.21679688
-2021-03-18 12:19:46,420 - root - INFO -   Epoch 99/150	 Time: 14.800	 Loss: 509626.78710938
-2021-03-18 12:20:01,195 - root - INFO -   Epoch 100/150	 Time: 14.775	 Loss: 509411.42578125
-2021-03-18 12:20:16,095 - root - INFO -   Epoch 101/150	 Time: 14.900	 Loss: 509389.48828125
-2021-03-18 12:20:30,921 - root - INFO -   Epoch 102/150	 Time: 14.826	 Loss: 509249.56250000
-2021-03-18 12:20:45,664 - root - INFO -   Epoch 103/150	 Time: 14.742	 Loss: 509060.12304688
-2021-03-18 12:21:00,444 - root - INFO -   Epoch 104/150	 Time: 14.780	 Loss: 509034.18750000
-2021-03-18 12:21:15,318 - root - INFO -   Epoch 105/150	 Time: 14.873	 Loss: 508814.46875000
-2021-03-18 12:21:30,251 - root - INFO -   Epoch 106/150	 Time: 14.933	 Loss: 508900.25781250
-2021-03-18 12:21:45,096 - root - INFO -   Epoch 107/150	 Time: 14.845	 Loss: 508706.46875000
-2021-03-18 12:22:00,007 - root - INFO -   Epoch 108/150	 Time: 14.911	 Loss: 508577.93945312
-2021-03-18 12:22:14,939 - root - INFO -   Epoch 109/150	 Time: 14.932	 Loss: 508542.18359375
-2021-03-18 12:22:29,975 - root - INFO -   Epoch 110/150	 Time: 15.035	 Loss: 508381.19921875
-2021-03-18 12:22:45,010 - root - INFO -   Epoch 111/150	 Time: 15.034	 Loss: 508229.85742188
-2021-03-18 12:22:59,950 - root - INFO -   Epoch 112/150	 Time: 14.940	 Loss: 508321.27343750
-2021-03-18 12:23:14,872 - root - INFO -   Epoch 113/150	 Time: 14.921	 Loss: 508025.20117188
-2021-03-18 12:23:29,758 - root - INFO -   Epoch 114/150	 Time: 14.885	 Loss: 508160.21875000
-2021-03-18 12:23:44,668 - root - INFO -   Epoch 115/150	 Time: 14.910	 Loss: 507880.75585938
-2021-03-18 12:23:59,600 - root - INFO -   Epoch 116/150	 Time: 14.932	 Loss: 507755.04296875
-2021-03-18 12:24:14,491 - root - INFO -   Epoch 117/150	 Time: 14.891	 Loss: 507662.80273438
-2021-03-18 12:24:29,415 - root - INFO -   Epoch 118/150	 Time: 14.924	 Loss: 507739.85156250
-2021-03-18 12:24:44,311 - root - INFO -   Epoch 119/150	 Time: 14.895	 Loss: 507480.65039062
-2021-03-18 12:24:59,167 - root - INFO -   Epoch 120/150	 Time: 14.856	 Loss: 507277.80664062
-2021-03-18 12:25:14,047 - root - INFO -   Epoch 121/150	 Time: 14.879	 Loss: 507435.28320312
-2021-03-18 12:25:28,953 - root - INFO -   Epoch 122/150	 Time: 14.906	 Loss: 507195.12500000
-2021-03-18 12:25:43,760 - root - INFO -   Epoch 123/150	 Time: 14.807	 Loss: 507061.93164062
-2021-03-18 12:25:58,558 - root - INFO -   Epoch 124/150	 Time: 14.797	 Loss: 506960.78320312
-2021-03-18 12:26:13,400 - root - INFO -   Epoch 125/150	 Time: 14.841	 Loss: 506931.33007812
-2021-03-18 12:26:28,347 - root - INFO -   Epoch 126/150	 Time: 14.948	 Loss: 506714.64257812
-2021-03-18 12:26:43,375 - root - INFO -   Epoch 127/150	 Time: 15.027	 Loss: 506604.15039062
-2021-03-18 12:26:58,292 - root - INFO -   Epoch 128/150	 Time: 14.917	 Loss: 506538.65039062
-2021-03-18 12:27:13,155 - root - INFO -   Epoch 129/150	 Time: 14.863	 Loss: 506577.70312500
-2021-03-18 12:27:28,067 - root - INFO -   Epoch 130/150	 Time: 14.912	 Loss: 506397.37695312
-2021-03-18 12:27:42,950 - root - INFO -   Epoch 131/150	 Time: 14.882	 Loss: 506315.16406250
-2021-03-18 12:27:57,761 - root - INFO -   Epoch 132/150	 Time: 14.811	 Loss: 506274.91406250
-2021-03-18 12:28:12,636 - root - INFO -   Epoch 133/150	 Time: 14.875	 Loss: 506283.25195312
-2021-03-18 12:28:27,494 - root - INFO -   Epoch 134/150	 Time: 14.858	 Loss: 506259.91601562
-2021-03-18 12:28:42,320 - root - INFO -   Epoch 135/150	 Time: 14.827	 Loss: 505991.21875000
-2021-03-18 12:28:57,177 - root - INFO -   Epoch 136/150	 Time: 14.856	 Loss: 506009.97656250
-2021-03-18 12:29:11,993 - root - INFO -   Epoch 137/150	 Time: 14.817	 Loss: 505839.70703125
-2021-03-18 12:29:26,835 - root - INFO -   Epoch 138/150	 Time: 14.842	 Loss: 505635.36718750
-2021-03-18 12:29:41,776 - root - INFO -   Epoch 139/150	 Time: 14.940	 Loss: 505513.51171875
-2021-03-18 12:29:56,594 - root - INFO -   Epoch 140/150	 Time: 14.818	 Loss: 505506.11328125
-2021-03-18 12:30:11,431 - root - INFO -   Epoch 141/150	 Time: 14.836	 Loss: 505434.80078125
-2021-03-18 12:30:26,306 - root - INFO -   Epoch 142/150	 Time: 14.875	 Loss: 505215.55468750
-2021-03-18 12:30:41,379 - root - INFO -   Epoch 143/150	 Time: 15.073	 Loss: 505299.25976562
-2021-03-18 12:30:56,343 - root - INFO -   Epoch 144/150	 Time: 14.963	 Loss: 505088.71679688
-2021-03-18 12:31:11,258 - root - INFO -   Epoch 145/150	 Time: 14.914	 Loss: 505023.30273438
-2021-03-18 12:31:26,238 - root - INFO -   Epoch 146/150	 Time: 14.980	 Loss: 504900.80664062
-2021-03-18 12:31:41,164 - root - INFO -   Epoch 147/150	 Time: 14.925	 Loss: 504803.59179688
-2021-03-18 12:31:56,077 - root - INFO -   Epoch 148/150	 Time: 14.913	 Loss: 504761.77539062
-2021-03-18 12:32:10,968 - root - INFO -   Epoch 149/150	 Time: 14.891	 Loss: 504622.92968750
-2021-03-18 12:32:25,897 - root - INFO -   Epoch 150/150	 Time: 14.929	 Loss: 504663.84375000
-2021-03-18 12:32:25,898 - root - INFO - Pretraining time: 2230.801
-2021-03-18 12:32:25,898 - root - INFO - Finished pretraining.
-2021-03-18 12:32:25,907 - root - INFO - Testing autoencoder...
-2021-03-18 12:32:37,459 - root - INFO - Test set Loss: 598348.88750000
-2021-03-18 12:32:37,461 - root - INFO - Test set AUC: 50.13%
-2021-03-18 12:32:37,461 - root - INFO - Autoencoder testing time: 11.554
-2021-03-18 12:32:37,461 - root - INFO - Finished testing autoencoder.
-2021-03-18 12:32:37,470 - root - INFO - Training optimizer: adam
-2021-03-18 12:32:37,470 - root - INFO - Training learning rate: 0.0001
-2021-03-18 12:32:37,471 - root - INFO - Training epochs: 150
-2021-03-18 12:32:37,471 - root - INFO - Training learning rate scheduler milestones: (50,)
-2021-03-18 12:32:37,471 - root - INFO - Training batch size: 64
-2021-03-18 12:32:37,471 - root - INFO - Training weight decay: 5e-07
-2021-03-18 12:32:37,471 - root - INFO - Initializing center c...
-2021-03-18 12:32:48,378 - root - INFO - Center c initialized.
-2021-03-18 12:32:48,378 - root - INFO - Starting training...
-2021-03-18 12:33:01,815 - root - INFO -   Epoch 1/150	 Time: 13.437	 Loss: 16.45095950
-2021-03-18 12:33:15,294 - root - INFO -   Epoch 2/150	 Time: 13.478	 Loss: 4.89949603
-2021-03-18 12:33:28,652 - root - INFO -   Epoch 3/150	 Time: 13.358	 Loss: 2.38157791
-2021-03-18 12:33:42,118 - root - INFO -   Epoch 4/150	 Time: 13.465	 Loss: 1.66959380
-2021-03-18 12:33:55,509 - root - INFO -   Epoch 5/150	 Time: 13.391	 Loss: 1.34038129
-2021-03-18 12:34:08,930 - root - INFO -   Epoch 6/150	 Time: 13.421	 Loss: 1.14847554
-2021-03-18 12:34:22,497 - root - INFO -   Epoch 7/150	 Time: 13.566	 Loss: 1.00810819
-2021-03-18 12:34:36,429 - root - INFO -   Epoch 8/150	 Time: 13.932	 Loss: 0.90519003
-2021-03-18 12:34:50,249 - root - INFO -   Epoch 9/150	 Time: 13.820	 Loss: 0.81881017
-2021-03-18 12:35:03,829 - root - INFO -   Epoch 10/150	 Time: 13.580	 Loss: 0.74361221
-2021-03-18 12:35:17,243 - root - INFO -   Epoch 11/150	 Time: 13.414	 Loss: 0.68331522
-2021-03-18 12:35:30,644 - root - INFO -   Epoch 12/150	 Time: 13.401	 Loss: 0.63236223
-2021-03-18 12:35:44,132 - root - INFO -   Epoch 13/150	 Time: 13.488	 Loss: 0.59129368
-2021-03-18 12:35:57,636 - root - INFO -   Epoch 14/150	 Time: 13.504	 Loss: 0.55583801
-2021-03-18 12:36:11,048 - root - INFO -   Epoch 15/150	 Time: 13.411	 Loss: 0.52482097
-2021-03-18 12:36:24,572 - root - INFO -   Epoch 16/150	 Time: 13.524	 Loss: 0.49300285
-2021-03-18 12:36:38,050 - root - INFO -   Epoch 17/150	 Time: 13.478	 Loss: 0.46805560
-2021-03-18 12:36:51,694 - root - INFO -   Epoch 18/150	 Time: 13.644	 Loss: 0.44235091
-2021-03-18 12:37:05,288 - root - INFO -   Epoch 19/150	 Time: 13.594	 Loss: 0.42081413
-2021-03-18 12:37:18,754 - root - INFO -   Epoch 20/150	 Time: 13.466	 Loss: 0.40070505
-2021-03-18 12:37:32,231 - root - INFO -   Epoch 21/150	 Time: 13.477	 Loss: 0.38519746
-2021-03-18 12:37:45,769 - root - INFO -   Epoch 22/150	 Time: 13.537	 Loss: 0.36921014
-2021-03-18 12:37:59,261 - root - INFO -   Epoch 23/150	 Time: 13.492	 Loss: 0.35601652
-2021-03-18 12:38:12,739 - root - INFO -   Epoch 24/150	 Time: 13.477	 Loss: 0.34268457
-2021-03-18 12:38:26,228 - root - INFO -   Epoch 25/150	 Time: 13.489	 Loss: 0.32955539
-2021-03-18 12:38:39,757 - root - INFO -   Epoch 26/150	 Time: 13.528	 Loss: 0.31617372
-2021-03-18 12:38:53,296 - root - INFO -   Epoch 27/150	 Time: 13.539	 Loss: 0.30406000
-2021-03-18 12:39:06,873 - root - INFO -   Epoch 28/150	 Time: 13.577	 Loss: 0.29561844
-2021-03-18 12:39:20,404 - root - INFO -   Epoch 29/150	 Time: 13.530	 Loss: 0.28420635
-2021-03-18 12:39:33,936 - root - INFO -   Epoch 30/150	 Time: 13.532	 Loss: 0.27382187
-2021-03-18 12:39:47,409 - root - INFO -   Epoch 31/150	 Time: 13.473	 Loss: 0.26482477
-2021-03-18 12:40:00,816 - root - INFO -   Epoch 32/150	 Time: 13.407	 Loss: 0.25725874
-2021-03-18 12:40:14,301 - root - INFO -   Epoch 33/150	 Time: 13.484	 Loss: 0.24875112
-2021-03-18 12:40:27,828 - root - INFO -   Epoch 34/150	 Time: 13.527	 Loss: 0.24190222
-2021-03-18 12:40:41,297 - root - INFO -   Epoch 35/150	 Time: 13.469	 Loss: 0.23507475
-2021-03-18 12:40:54,824 - root - INFO -   Epoch 36/150	 Time: 13.526	 Loss: 0.22831387
-2021-03-18 12:41:08,288 - root - INFO -   Epoch 37/150	 Time: 13.464	 Loss: 0.22298788
-2021-03-18 12:41:21,852 - root - INFO -   Epoch 38/150	 Time: 13.564	 Loss: 0.21775504
-2021-03-18 12:41:35,383 - root - INFO -   Epoch 39/150	 Time: 13.530	 Loss: 0.21234487
-2021-03-18 12:41:48,975 - root - INFO -   Epoch 40/150	 Time: 13.592	 Loss: 0.20687619
-2021-03-18 12:42:02,649 - root - INFO -   Epoch 41/150	 Time: 13.673	 Loss: 0.19988682
-2021-03-18 12:42:16,301 - root - INFO -   Epoch 42/150	 Time: 13.652	 Loss: 0.19665875
-2021-03-18 12:42:29,821 - root - INFO -   Epoch 43/150	 Time: 13.520	 Loss: 0.19114893
-2021-03-18 12:42:43,465 - root - INFO -   Epoch 44/150	 Time: 13.643	 Loss: 0.18869349
-2021-03-18 12:42:57,035 - root - INFO -   Epoch 45/150	 Time: 13.570	 Loss: 0.18413757
-2021-03-18 12:43:10,585 - root - INFO -   Epoch 46/150	 Time: 13.550	 Loss: 0.18051914
-2021-03-18 12:43:24,189 - root - INFO -   Epoch 47/150	 Time: 13.604	 Loss: 0.17648051
-2021-03-18 12:43:37,793 - root - INFO -   Epoch 48/150	 Time: 13.603	 Loss: 0.17302928
-2021-03-18 12:43:51,441 - root - INFO -   Epoch 49/150	 Time: 13.648	 Loss: 0.16906548
-2021-03-18 12:44:05,016 - root - INFO -   Epoch 50/150	 Time: 13.574	 Loss: 0.16470982
-2021-03-18 12:44:05,016 - root - INFO -   LR scheduler: new learning rate is 1e-05
-2021-03-18 12:44:18,562 - root - INFO -   Epoch 51/150	 Time: 13.546	 Loss: 0.16174432
-2021-03-18 12:44:32,102 - root - INFO -   Epoch 52/150	 Time: 13.540	 Loss: 0.16315072
-2021-03-18 12:44:45,659 - root - INFO -   Epoch 53/150	 Time: 13.557	 Loss: 0.16085499
-2021-03-18 12:44:59,128 - root - INFO -   Epoch 54/150	 Time: 13.468	 Loss: 0.16206743
-2021-03-18 12:45:12,668 - root - INFO -   Epoch 55/150	 Time: 13.540	 Loss: 0.16019080
-2021-03-18 12:45:26,105 - root - INFO -   Epoch 56/150	 Time: 13.437	 Loss: 0.15961680
-2021-03-18 12:45:39,614 - root - INFO -   Epoch 57/150	 Time: 13.509	 Loss: 0.15997682
-2021-03-18 12:45:53,144 - root - INFO -   Epoch 58/150	 Time: 13.529	 Loss: 0.16068557
-2021-03-18 12:46:06,591 - root - INFO -   Epoch 59/150	 Time: 13.447	 Loss: 0.15972158
-2021-03-18 12:46:20,045 - root - INFO -   Epoch 60/150	 Time: 13.454	 Loss: 0.15884354
-2021-03-18 12:46:33,596 - root - INFO -   Epoch 61/150	 Time: 13.550	 Loss: 0.15925197
-2021-03-18 12:46:47,156 - root - INFO -   Epoch 62/150	 Time: 13.560	 Loss: 0.15843535
-2021-03-18 12:47:00,688 - root - INFO -   Epoch 63/150	 Time: 13.533	 Loss: 0.15935403
-2021-03-18 12:47:14,344 - root - INFO -   Epoch 64/150	 Time: 13.655	 Loss: 0.15708590
-2021-03-18 12:47:27,842 - root - INFO -   Epoch 65/150	 Time: 13.498	 Loss: 0.15808828
-2021-03-18 12:47:41,301 - root - INFO -   Epoch 66/150	 Time: 13.459	 Loss: 0.15829010
-2021-03-18 12:47:54,848 - root - INFO -   Epoch 67/150	 Time: 13.547	 Loss: 0.15687720
-2021-03-18 12:48:08,347 - root - INFO -   Epoch 68/150	 Time: 13.499	 Loss: 0.15771330
-2021-03-18 12:48:21,835 - root - INFO -   Epoch 69/150	 Time: 13.488	 Loss: 0.15588672
-2021-03-18 12:48:35,450 - root - INFO -   Epoch 70/150	 Time: 13.615	 Loss: 0.15566749
-2021-03-18 12:48:48,953 - root - INFO -   Epoch 71/150	 Time: 13.503	 Loss: 0.15538286
-2021-03-18 12:49:02,484 - root - INFO -   Epoch 72/150	 Time: 13.531	 Loss: 0.15637844
-2021-03-18 12:49:16,070 - root - INFO -   Epoch 73/150	 Time: 13.585	 Loss: 0.15528798
-2021-03-18 12:49:29,610 - root - INFO -   Epoch 74/150	 Time: 13.540	 Loss: 0.15483861
-2021-03-18 12:49:43,152 - root - INFO -   Epoch 75/150	 Time: 13.542	 Loss: 0.15433589
-2021-03-18 12:49:56,721 - root - INFO -   Epoch 76/150	 Time: 13.569	 Loss: 0.15460469
-2021-03-18 12:50:10,232 - root - INFO -   Epoch 77/150	 Time: 13.511	 Loss: 0.15298886
-2021-03-18 12:50:23,785 - root - INFO -   Epoch 78/150	 Time: 13.553	 Loss: 0.15223292
-2021-03-18 12:50:37,370 - root - INFO -   Epoch 79/150	 Time: 13.585	 Loss: 0.15210769
-2021-03-18 12:50:51,118 - root - INFO -   Epoch 80/150	 Time: 13.748	 Loss: 0.15188518
-2021-03-18 12:51:04,660 - root - INFO -   Epoch 81/150	 Time: 13.542	 Loss: 0.15203145
-2021-03-18 12:51:18,252 - root - INFO -   Epoch 82/150	 Time: 13.591	 Loss: 0.15113338
-2021-03-18 12:51:31,843 - root - INFO -   Epoch 83/150	 Time: 13.591	 Loss: 0.15024773
-2021-03-18 12:51:45,376 - root - INFO -   Epoch 84/150	 Time: 13.533	 Loss: 0.15085612
-2021-03-18 12:51:58,875 - root - INFO -   Epoch 85/150	 Time: 13.498	 Loss: 0.15052708
-2021-03-18 12:52:12,435 - root - INFO -   Epoch 86/150	 Time: 13.560	 Loss: 0.14993048
-2021-03-18 12:52:26,104 - root - INFO -   Epoch 87/150	 Time: 13.668	 Loss: 0.14870942
-2021-03-18 12:52:39,668 - root - INFO -   Epoch 88/150	 Time: 13.564	 Loss: 0.15209457
-2021-03-18 12:52:53,170 - root - INFO -   Epoch 89/150	 Time: 13.501	 Loss: 0.14792267
-2021-03-18 12:53:06,726 - root - INFO -   Epoch 90/150	 Time: 13.556	 Loss: 0.14772007
-2021-03-18 12:53:20,255 - root - INFO -   Epoch 91/150	 Time: 13.529	 Loss: 0.14638287
-2021-03-18 12:53:33,750 - root - INFO -   Epoch 92/150	 Time: 13.495	 Loss: 0.14709464
-2021-03-18 12:53:47,270 - root - INFO -   Epoch 93/150	 Time: 13.520	 Loss: 0.14659468
-2021-03-18 12:54:00,755 - root - INFO -   Epoch 94/150	 Time: 13.485	 Loss: 0.14586277
-2021-03-18 12:54:14,367 - root - INFO -   Epoch 95/150	 Time: 13.611	 Loss: 0.14707820
-2021-03-18 12:54:27,917 - root - INFO -   Epoch 96/150	 Time: 13.550	 Loss: 0.14532932
-2021-03-18 12:54:41,760 - root - INFO -   Epoch 97/150	 Time: 13.843	 Loss: 0.14413794
-2021-03-18 12:54:55,407 - root - INFO -   Epoch 98/150	 Time: 13.646	 Loss: 0.14402673
-2021-03-18 12:55:08,947 - root - INFO -   Epoch 99/150	 Time: 13.540	 Loss: 0.14332473
-2021-03-18 12:55:22,509 - root - INFO -   Epoch 100/150	 Time: 13.562	 Loss: 0.14414590
-2021-03-18 12:55:36,073 - root - INFO -   Epoch 101/150	 Time: 13.564	 Loss: 0.14298643
-2021-03-18 12:55:49,606 - root - INFO -   Epoch 102/150	 Time: 13.533	 Loss: 0.14278231
-2021-03-18 12:56:03,284 - root - INFO -   Epoch 103/150	 Time: 13.678	 Loss: 0.14206641
-2021-03-18 12:56:16,903 - root - INFO -   Epoch 104/150	 Time: 13.619	 Loss: 0.14390397
-2021-03-18 12:56:30,513 - root - INFO -   Epoch 105/150	 Time: 13.610	 Loss: 0.14120526
-2021-03-18 12:56:44,129 - root - INFO -   Epoch 106/150	 Time: 13.616	 Loss: 0.14186995
-2021-03-18 12:56:57,681 - root - INFO -   Epoch 107/150	 Time: 13.552	 Loss: 0.14116250
-2021-03-18 12:57:11,257 - root - INFO -   Epoch 108/150	 Time: 13.575	 Loss: 0.14149506
-2021-03-18 12:57:24,734 - root - INFO -   Epoch 109/150	 Time: 13.477	 Loss: 0.14057615
-2021-03-18 12:57:38,349 - root - INFO -   Epoch 110/150	 Time: 13.615	 Loss: 0.13940109
-2021-03-18 12:57:51,892 - root - INFO -   Epoch 111/150	 Time: 13.543	 Loss: 0.13856988
-2021-03-18 12:58:05,431 - root - INFO -   Epoch 112/150	 Time: 13.539	 Loss: 0.13939858
-2021-03-18 12:58:18,846 - root - INFO -   Epoch 113/150	 Time: 13.415	 Loss: 0.13938901
-2021-03-18 12:58:32,458 - root - INFO -   Epoch 114/150	 Time: 13.611	 Loss: 0.13911822
-2021-03-18 12:58:45,998 - root - INFO -   Epoch 115/150	 Time: 13.540	 Loss: 0.13788523
-2021-03-18 12:58:59,818 - root - INFO -   Epoch 116/150	 Time: 13.820	 Loss: 0.13721520
-2021-03-18 12:59:13,401 - root - INFO -   Epoch 117/150	 Time: 13.583	 Loss: 0.13724386
-2021-03-18 12:59:26,987 - root - INFO -   Epoch 118/150	 Time: 13.586	 Loss: 0.13649926
-2021-03-18 12:59:40,493 - root - INFO -   Epoch 119/150	 Time: 13.505	 Loss: 0.13599814
-2021-03-18 12:59:53,873 - root - INFO -   Epoch 120/150	 Time: 13.380	 Loss: 0.13458657
-2021-03-18 13:00:07,268 - root - INFO -   Epoch 121/150	 Time: 13.395	 Loss: 0.13606681
-2021-03-18 13:00:20,716 - root - INFO -   Epoch 122/150	 Time: 13.448	 Loss: 0.13512525
-2021-03-18 13:00:34,197 - root - INFO -   Epoch 123/150	 Time: 13.480	 Loss: 0.13404291
-2021-03-18 13:00:47,700 - root - INFO -   Epoch 124/150	 Time: 13.503	 Loss: 0.13308837
-2021-03-18 13:01:01,114 - root - INFO -   Epoch 125/150	 Time: 13.414	 Loss: 0.13390034
-2021-03-18 13:01:14,596 - root - INFO -   Epoch 126/150	 Time: 13.482	 Loss: 0.13374926
-2021-03-18 13:01:28,018 - root - INFO -   Epoch 127/150	 Time: 13.422	 Loss: 0.13300326
-2021-03-18 13:01:41,461 - root - INFO -   Epoch 128/150	 Time: 13.443	 Loss: 0.13262313
-2021-03-18 13:01:54,936 - root - INFO -   Epoch 129/150	 Time: 13.474	 Loss: 0.13270841
-2021-03-18 13:02:08,457 - root - INFO -   Epoch 130/150	 Time: 13.521	 Loss: 0.13100059
-2021-03-18 13:02:21,927 - root - INFO -   Epoch 131/150	 Time: 13.470	 Loss: 0.13160023
-2021-03-18 13:02:35,399 - root - INFO -   Epoch 132/150	 Time: 13.472	 Loss: 0.13209511
-2021-03-18 13:02:49,117 - root - INFO -   Epoch 133/150	 Time: 13.718	 Loss: 0.12933204
-2021-03-18 13:03:02,604 - root - INFO -   Epoch 134/150	 Time: 13.487	 Loss: 0.12959052
-2021-03-18 13:03:16,224 - root - INFO -   Epoch 135/150	 Time: 13.620	 Loss: 0.12958195
-2021-03-18 13:03:29,819 - root - INFO -   Epoch 136/150	 Time: 13.595	 Loss: 0.12852973
-2021-03-18 13:03:43,312 - root - INFO -   Epoch 137/150	 Time: 13.492	 Loss: 0.12768204
-2021-03-18 13:03:56,779 - root - INFO -   Epoch 138/150	 Time: 13.467	 Loss: 0.12804300
-2021-03-18 13:04:10,229 - root - INFO -   Epoch 139/150	 Time: 13.449	 Loss: 0.12714242
-2021-03-18 13:04:23,707 - root - INFO -   Epoch 140/150	 Time: 13.479	 Loss: 0.12778177
-2021-03-18 13:04:37,158 - root - INFO -   Epoch 141/150	 Time: 13.450	 Loss: 0.12645790
-2021-03-18 13:04:50,579 - root - INFO -   Epoch 142/150	 Time: 13.421	 Loss: 0.12778436
-2021-03-18 13:05:04,064 - root - INFO -   Epoch 143/150	 Time: 13.484	 Loss: 0.12544859
-2021-03-18 13:05:17,607 - root - INFO -   Epoch 144/150	 Time: 13.542	 Loss: 0.12549423
-2021-03-18 13:05:31,174 - root - INFO -   Epoch 145/150	 Time: 13.567	 Loss: 0.12460708
-2021-03-18 13:05:44,654 - root - INFO -   Epoch 146/150	 Time: 13.480	 Loss: 0.12455450
-2021-03-18 13:05:58,114 - root - INFO -   Epoch 147/150	 Time: 13.459	 Loss: 0.12408410
-2021-03-18 13:06:11,695 - root - INFO -   Epoch 148/150	 Time: 13.581	 Loss: 0.12546107
-2021-03-18 13:06:25,102 - root - INFO -   Epoch 149/150	 Time: 13.406	 Loss: 0.12618253
-2021-03-18 13:06:38,577 - root - INFO -   Epoch 150/150	 Time: 13.475	 Loss: 0.12250587
-2021-03-18 13:06:38,577 - root - INFO - Training time: 2030.198
-2021-03-18 13:06:38,577 - root - INFO - Finished training.
-2021-03-18 13:06:38,586 - root - INFO - Starting testing...
-2021-03-18 13:06:49,774 - root - INFO - Testing time: 11.188
-2021-03-18 13:06:49,776 - root - INFO - Test set AUC: 83.71%
-2021-03-18 13:06:49,776 - root - INFO - Finished testing.
-2021-04-01 14:49:59,999 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-01 14:50:00,000 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-01 14:50:00,000 - root - INFO - Export path is ../log/tofu_test.
-2021-04-01 14:50:00,000 - root - INFO - Dataset: campus
-2021-04-01 14:50:00,000 - root - INFO - Normal class: 0
-2021-04-01 14:50:00,000 - root - INFO - Network: campus_LeNet
-2021-04-01 14:50:00,000 - root - INFO - Deep SVDD objective: one-class
-2021-04-01 14:50:00,000 - root - INFO - Nu-paramerter: 0.10
-2021-04-01 14:50:00,000 - root - INFO - Computation device: cpu
-2021-04-01 14:50:00,000 - root - INFO - Number of dataloader workers: 0
-2021-04-01 14:56:45,584 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-01 14:56:45,584 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-01 14:56:45,584 - root - INFO - Export path is ../log/tofu_test.
-2021-04-01 14:56:45,584 - root - INFO - Dataset: campus
-2021-04-01 14:56:45,584 - root - INFO - Normal class: 0
-2021-04-01 14:56:45,584 - root - INFO - Network: campus_LeNet
-2021-04-01 14:56:45,584 - root - INFO - Deep SVDD objective: one-class
-2021-04-01 14:56:45,584 - root - INFO - Nu-paramerter: 0.10
-2021-04-01 14:56:45,584 - root - INFO - Computation device: cpu
-2021-04-01 14:56:45,584 - root - INFO - Number of dataloader workers: 0
-2021-04-01 14:56:48,267 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-01 15:02:09,902 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-01 15:02:09,903 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-01 15:02:09,903 - root - INFO - Export path is ../log/tofu_test.
-2021-04-01 15:02:09,903 - root - INFO - Dataset: campus
-2021-04-01 15:02:09,903 - root - INFO - Normal class: 0
-2021-04-01 15:02:09,903 - root - INFO - Network: campus_LeNet
-2021-04-01 15:02:09,903 - root - INFO - Deep SVDD objective: one-class
-2021-04-01 15:02:09,903 - root - INFO - Nu-paramerter: 0.10
-2021-04-01 15:02:09,903 - root - INFO - Computation device: cpu
-2021-04-01 15:02:09,903 - root - INFO - Number of dataloader workers: 0
-2021-04-01 15:02:12,580 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-01 15:02:12,590 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
-2021-04-01 15:02:12,590 - root - INFO - Training optimizer: adam
-2021-04-01 15:02:12,590 - root - INFO - Training learning rate: 0.001
-2021-04-01 15:02:12,590 - root - INFO - Training epochs: 50
-2021-04-01 15:02:12,591 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-01 15:02:12,591 - root - INFO - Training batch size: 128
-2021-04-01 15:02:12,591 - root - INFO - Training weight decay: 1e-06
-2021-04-01 15:02:32,328 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-01 15:02:32,328 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-01 15:02:32,328 - root - INFO - Export path is ../log/tofu_test.
-2021-04-01 15:02:32,328 - root - INFO - Dataset: campus
-2021-04-01 15:02:32,328 - root - INFO - Normal class: 0
-2021-04-01 15:02:32,328 - root - INFO - Network: campus_LeNet
-2021-04-01 15:02:32,328 - root - INFO - Deep SVDD objective: one-class
-2021-04-01 15:02:32,328 - root - INFO - Nu-paramerter: 0.10
-2021-04-01 15:02:32,328 - root - INFO - Computation device: cpu
-2021-04-01 15:02:32,328 - root - INFO - Number of dataloader workers: 0
-2021-04-01 15:02:35,073 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-01 15:02:35,077 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
-2021-04-01 15:02:35,078 - root - INFO - Training optimizer: adam
-2021-04-01 15:02:35,078 - root - INFO - Training learning rate: 0.001
-2021-04-01 15:02:35,078 - root - INFO - Training epochs: 50
-2021-04-01 15:02:35,078 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-01 15:02:35,078 - root - INFO - Training batch size: 128
-2021-04-01 15:02:35,078 - root - INFO - Training weight decay: 1e-06
-2021-04-01 15:02:53,039 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-01 15:02:53,039 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-01 15:02:53,039 - root - INFO - Export path is ../log/tofu_test.
-2021-04-01 15:02:53,039 - root - INFO - Dataset: campus
-2021-04-01 15:02:53,039 - root - INFO - Normal class: 0
-2021-04-01 15:02:53,040 - root - INFO - Network: campus_LeNet
-2021-04-01 15:02:53,040 - root - INFO - Deep SVDD objective: one-class
-2021-04-01 15:02:53,040 - root - INFO - Nu-paramerter: 0.10
-2021-04-01 15:02:53,040 - root - INFO - Computation device: cpu
-2021-04-01 15:02:53,040 - root - INFO - Number of dataloader workers: 0
-2021-04-01 15:03:01,816 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-01 15:03:01,820 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
-2021-04-01 15:03:01,820 - root - INFO - Training optimizer: adam
-2021-04-01 15:03:01,821 - root - INFO - Training learning rate: 0.001
-2021-04-01 15:03:01,821 - root - INFO - Training epochs: 50
-2021-04-01 15:03:01,821 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-01 15:03:01,821 - root - INFO - Training batch size: 128
-2021-04-01 15:03:01,821 - root - INFO - Training weight decay: 1e-06
-2021-04-01 15:03:01,822 - root - INFO - Start plot t_sne
-2021-04-01 15:06:47,358 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-01 15:06:47,359 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-01 15:06:47,359 - root - INFO - Export path is ../log/tofu_test.
-2021-04-01 15:06:47,359 - root - INFO - Dataset: campus
-2021-04-01 15:06:47,359 - root - INFO - Normal class: 0
-2021-04-01 15:06:47,359 - root - INFO - Network: campus_LeNet
-2021-04-01 15:06:47,360 - root - INFO - Deep SVDD objective: one-class
-2021-04-01 15:06:47,360 - root - INFO - Nu-paramerter: 0.10
-2021-04-01 15:06:47,360 - root - INFO - Computation device: cpu
-2021-04-01 15:06:47,360 - root - INFO - Number of dataloader workers: 0
-2021-04-01 15:07:00,251 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-01 15:07:00,267 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
-2021-04-01 15:07:00,268 - root - INFO - Training optimizer: adam
-2021-04-01 15:07:00,268 - root - INFO - Training learning rate: 0.001
-2021-04-01 15:07:00,268 - root - INFO - Training epochs: 50
-2021-04-01 15:07:00,268 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-01 15:07:00,268 - root - INFO - Training batch size: 128
-2021-04-01 15:07:00,268 - root - INFO - Training weight decay: 1e-06
-2021-04-01 15:07:00,269 - root - INFO - Start plot t_sne
-2021-04-01 15:07:30,762 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-01 15:07:30,762 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-01 15:07:30,762 - root - INFO - Export path is ../log/tofu_test.
-2021-04-01 15:07:30,763 - root - INFO - Dataset: campus
-2021-04-01 15:07:30,763 - root - INFO - Normal class: 0
-2021-04-01 15:07:30,763 - root - INFO - Network: campus_LeNet
-2021-04-01 15:07:30,763 - root - INFO - Deep SVDD objective: one-class
-2021-04-01 15:07:30,763 - root - INFO - Nu-paramerter: 0.10
-2021-04-01 15:07:30,763 - root - INFO - Computation device: cpu
-2021-04-01 15:07:30,763 - root - INFO - Number of dataloader workers: 0
-2021-04-01 15:07:43,621 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-01 15:07:43,637 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
-2021-04-01 15:07:43,637 - root - INFO - Training optimizer: adam
-2021-04-01 15:07:43,637 - root - INFO - Training learning rate: 0.001
-2021-04-01 15:07:43,637 - root - INFO - Training epochs: 50
-2021-04-01 15:07:43,637 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-01 15:07:43,637 - root - INFO - Training batch size: 128
-2021-04-01 15:07:43,637 - root - INFO - Training weight decay: 1e-06
-2021-04-01 15:09:11,593 - root - INFO - Start plot t_sne
-2021-04-01 15:11:02,884 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-01 15:11:02,885 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-01 15:11:02,885 - root - INFO - Export path is ../log/tofu_test.
-2021-04-01 15:11:02,885 - root - INFO - Dataset: campus
-2021-04-01 15:11:02,885 - root - INFO - Normal class: 0
-2021-04-01 15:11:02,885 - root - INFO - Network: campus_LeNet
-2021-04-01 15:11:02,885 - root - INFO - Deep SVDD objective: one-class
-2021-04-01 15:11:02,885 - root - INFO - Nu-paramerter: 0.10
-2021-04-01 15:11:02,885 - root - INFO - Computation device: cpu
-2021-04-01 15:11:02,885 - root - INFO - Number of dataloader workers: 0
-2021-04-01 15:11:15,703 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-01 15:11:15,720 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
-2021-04-01 15:11:15,720 - root - INFO - Training optimizer: adam
-2021-04-01 15:11:15,720 - root - INFO - Training learning rate: 0.001
-2021-04-01 15:11:15,720 - root - INFO - Training epochs: 50
-2021-04-01 15:11:15,720 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-01 15:11:15,720 - root - INFO - Training batch size: 128
-2021-04-01 15:11:15,720 - root - INFO - Training weight decay: 1e-06
-2021-04-01 15:11:20,637 - root - INFO - Start plot t_sne
-2021-04-01 15:12:10,176 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-01 15:12:10,177 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-01 15:12:10,177 - root - INFO - Export path is ../log/tofu_test.
-2021-04-01 15:12:10,177 - root - INFO - Dataset: campus
-2021-04-01 15:12:10,177 - root - INFO - Normal class: 0
-2021-04-01 15:12:10,177 - root - INFO - Network: campus_LeNet
-2021-04-01 15:12:10,177 - root - INFO - Deep SVDD objective: one-class
-2021-04-01 15:12:10,177 - root - INFO - Nu-paramerter: 0.10
-2021-04-01 15:12:10,177 - root - INFO - Computation device: cpu
-2021-04-01 15:12:10,177 - root - INFO - Number of dataloader workers: 0
-2021-04-01 15:12:25,173 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-01 15:12:25,189 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
-2021-04-01 15:12:25,189 - root - INFO - Training optimizer: adam
-2021-04-01 15:12:25,189 - root - INFO - Training learning rate: 0.001
-2021-04-01 15:12:25,189 - root - INFO - Training epochs: 50
-2021-04-01 15:12:25,189 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-01 15:12:25,189 - root - INFO - Training batch size: 64
-2021-04-01 15:12:25,189 - root - INFO - Training weight decay: 1e-06
-2021-04-01 15:13:25,384 - root - INFO - Start plot t_sne
-2021-04-01 15:14:46,558 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-01 15:14:46,559 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-01 15:14:46,559 - root - INFO - Export path is ../log/tofu_test.
-2021-04-01 15:14:46,559 - root - INFO - Dataset: campus
-2021-04-01 15:14:46,559 - root - INFO - Normal class: 0
-2021-04-01 15:14:46,559 - root - INFO - Network: campus_LeNet
-2021-04-01 15:14:46,559 - root - INFO - Deep SVDD objective: one-class
-2021-04-01 15:14:46,559 - root - INFO - Nu-paramerter: 0.10
-2021-04-01 15:14:46,559 - root - INFO - Computation device: cpu
-2021-04-01 15:14:46,559 - root - INFO - Number of dataloader workers: 0
-2021-04-01 15:14:59,814 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-01 15:14:59,830 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
-2021-04-01 15:14:59,830 - root - INFO - Training optimizer: adam
-2021-04-01 15:14:59,830 - root - INFO - Training learning rate: 0.001
-2021-04-01 15:14:59,830 - root - INFO - Training epochs: 50
-2021-04-01 15:14:59,830 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-01 15:14:59,830 - root - INFO - Training batch size: 32
-2021-04-01 15:14:59,830 - root - INFO - Training weight decay: 1e-06
-2021-04-01 15:14:59,831 - root - INFO - Start plot t_sne
-2021-04-01 15:16:27,587 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-01 15:16:27,588 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-01 15:16:27,588 - root - INFO - Export path is ../log/tofu_test.
-2021-04-01 15:16:27,588 - root - INFO - Dataset: campus
-2021-04-01 15:16:27,588 - root - INFO - Normal class: 0
-2021-04-01 15:16:27,588 - root - INFO - Network: campus_LeNet
-2021-04-01 15:16:27,588 - root - INFO - Deep SVDD objective: one-class
-2021-04-01 15:16:27,589 - root - INFO - Nu-paramerter: 0.10
-2021-04-01 15:16:27,589 - root - INFO - Computation device: cpu
-2021-04-01 15:16:27,589 - root - INFO - Number of dataloader workers: 0
-2021-04-01 15:16:40,314 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-01 15:16:40,340 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
-2021-04-01 15:16:40,341 - root - INFO - Training optimizer: adam
-2021-04-01 15:16:40,341 - root - INFO - Training learning rate: 0.001
-2021-04-01 15:16:40,341 - root - INFO - Training epochs: 50
-2021-04-01 15:16:40,341 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-01 15:16:40,341 - root - INFO - Training batch size: 2
-2021-04-01 15:16:40,341 - root - INFO - Training weight decay: 1e-06
-2021-04-01 15:16:40,342 - root - INFO - Start plot t_sne
-2021-04-05 18:50:02,631 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 18:50:02,632 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-05 18:50:02,632 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 18:50:02,632 - root - INFO - Dataset: campus
-2021-04-05 18:50:02,632 - root - INFO - Normal class: 0
-2021-04-05 18:50:02,632 - root - INFO - Network: campus_LeNet
-2021-04-05 18:50:02,632 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 18:50:02,632 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 18:50:02,632 - root - INFO - Computation device: cpu
-2021-04-05 18:50:02,632 - root - INFO - Number of dataloader workers: 0
-2021-04-05 18:50:15,781 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 18:50:15,798 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
-2021-04-05 18:50:15,798 - root - INFO - Training optimizer: adam
-2021-04-05 18:50:15,799 - root - INFO - Training learning rate: 0.001
-2021-04-05 18:50:15,799 - root - INFO - Training epochs: 50
-2021-04-05 18:50:15,799 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 18:50:15,799 - root - INFO - Training batch size: 128
-2021-04-05 18:50:15,799 - root - INFO - Training weight decay: 1e-06
-2021-04-05 18:50:15,800 - root - INFO - Start plot t_sne
-2021-04-05 18:56:37,953 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 18:56:37,953 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-05 18:56:37,953 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 18:56:37,953 - root - INFO - Dataset: campus
-2021-04-05 18:56:37,953 - root - INFO - Normal class: 0
-2021-04-05 18:56:37,953 - root - INFO - Network: campus_LeNet
-2021-04-05 18:56:37,953 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 18:56:37,953 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 18:56:37,953 - root - INFO - Computation device: cpu
-2021-04-05 18:56:37,954 - root - INFO - Number of dataloader workers: 0
-2021-04-05 18:56:50,554 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 18:56:50,571 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
-2021-04-05 18:56:50,571 - root - INFO - Training optimizer: adam
-2021-04-05 18:56:50,571 - root - INFO - Training learning rate: 0.001
-2021-04-05 18:56:50,571 - root - INFO - Training epochs: 50
-2021-04-05 18:56:50,571 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 18:56:50,571 - root - INFO - Training batch size: 128
-2021-04-05 18:56:50,571 - root - INFO - Training weight decay: 1e-06
-2021-04-05 18:56:50,572 - root - INFO - Start plot t_sne
-2021-04-05 19:01:40,253 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 19:01:40,254 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-05 19:01:40,254 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 19:01:40,254 - root - INFO - Dataset: campus
-2021-04-05 19:01:40,254 - root - INFO - Normal class: 0
-2021-04-05 19:01:40,255 - root - INFO - Network: campus_LeNet
-2021-04-05 19:01:40,255 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 19:01:40,255 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 19:01:40,255 - root - INFO - Computation device: cpu
-2021-04-05 19:01:40,255 - root - INFO - Number of dataloader workers: 0
-2021-04-05 19:01:52,944 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 19:01:52,954 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
-2021-04-05 19:01:52,955 - root - INFO - Training optimizer: adam
-2021-04-05 19:01:52,955 - root - INFO - Training learning rate: 0.001
-2021-04-05 19:01:52,955 - root - INFO - Training epochs: 50
-2021-04-05 19:01:52,955 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 19:01:52,955 - root - INFO - Training batch size: 128
-2021-04-05 19:01:52,955 - root - INFO - Training weight decay: 1e-06
-2021-04-05 19:01:52,955 - root - INFO - Start plot t_sne
-2021-04-05 19:11:21,676 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 19:11:21,677 - root - INFO - Data path is ../data/霊愲秬 雿办澊韯办厠.
-2021-04-05 19:11:21,677 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 19:11:21,677 - root - INFO - Dataset: campus
-2021-04-05 19:11:21,677 - root - INFO - Normal class: 0
-2021-04-05 19:11:21,677 - root - INFO - Network: campus_LeNet
-2021-04-05 19:11:21,677 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 19:11:21,678 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 19:11:21,678 - root - INFO - Computation device: cpu
-2021-04-05 19:11:21,678 - root - INFO - Number of dataloader workers: 0
-2021-04-05 19:11:34,125 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 19:11:37,302 - root - INFO - Loading model from /home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test/model.tar.
-2021-04-05 19:11:37,303 - root - INFO - Training optimizer: adam
-2021-04-05 19:11:37,303 - root - INFO - Training learning rate: 0.001
-2021-04-05 19:11:37,303 - root - INFO - Training epochs: 50
-2021-04-05 19:11:37,303 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 19:11:37,304 - root - INFO - Training batch size: 1
-2021-04-05 19:11:37,304 - root - INFO - Training weight decay: 1e-06
-2021-04-05 19:11:37,317 - root - INFO - Start plot t_sne
-2021-04-05 20:34:06,085 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 20:34:06,085 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 20:34:06,085 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 20:34:06,094 - root - INFO - Dataset: campus
-2021-04-05 20:34:06,094 - root - INFO - Normal class: 0
-2021-04-05 20:34:06,094 - root - INFO - Network: campus_LeNet
-2021-04-05 20:34:06,094 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 20:34:06,096 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 20:34:06,096 - root - INFO - Computation device: cpu
-2021-04-05 20:34:06,096 - root - INFO - Number of dataloader workers: 0
-2021-04-05 20:34:15,851 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 20:34:15,863 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 20:34:15,863 - root - INFO - Training optimizer: adam
-2021-04-05 20:34:15,864 - root - INFO - Training learning rate: 0.001
-2021-04-05 20:34:15,865 - root - INFO - Training epochs: 50
-2021-04-05 20:34:15,865 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 20:34:15,865 - root - INFO - Training batch size: 128
-2021-04-05 20:34:15,866 - root - INFO - Training weight decay: 1e-06
-2021-04-05 20:34:15,868 - root - INFO - Start plot t_sne
-2021-04-05 20:36:11,373 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 20:36:11,373 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 20:36:11,373 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 20:36:11,373 - root - INFO - Dataset: campus
-2021-04-05 20:36:11,375 - root - INFO - Normal class: 0
-2021-04-05 20:36:11,375 - root - INFO - Network: campus_LeNet
-2021-04-05 20:36:11,375 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 20:36:11,376 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 20:36:11,376 - root - INFO - Computation device: cpu
-2021-04-05 20:36:11,376 - root - INFO - Number of dataloader workers: 0
-2021-04-05 20:36:12,939 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 20:36:12,943 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 20:36:12,944 - root - INFO - Training optimizer: adam
-2021-04-05 20:36:12,944 - root - INFO - Training learning rate: 0.001
-2021-04-05 20:36:12,944 - root - INFO - Training epochs: 50
-2021-04-05 20:36:12,944 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 20:36:12,945 - root - INFO - Training batch size: 128
-2021-04-05 20:36:12,945 - root - INFO - Training weight decay: 1e-06
-2021-04-05 20:36:12,946 - root - INFO - Start plot t_sne
-2021-04-05 20:36:39,578 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 20:36:39,578 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 20:36:39,578 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 20:36:39,588 - root - INFO - Dataset: campus
-2021-04-05 20:36:39,588 - root - INFO - Normal class: 0
-2021-04-05 20:36:39,588 - root - INFO - Network: campus_LeNet
-2021-04-05 20:36:39,589 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 20:36:39,589 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 20:36:39,589 - root - INFO - Computation device: cpu
-2021-04-05 20:36:39,589 - root - INFO - Number of dataloader workers: 0
-2021-04-05 20:36:41,093 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 20:36:41,111 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 20:36:41,111 - root - INFO - Training optimizer: adam
-2021-04-05 20:36:41,111 - root - INFO - Training learning rate: 0.001
-2021-04-05 20:36:41,111 - root - INFO - Training epochs: 50
-2021-04-05 20:36:41,114 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 20:36:41,114 - root - INFO - Training batch size: 128
-2021-04-05 20:36:41,114 - root - INFO - Training weight decay: 1e-06
-2021-04-05 20:36:41,115 - root - INFO - Start plot t_sne
-2021-04-05 20:37:10,546 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 20:37:10,546 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 20:37:10,546 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 20:37:10,547 - root - INFO - Dataset: campus
-2021-04-05 20:37:10,547 - root - INFO - Normal class: 0
-2021-04-05 20:37:10,547 - root - INFO - Network: campus_LeNet
-2021-04-05 20:37:10,547 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 20:37:10,548 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 20:37:10,548 - root - INFO - Computation device: cpu
-2021-04-05 20:37:10,548 - root - INFO - Number of dataloader workers: 0
-2021-04-05 20:37:12,069 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 20:37:12,073 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 20:37:12,074 - root - INFO - Training optimizer: adam
-2021-04-05 20:37:12,074 - root - INFO - Training learning rate: 0.001
-2021-04-05 20:37:12,074 - root - INFO - Training epochs: 50
-2021-04-05 20:37:12,074 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 20:37:12,075 - root - INFO - Training batch size: 128
-2021-04-05 20:37:12,075 - root - INFO - Training weight decay: 1e-06
-2021-04-05 20:37:12,076 - root - INFO - Start plot t_sne
-2021-04-05 20:55:40,199 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 20:55:40,199 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 20:55:40,199 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 20:55:40,199 - root - INFO - Dataset: campus
-2021-04-05 20:55:40,200 - root - INFO - Normal class: 0
-2021-04-05 20:55:40,200 - root - INFO - Network: campus_LeNet
-2021-04-05 20:55:40,200 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 20:55:40,201 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 20:55:40,201 - root - INFO - Computation device: cpu
-2021-04-05 20:55:40,201 - root - INFO - Number of dataloader workers: 0
-2021-04-05 20:55:41,704 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 20:55:41,723 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 20:55:41,724 - root - INFO - Training optimizer: adam
-2021-04-05 20:55:41,724 - root - INFO - Training learning rate: 0.001
-2021-04-05 20:55:41,724 - root - INFO - Training epochs: 50
-2021-04-05 20:55:41,725 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 20:55:41,725 - root - INFO - Training batch size: 128
-2021-04-05 20:55:41,725 - root - INFO - Training weight decay: 1e-06
-2021-04-05 20:55:41,726 - root - INFO - Start plot t_sne
-2021-04-05 20:56:18,541 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 20:56:18,541 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 20:56:18,541 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 20:56:18,549 - root - INFO - Dataset: campus
-2021-04-05 20:56:18,550 - root - INFO - Normal class: 0
-2021-04-05 20:56:18,550 - root - INFO - Network: campus_LeNet
-2021-04-05 20:56:18,550 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 20:56:18,550 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 20:56:18,551 - root - INFO - Computation device: cpu
-2021-04-05 20:56:18,551 - root - INFO - Number of dataloader workers: 0
-2021-04-05 20:56:20,083 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 20:56:20,101 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 20:56:20,101 - root - INFO - Training optimizer: adam
-2021-04-05 20:56:20,101 - root - INFO - Training learning rate: 0.001
-2021-04-05 20:56:20,102 - root - INFO - Training epochs: 50
-2021-04-05 20:56:20,102 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 20:56:20,102 - root - INFO - Training batch size: 128
-2021-04-05 20:56:20,102 - root - INFO - Training weight decay: 1e-06
-2021-04-05 20:56:20,103 - root - INFO - Start plot t_sne
-2021-04-05 20:57:33,822 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 20:57:33,822 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 20:57:33,822 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 20:57:33,822 - root - INFO - Dataset: campus
-2021-04-05 20:57:33,823 - root - INFO - Normal class: 0
-2021-04-05 20:57:33,823 - root - INFO - Network: campus_LeNet
-2021-04-05 20:57:33,823 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 20:57:33,824 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 20:57:33,824 - root - INFO - Computation device: cpu
-2021-04-05 20:57:33,824 - root - INFO - Number of dataloader workers: 0
-2021-04-05 20:57:35,378 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 20:57:35,382 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 20:57:35,382 - root - INFO - Training optimizer: adam
-2021-04-05 20:57:35,382 - root - INFO - Training learning rate: 0.001
-2021-04-05 20:57:35,383 - root - INFO - Training epochs: 50
-2021-04-05 20:57:35,383 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 20:57:35,383 - root - INFO - Training batch size: 128
-2021-04-05 20:57:35,383 - root - INFO - Training weight decay: 1e-06
-2021-04-05 20:57:35,384 - root - INFO - Start plot t_sne
-2021-04-05 21:00:47,947 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:00:47,948 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:00:47,948 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:00:47,948 - root - INFO - Dataset: campus
-2021-04-05 21:00:47,949 - root - INFO - Normal class: 0
-2021-04-05 21:00:47,949 - root - INFO - Network: campus_LeNet
-2021-04-05 21:00:47,949 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:00:47,950 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:00:47,950 - root - INFO - Computation device: cpu
-2021-04-05 21:00:47,950 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:00:49,450 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:00:49,454 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:00:49,455 - root - INFO - Training optimizer: adam
-2021-04-05 21:00:49,455 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:00:49,455 - root - INFO - Training epochs: 50
-2021-04-05 21:00:49,455 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:00:49,456 - root - INFO - Training batch size: 128
-2021-04-05 21:00:49,456 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:00:49,457 - root - INFO - Start plot t_sne
-2021-04-05 21:01:24,581 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:01:24,581 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:01:24,581 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:01:24,581 - root - INFO - Dataset: campus
-2021-04-05 21:01:24,581 - root - INFO - Normal class: 0
-2021-04-05 21:01:24,582 - root - INFO - Network: campus_LeNet
-2021-04-05 21:01:24,582 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:01:24,582 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:01:24,583 - root - INFO - Computation device: cpu
-2021-04-05 21:01:24,583 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:01:26,195 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:01:26,199 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:01:26,200 - root - INFO - Training optimizer: adam
-2021-04-05 21:01:26,200 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:01:26,200 - root - INFO - Training epochs: 50
-2021-04-05 21:01:26,201 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:01:26,201 - root - INFO - Training batch size: 128
-2021-04-05 21:01:26,201 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:01:26,202 - root - INFO - Start plot t_sne
-2021-04-05 21:02:34,267 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:02:34,268 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:02:34,268 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:02:34,268 - root - INFO - Dataset: campus
-2021-04-05 21:02:34,268 - root - INFO - Normal class: 0
-2021-04-05 21:02:34,269 - root - INFO - Network: campus_LeNet
-2021-04-05 21:02:34,269 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:02:34,269 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:02:34,270 - root - INFO - Computation device: cpu
-2021-04-05 21:02:34,270 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:02:35,819 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:02:35,824 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:02:35,824 - root - INFO - Training optimizer: adam
-2021-04-05 21:02:35,824 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:02:35,825 - root - INFO - Training epochs: 50
-2021-04-05 21:02:35,825 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:02:35,825 - root - INFO - Training batch size: 128
-2021-04-05 21:02:35,825 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:02:35,826 - root - INFO - Start plot t_sne
-2021-04-05 21:05:26,054 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:05:26,054 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:05:26,054 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:05:26,054 - root - INFO - Dataset: campus
-2021-04-05 21:05:26,054 - root - INFO - Normal class: 0
-2021-04-05 21:05:26,060 - root - INFO - Network: campus_LeNet
-2021-04-05 21:05:26,060 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:05:26,060 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:05:26,060 - root - INFO - Computation device: cpu
-2021-04-05 21:05:26,060 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:05:27,600 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:05:27,616 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:05:27,617 - root - INFO - Training optimizer: adam
-2021-04-05 21:05:27,617 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:05:27,617 - root - INFO - Training epochs: 50
-2021-04-05 21:05:27,617 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:05:27,617 - root - INFO - Training batch size: 128
-2021-04-05 21:05:27,618 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:05:27,618 - root - INFO - Start plot t_sne
-2021-04-05 21:06:25,194 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:06:25,194 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:06:25,194 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:06:25,194 - root - INFO - Dataset: campus
-2021-04-05 21:06:25,202 - root - INFO - Normal class: 0
-2021-04-05 21:06:25,202 - root - INFO - Network: campus_LeNet
-2021-04-05 21:06:25,202 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:06:25,203 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:06:25,203 - root - INFO - Computation device: cpu
-2021-04-05 21:06:25,203 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:06:26,745 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:06:26,752 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:06:26,752 - root - INFO - Training optimizer: adam
-2021-04-05 21:06:26,753 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:06:26,753 - root - INFO - Training epochs: 50
-2021-04-05 21:06:26,753 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:06:26,753 - root - INFO - Training batch size: 128
-2021-04-05 21:06:26,754 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:06:26,755 - root - INFO - Start plot t_sne
-2021-04-05 21:08:54,758 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:08:54,758 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:08:54,758 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:08:54,758 - root - INFO - Dataset: campus
-2021-04-05 21:08:54,758 - root - INFO - Normal class: 0
-2021-04-05 21:08:54,758 - root - INFO - Network: campus_LeNet
-2021-04-05 21:08:54,773 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:08:54,773 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:08:54,773 - root - INFO - Computation device: cpu
-2021-04-05 21:08:54,774 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:08:56,295 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:08:56,299 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:08:56,299 - root - INFO - Training optimizer: adam
-2021-04-05 21:08:56,299 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:08:56,299 - root - INFO - Training epochs: 50
-2021-04-05 21:08:56,299 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:08:56,300 - root - INFO - Training batch size: 128
-2021-04-05 21:08:56,300 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:08:56,300 - root - INFO - Start plot t_sne
-2021-04-05 21:09:45,122 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:09:45,123 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:09:45,123 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:09:45,123 - root - INFO - Dataset: campus
-2021-04-05 21:09:45,123 - root - INFO - Normal class: 0
-2021-04-05 21:09:45,124 - root - INFO - Network: campus_LeNet
-2021-04-05 21:09:45,124 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:09:45,124 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:09:45,124 - root - INFO - Computation device: cpu
-2021-04-05 21:09:45,125 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:09:57,525 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:09:57,539 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:09:57,539 - root - INFO - Training optimizer: adam
-2021-04-05 21:09:57,540 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:09:57,540 - root - INFO - Training epochs: 50
-2021-04-05 21:09:57,540 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:09:57,540 - root - INFO - Training batch size: 128
-2021-04-05 21:09:57,541 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:09:57,542 - root - INFO - Start plot t_sne
-2021-04-05 21:14:02,108 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:14:02,108 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:14:02,109 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:14:02,109 - root - INFO - Dataset: campus
-2021-04-05 21:14:02,109 - root - INFO - Normal class: 0
-2021-04-05 21:14:02,109 - root - INFO - Network: campus_LeNet
-2021-04-05 21:14:02,110 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:14:02,110 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:14:02,110 - root - INFO - Computation device: cpu
-2021-04-05 21:14:02,110 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:14:11,479 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:14:11,483 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:14:11,484 - root - INFO - Training optimizer: adam
-2021-04-05 21:14:11,484 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:14:11,484 - root - INFO - Training epochs: 50
-2021-04-05 21:14:11,485 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:14:11,485 - root - INFO - Training batch size: 128
-2021-04-05 21:14:11,485 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:14:11,486 - root - INFO - Start plot t_sne
-2021-04-05 21:15:31,683 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:15:31,683 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:15:31,683 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:15:31,691 - root - INFO - Dataset: campus
-2021-04-05 21:15:31,691 - root - INFO - Normal class: 0
-2021-04-05 21:15:31,691 - root - INFO - Network: campus_LeNet
-2021-04-05 21:15:31,692 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:15:31,692 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:15:31,692 - root - INFO - Computation device: cpu
-2021-04-05 21:15:31,693 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:15:33,286 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:15:33,291 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:15:33,291 - root - INFO - Training optimizer: adam
-2021-04-05 21:15:33,291 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:15:33,291 - root - INFO - Training epochs: 50
-2021-04-05 21:15:33,292 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:15:33,292 - root - INFO - Training batch size: 128
-2021-04-05 21:15:33,292 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:16:03,964 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:16:03,964 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:16:03,964 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:16:03,964 - root - INFO - Dataset: campus
-2021-04-05 21:16:03,969 - root - INFO - Normal class: 0
-2021-04-05 21:16:03,969 - root - INFO - Network: campus_LeNet
-2021-04-05 21:16:03,969 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:16:03,970 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:16:03,971 - root - INFO - Computation device: cpu
-2021-04-05 21:16:03,971 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:16:05,511 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:16:05,522 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:16:05,522 - root - INFO - Training optimizer: adam
-2021-04-05 21:16:05,522 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:16:05,523 - root - INFO - Training epochs: 50
-2021-04-05 21:16:05,523 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:16:05,523 - root - INFO - Training batch size: 128
-2021-04-05 21:16:05,523 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:16:05,524 - root - INFO - Start plot t_sne
-2021-04-05 21:18:27,199 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:18:27,199 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:18:27,199 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:18:27,199 - root - INFO - Dataset: campus
-2021-04-05 21:18:27,205 - root - INFO - Normal class: 0
-2021-04-05 21:18:27,205 - root - INFO - Network: campus_LeNet
-2021-04-05 21:18:27,206 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:18:27,206 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:18:27,206 - root - INFO - Computation device: cpu
-2021-04-05 21:18:27,207 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:18:28,777 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:18:28,782 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:18:28,782 - root - INFO - Training optimizer: adam
-2021-04-05 21:18:28,782 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:18:28,782 - root - INFO - Training epochs: 50
-2021-04-05 21:18:28,783 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:18:28,783 - root - INFO - Training batch size: 128
-2021-04-05 21:18:28,783 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:18:28,784 - root - INFO - Start plot t_sne
-2021-04-05 21:22:13,201 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:22:13,201 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:22:13,201 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:22:13,201 - root - INFO - Dataset: campus
-2021-04-05 21:22:13,206 - root - INFO - Normal class: 0
-2021-04-05 21:22:13,206 - root - INFO - Network: campus_LeNet
-2021-04-05 21:22:13,206 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:22:13,207 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:22:13,207 - root - INFO - Computation device: cpu
-2021-04-05 21:22:13,207 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:22:14,779 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:22:14,792 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:22:14,792 - root - INFO - Training optimizer: adam
-2021-04-05 21:22:14,793 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:22:14,793 - root - INFO - Training epochs: 50
-2021-04-05 21:22:14,793 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:22:14,793 - root - INFO - Training batch size: 128
-2021-04-05 21:22:14,794 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:22:14,795 - root - INFO - Start plot t_sne
-2021-04-05 21:23:06,329 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:23:06,329 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:23:06,330 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:23:06,330 - root - INFO - Dataset: campus
-2021-04-05 21:23:06,330 - root - INFO - Normal class: 0
-2021-04-05 21:23:06,330 - root - INFO - Network: campus_LeNet
-2021-04-05 21:23:06,331 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:23:06,331 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:23:06,331 - root - INFO - Computation device: cpu
-2021-04-05 21:23:06,331 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:23:07,842 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:23:07,855 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:23:07,855 - root - INFO - Training optimizer: adam
-2021-04-05 21:23:07,858 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:23:07,858 - root - INFO - Training epochs: 50
-2021-04-05 21:23:07,858 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:23:07,859 - root - INFO - Training batch size: 128
-2021-04-05 21:23:07,860 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:23:07,861 - root - INFO - Start plot t_sne
-2021-04-05 21:23:55,061 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:23:55,061 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:23:55,061 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:23:55,061 - root - INFO - Dataset: campus
-2021-04-05 21:23:55,066 - root - INFO - Normal class: 0
-2021-04-05 21:23:55,066 - root - INFO - Network: campus_LeNet
-2021-04-05 21:23:55,066 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:23:55,068 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:23:55,068 - root - INFO - Computation device: cpu
-2021-04-05 21:23:55,068 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:23:56,604 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:23:56,609 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:23:56,610 - root - INFO - Training optimizer: adam
-2021-04-05 21:23:56,610 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:23:56,610 - root - INFO - Training epochs: 50
-2021-04-05 21:23:56,611 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:23:56,611 - root - INFO - Training batch size: 128
-2021-04-05 21:23:56,611 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:23:56,612 - root - INFO - Start plot t_sne
-2021-04-05 21:25:38,548 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:25:38,548 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:25:38,549 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:25:38,549 - root - INFO - Dataset: campus
-2021-04-05 21:25:38,549 - root - INFO - Normal class: 0
-2021-04-05 21:25:38,549 - root - INFO - Network: campus_LeNet
-2021-04-05 21:25:38,549 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:25:38,550 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:25:38,550 - root - INFO - Computation device: cpu
-2021-04-05 21:25:38,550 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:25:40,107 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:25:40,111 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:25:40,112 - root - INFO - Training optimizer: adam
-2021-04-05 21:25:40,112 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:25:40,112 - root - INFO - Training epochs: 50
-2021-04-05 21:25:40,112 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:25:40,113 - root - INFO - Training batch size: 128
-2021-04-05 21:25:40,113 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:25:40,114 - root - INFO - Start plot t_sne
-2021-04-05 21:26:23,234 - root - INFO - Log file is ../log/tofu_test/log.txt.
-2021-04-05 21:26:23,234 - root - INFO - Data path is ../data/滴何 单捞磐悸.
-2021-04-05 21:26:23,234 - root - INFO - Export path is ../log/tofu_test.
-2021-04-05 21:26:23,234 - root - INFO - Dataset: campus
-2021-04-05 21:26:23,235 - root - INFO - Normal class: 0
-2021-04-05 21:26:23,235 - root - INFO - Network: campus_LeNet
-2021-04-05 21:26:23,235 - root - INFO - Deep SVDD objective: one-class
-2021-04-05 21:26:23,236 - root - INFO - Nu-paramerter: 0.10
-2021-04-05 21:26:23,236 - root - INFO - Computation device: cpu
-2021-04-05 21:26:23,236 - root - INFO - Number of dataloader workers: 0
-2021-04-05 21:26:24,749 - root - INFO - Train shape: (1000, 640, 640, 3)
-2021-04-05 21:26:24,759 - root - INFO - Loading model from C:\Users\yeong95\svdd\log\tofu_test\model.tar.
-2021-04-05 21:26:24,759 - root - INFO - Training optimizer: adam
-2021-04-05 21:26:24,759 - root - INFO - Training learning rate: 0.001
-2021-04-05 21:26:24,760 - root - INFO - Training epochs: 50
-2021-04-05 21:26:24,760 - root - INFO - Training learning rate scheduler milestones: ()
-2021-04-05 21:26:24,760 - root - INFO - Training batch size: 128
-2021-04-05 21:26:24,760 - root - INFO - Training weight decay: 1e-06
-2021-04-05 21:26:24,761 - root - INFO - Start plot t_sne
+2021-04-05 23:31:25,003 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-05 23:31:25,003 - root - INFO - Data path is ../data/滴何 单捞磐悸.
+2021-04-05 23:31:25,003 - root - INFO - Export path is ../log/tofu_test.
+2021-04-05 23:31:25,017 - root - INFO - Dataset: campus
+2021-04-05 23:31:25,017 - root - INFO - Normal class: 0
+2021-04-05 23:31:25,017 - root - INFO - Network: campus_LeNet
+2021-04-05 23:31:25,018 - root - INFO - Deep SVDD objective: one-class
+2021-04-05 23:31:25,018 - root - INFO - Nu-paramerter: 0.10
+2021-04-05 23:31:25,021 - root - INFO - Computation device: cpu
+2021-04-05 23:31:25,021 - root - INFO - Number of dataloader workers: 0
+2021-04-05 23:31:26,536 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-04-05 23:31:26,549 - root - INFO - Pretraining optimizer: adam
+2021-04-05 23:31:26,549 - root - INFO - Pretraining learning rate: 0.0001
+2021-04-05 23:31:26,549 - root - INFO - Pretraining epochs: 1
+2021-04-05 23:31:26,550 - root - INFO - Pretraining learning rate scheduler milestones: (50,)
+2021-04-05 23:31:26,550 - root - INFO - Pretraining batch size: 64
+2021-04-05 23:31:26,550 - root - INFO - Pretraining weight decay: 0.0005
+2021-04-05 23:32:58,143 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-05 23:32:58,143 - root - INFO - Data path is ../data/滴何 单捞磐悸.
+2021-04-05 23:32:58,143 - root - INFO - Export path is ../log/tofu_test.
+2021-04-05 23:32:58,143 - root - INFO - Dataset: campus
+2021-04-05 23:32:58,144 - root - INFO - Normal class: 0
+2021-04-05 23:32:58,144 - root - INFO - Network: campus_LeNet
+2021-04-05 23:32:58,144 - root - INFO - Deep SVDD objective: one-class
+2021-04-05 23:32:58,144 - root - INFO - Nu-paramerter: 0.10
+2021-04-05 23:32:58,147 - root - INFO - Computation device: cpu
+2021-04-05 23:32:58,147 - root - INFO - Number of dataloader workers: 0
+2021-04-05 23:32:59,677 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-04-05 23:32:59,679 - root - INFO - Pretraining optimizer: adam
+2021-04-05 23:32:59,680 - root - INFO - Pretraining learning rate: 0.0001
+2021-04-05 23:32:59,681 - root - INFO - Pretraining epochs: 1
+2021-04-05 23:32:59,681 - root - INFO - Pretraining learning rate scheduler milestones: (50,)
+2021-04-05 23:32:59,681 - root - INFO - Pretraining batch size: 64
+2021-04-05 23:32:59,682 - root - INFO - Pretraining weight decay: 0.0005
+2021-04-05 23:32:59,684 - root - INFO - Starting pretraining...
+2021-04-05 23:36:35,396 - root - INFO -   Epoch 1/1	 Time: 215.710	 Loss: 64037.15673828
+2021-04-05 23:36:35,396 - root - INFO - Pretraining time: 215.713
+2021-04-05 23:36:35,396 - root - INFO - Finished pretraining.
+2021-04-05 23:36:35,439 - root - INFO - Testing autoencoder...
+2021-04-05 23:38:01,272 - root - INFO - Test set Loss: 55050.49218750
+2021-04-05 23:38:01,287 - root - INFO - Test set AUC: 38.66%
+2021-04-05 23:38:01,287 - root - INFO - Autoencoder testing time: 85.848
+2021-04-05 23:38:01,287 - root - INFO - Finished testing autoencoder.
+2021-04-05 23:38:01,313 - root - INFO - Training optimizer: adam
+2021-04-05 23:38:01,314 - root - INFO - Training learning rate: 0.0001
+2021-04-05 23:38:01,314 - root - INFO - Training epochs: 1
+2021-04-05 23:38:01,314 - root - INFO - Training learning rate scheduler milestones: (50,)
+2021-04-05 23:38:01,315 - root - INFO - Training batch size: 128
+2021-04-05 23:38:01,315 - root - INFO - Training weight decay: 5e-07
+2021-04-05 23:38:01,316 - root - INFO - Initializing center c...
+2021-04-05 23:38:23,461 - root - INFO - Center c initialized.
+2021-04-05 23:38:23,461 - root - INFO - Starting training...
+2021-04-05 23:39:04,717 - root - INFO -   Epoch 1/1	 Time: 41.254	 Loss: 42.16716909
+2021-04-05 23:39:04,717 - root - INFO - Training time: 41.256
+2021-04-05 23:39:04,717 - root - INFO - Finished training.
+2021-04-05 23:39:04,750 - root - INFO - Starting testing...
+2021-04-05 23:55:23,263 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-05 23:55:23,263 - root - INFO - Data path is ../data/滴何 单捞磐悸.
+2021-04-05 23:55:23,263 - root - INFO - Export path is ../log/tofu_test.
+2021-04-05 23:55:23,263 - root - INFO - Dataset: campus
+2021-04-05 23:55:23,272 - root - INFO - Normal class: 0
+2021-04-05 23:55:23,272 - root - INFO - Network: campus_LeNet
+2021-04-05 23:55:23,273 - root - INFO - Deep SVDD objective: one-class
+2021-04-05 23:55:23,274 - root - INFO - Nu-paramerter: 0.10
+2021-04-05 23:55:23,276 - root - INFO - Computation device: cpu
+2021-04-05 23:55:23,277 - root - INFO - Number of dataloader workers: 0
+2021-04-05 23:55:24,873 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-04-05 23:55:24,879 - root - INFO - Pretraining optimizer: adam
+2021-04-05 23:55:24,880 - root - INFO - Pretraining learning rate: 0.0001
+2021-04-05 23:55:24,880 - root - INFO - Pretraining epochs: 1
+2021-04-05 23:55:24,880 - root - INFO - Pretraining learning rate scheduler milestones: (50,)
+2021-04-05 23:55:24,880 - root - INFO - Pretraining batch size: 64
+2021-04-05 23:55:24,881 - root - INFO - Pretraining weight decay: 0.0005
+2021-04-05 23:55:24,883 - root - INFO - Starting pretraining...
+2021-04-05 23:59:02,359 - root - INFO -   Epoch 1/1	 Time: 217.475	 Loss: 66120.02905273
+2021-04-05 23:59:02,359 - root - INFO - Pretraining time: 217.476
+2021-04-05 23:59:02,359 - root - INFO - Finished pretraining.
+2021-04-05 23:59:02,404 - root - INFO - Testing autoencoder...
+2021-04-06 00:00:30,216 - root - INFO - Test set Loss: 57449.64531250
+2021-04-06 00:00:30,228 - root - INFO - Test set AUC: 38.00%
+2021-04-06 00:00:30,228 - root - INFO - Autoencoder testing time: 87.824
+2021-04-06 00:00:30,228 - root - INFO - Finished testing autoencoder.
+2021-04-06 00:00:30,263 - root - INFO - Training optimizer: adam
+2021-04-06 00:00:30,264 - root - INFO - Training learning rate: 0.0001
+2021-04-06 00:00:30,264 - root - INFO - Training epochs: 1
+2021-04-06 00:00:30,264 - root - INFO - Training learning rate scheduler milestones: (50,)
+2021-04-06 00:00:30,265 - root - INFO - Training batch size: 128
+2021-04-06 00:00:30,265 - root - INFO - Training weight decay: 5e-07
+2021-04-06 00:00:30,265 - root - INFO - Initializing center c...
+2021-04-06 00:00:53,141 - root - INFO - Center c initialized.
+2021-04-06 00:00:53,141 - root - INFO - Starting training...
+2021-04-06 00:01:36,032 - root - INFO -   Epoch 1/1	 Time: 42.888	 Loss: 23.37199497
+2021-04-06 00:01:36,032 - root - INFO - Training time: 42.890
+2021-04-06 00:01:36,032 - root - INFO - Finished training.
+2021-04-06 00:01:36,087 - root - INFO - Starting testing...
+2021-04-06 00:01:58,219 - root - INFO - Testing time: 22.133
+2021-04-06 00:01:58,224 - root - INFO - Test set AUC: 36.83%
+2021-04-06 00:01:58,225 - root - INFO - Finished testing.
+2021-04-06 00:04:14,502 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-04-06 00:04:14,502 - root - INFO - Data path is ../data/滴何 单捞磐悸.
+2021-04-06 00:04:14,502 - root - INFO - Export path is ../log/tofu_test.
+2021-04-06 00:04:14,509 - root - INFO - Dataset: campus
+2021-04-06 00:04:14,509 - root - INFO - Normal class: 0
+2021-04-06 00:04:14,509 - root - INFO - Network: campus_LeNet
+2021-04-06 00:04:14,510 - root - INFO - Deep SVDD objective: one-class
+2021-04-06 00:04:14,510 - root - INFO - Nu-paramerter: 0.10
+2021-04-06 00:04:14,511 - root - INFO - Computation device: cpu
+2021-04-06 00:04:14,511 - root - INFO - Number of dataloader workers: 0
+2021-04-06 00:04:16,044 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-04-06 00:04:16,046 - root - INFO - Pretraining optimizer: adam
+2021-04-06 00:04:16,047 - root - INFO - Pretraining learning rate: 0.0001
+2021-04-06 00:04:16,047 - root - INFO - Pretraining epochs: 150
+2021-04-06 00:04:16,047 - root - INFO - Pretraining learning rate scheduler milestones: (50,)
+2021-04-06 00:04:16,047 - root - INFO - Pretraining batch size: 64
+2021-04-06 00:04:16,048 - root - INFO - Pretraining weight decay: 0.0005
+2021-04-06 00:04:16,050 - root - INFO - Starting pretraining...
+2021-04-06 00:07:51,994 - root - INFO -   Epoch 1/150	 Time: 215.943	 Loss: 66877.52001953
+2021-04-06 00:11:29,161 - root - INFO -   Epoch 2/150	 Time: 217.167	 Loss: 56466.40527344
+2021-04-06 00:15:06,269 - root - INFO -   Epoch 3/150	 Time: 217.108	 Loss: 44749.47583008
+2021-04-06 00:18:41,868 - root - INFO -   Epoch 4/150	 Time: 215.599	 Loss: 32171.06750488
+2021-04-06 00:22:15,697 - root - INFO -   Epoch 5/150	 Time: 213.829	 Loss: 22200.49084473
+2021-04-06 00:25:50,672 - root - INFO -   Epoch 6/150	 Time: 214.975	 Loss: 17455.12731934
+2021-04-06 00:29:25,114 - root - INFO -   Epoch 7/150	 Time: 214.443	 Loss: 14449.79595947
+2021-04-06 00:32:59,408 - root - INFO -   Epoch 8/150	 Time: 214.294	 Loss: 12510.27545166
+2021-04-06 00:36:36,020 - root - INFO -   Epoch 9/150	 Time: 216.612	 Loss: 11455.77868652
+2021-04-06 00:40:10,563 - root - INFO -   Epoch 10/150	 Time: 214.543	 Loss: 10573.90655518
+2021-04-06 00:43:45,078 - root - INFO -   Epoch 11/150	 Time: 214.516	 Loss: 9653.89282227
+2021-04-06 00:47:20,225 - root - INFO -   Epoch 12/150	 Time: 215.146	 Loss: 8977.08654785
+2021-04-06 00:50:54,978 - root - INFO -   Epoch 13/150	 Time: 214.753	 Loss: 8496.66293335
+2021-04-06 00:54:29,470 - root - INFO -   Epoch 14/150	 Time: 214.491	 Loss: 8146.22784424
+2021-04-06 00:58:05,104 - root - INFO -   Epoch 15/150	 Time: 215.634	 Loss: 7860.19064331
+2021-04-06 01:01:43,281 - root - INFO -   Epoch 16/150	 Time: 218.177	 Loss: 7583.62875366
+2021-04-06 01:05:18,511 - root - INFO -   Epoch 17/150	 Time: 215.231	 Loss: 7377.88894653
+2021-04-06 01:08:51,210 - root - INFO -   Epoch 18/150	 Time: 212.698	 Loss: 7078.38919067
+2021-04-06 01:12:24,808 - root - INFO -   Epoch 19/150	 Time: 213.598	 Loss: 6705.03958130
+2021-04-06 01:15:57,627 - root - INFO -   Epoch 20/150	 Time: 212.819	 Loss: 6479.61901855
+2021-04-06 01:19:29,810 - root - INFO -   Epoch 21/150	 Time: 212.184	 Loss: 6292.35699463
+2021-04-06 01:23:02,675 - root - INFO -   Epoch 22/150	 Time: 212.865	 Loss: 6134.00662231
+2021-04-06 01:26:35,766 - root - INFO -   Epoch 23/150	 Time: 213.091	 Loss: 5979.02209473
+2021-04-06 01:30:06,704 - root - INFO -   Epoch 24/150	 Time: 210.938	 Loss: 5861.63684082
+2021-04-06 01:33:38,629 - root - INFO -   Epoch 25/150	 Time: 211.909	 Loss: 5731.27249146
+2021-04-06 01:37:11,910 - root - INFO -   Epoch 26/150	 Time: 213.282	 Loss: 5624.84555054
+2021-04-06 01:40:44,200 - root - INFO -   Epoch 27/150	 Time: 212.290	 Loss: 5523.75183105
+2021-04-06 01:44:17,150 - root - INFO -   Epoch 28/150	 Time: 212.950	 Loss: 5418.51446533
+2021-04-06 01:47:49,684 - root - INFO -   Epoch 29/150	 Time: 212.534	 Loss: 5335.58535767
+2021-04-06 01:51:23,053 - root - INFO -   Epoch 30/150	 Time: 213.369	 Loss: 5241.28710938
+2021-04-06 01:54:54,931 - root - INFO -   Epoch 31/150	 Time: 211.878	 Loss: 5157.04342651
+2021-04-06 01:58:29,341 - root - INFO -   Epoch 32/150	 Time: 214.409	 Loss: 5075.45465088
+2021-04-06 02:02:05,832 - root - INFO -   Epoch 33/150	 Time: 216.492	 Loss: 4993.37225342
+2021-04-06 02:05:39,225 - root - INFO -   Epoch 34/150	 Time: 213.393	 Loss: 4922.95416260
+2021-04-06 02:09:10,516 - root - INFO -   Epoch 35/150	 Time: 211.291	 Loss: 4836.69723511
+2021-04-06 02:12:41,231 - root - INFO -   Epoch 36/150	 Time: 210.715	 Loss: 4784.48370361
+2021-04-06 02:16:13,228 - root - INFO -   Epoch 37/150	 Time: 211.996	 Loss: 4714.49517822
+2021-04-06 02:19:45,347 - root - INFO -   Epoch 38/150	 Time: 212.120	 Loss: 4635.19155884
+2021-04-06 02:23:16,818 - root - INFO -   Epoch 39/150	 Time: 211.471	 Loss: 4588.50241089
+2021-04-06 02:26:49,009 - root - INFO -   Epoch 40/150	 Time: 212.190	 Loss: 4538.00015259
+2021-04-06 02:30:20,611 - root - INFO -   Epoch 41/150	 Time: 211.602	 Loss: 4498.02484131
+2021-04-06 02:33:51,398 - root - INFO -   Epoch 42/150	 Time: 210.788	 Loss: 4458.16409302
+2021-04-06 02:37:22,959 - root - INFO -   Epoch 43/150	 Time: 211.561	 Loss: 4405.18305969
+2021-04-06 02:40:55,692 - root - INFO -   Epoch 44/150	 Time: 212.733	 Loss: 4365.24113464
+2021-04-06 02:44:26,883 - root - INFO -   Epoch 45/150	 Time: 211.191	 Loss: 4336.34962463
+2021-04-06 02:47:57,500 - root - INFO -   Epoch 46/150	 Time: 210.617	 Loss: 4300.92813110
+2021-04-06 02:51:29,283 - root - INFO -   Epoch 47/150	 Time: 211.783	 Loss: 4271.22152710
+2021-04-06 02:55:00,586 - root - INFO -   Epoch 48/150	 Time: 211.304	 Loss: 4243.08618164
+2021-04-06 02:58:32,551 - root - INFO -   Epoch 49/150	 Time: 211.964	 Loss: 4214.21224976
+2021-04-06 03:02:04,664 - root - INFO -   Epoch 50/150	 Time: 212.114	 Loss: 4198.20223999
+2021-04-06 03:02:04,670 - root - INFO -   LR scheduler: new learning rate is 1e-05
+2021-04-06 03:05:36,873 - root - INFO -   Epoch 51/150	 Time: 212.203	 Loss: 4184.54678345
+2021-04-06 03:09:07,024 - root - INFO -   Epoch 52/150	 Time: 210.150	 Loss: 4206.40582275
+2021-04-06 03:12:38,854 - root - INFO -   Epoch 53/150	 Time: 211.830	 Loss: 4194.17733765
+2021-04-06 03:16:10,553 - root - INFO -   Epoch 54/150	 Time: 211.699	 Loss: 4179.28501892
+2021-04-06 03:19:41,471 - root - INFO -   Epoch 55/150	 Time: 210.918	 Loss: 4183.86239624
+2021-04-06 03:23:12,578 - root - INFO -   Epoch 56/150	 Time: 211.107	 Loss: 4170.54249573
+2021-04-06 03:26:43,167 - root - INFO -   Epoch 57/150	 Time: 210.589	 Loss: 4178.11982727
+2021-04-06 03:30:13,942 - root - INFO -   Epoch 58/150	 Time: 210.775	 Loss: 4172.18150330
+2021-04-06 03:33:44,870 - root - INFO -   Epoch 59/150	 Time: 210.928	 Loss: 4176.21069336
+2021-04-06 03:37:15,909 - root - INFO -   Epoch 60/150	 Time: 211.040	 Loss: 4172.27742004
+2021-04-06 03:40:49,688 - root - INFO -   Epoch 61/150	 Time: 213.779	 Loss: 4152.07955933
+2021-04-06 03:44:21,562 - root - INFO -   Epoch 62/150	 Time: 211.874	 Loss: 4167.06080627
+2021-04-06 03:47:52,689 - root - INFO -   Epoch 63/150	 Time: 211.127	 Loss: 4155.75704956
+2021-04-06 03:51:23,724 - root - INFO -   Epoch 64/150	 Time: 211.034	 Loss: 4149.18220520
+2021-04-06 03:54:55,169 - root - INFO -   Epoch 65/150	 Time: 211.445	 Loss: 4151.48187256
+2021-04-06 03:58:26,946 - root - INFO -   Epoch 66/150	 Time: 211.777	 Loss: 4144.85762024
+2021-04-06 04:02:02,442 - root - INFO -   Epoch 67/150	 Time: 215.496	 Loss: 4140.07963562
+2021-04-06 04:05:36,112 - root - INFO -   Epoch 68/150	 Time: 213.670	 Loss: 4140.14093018
+2021-04-06 04:09:06,408 - root - INFO -   Epoch 69/150	 Time: 210.296	 Loss: 4132.42344666
+2021-04-06 04:12:37,241 - root - INFO -   Epoch 70/150	 Time: 210.833	 Loss: 4142.60934448
+2021-04-06 04:16:09,575 - root - INFO -   Epoch 71/150	 Time: 212.334	 Loss: 4120.85578918
+2021-04-06 04:19:40,008 - root - INFO -   Epoch 72/150	 Time: 210.433	 Loss: 4132.66705322
+2021-04-06 04:23:11,437 - root - INFO -   Epoch 73/150	 Time: 211.429	 Loss: 4120.05786133
+2021-04-06 04:26:43,323 - root - INFO -   Epoch 74/150	 Time: 211.886	 Loss: 4123.34106445
+2021-04-06 04:30:13,881 - root - INFO -   Epoch 75/150	 Time: 210.558	 Loss: 4111.74645996
+2021-04-06 04:33:44,806 - root - INFO -   Epoch 76/150	 Time: 210.925	 Loss: 4105.09400940
+2021-04-06 04:37:16,094 - root - INFO -   Epoch 77/150	 Time: 211.288	 Loss: 4112.68983459
+2021-04-06 04:40:47,742 - root - INFO -   Epoch 78/150	 Time: 211.648	 Loss: 4113.81140137
+2021-04-06 04:44:17,457 - root - INFO -   Epoch 79/150	 Time: 209.715	 Loss: 4097.04559326
+2021-04-06 04:47:48,820 - root - INFO -   Epoch 80/150	 Time: 211.363	 Loss: 4088.98173523
+2021-04-06 04:51:20,927 - root - INFO -   Epoch 81/150	 Time: 212.107	 Loss: 4101.24551392
+2021-04-06 04:54:51,068 - root - INFO -   Epoch 82/150	 Time: 210.141	 Loss: 4094.78068542
+2021-04-06 04:58:21,468 - root - INFO -   Epoch 83/150	 Time: 210.399	 Loss: 4093.58905029
+2021-04-06 05:01:55,495 - root - INFO -   Epoch 84/150	 Time: 214.027	 Loss: 4086.36111450
+2021-04-06 05:05:28,992 - root - INFO -   Epoch 85/150	 Time: 213.497	 Loss: 4084.64381409
+2021-04-06 05:08:59,805 - root - INFO -   Epoch 86/150	 Time: 210.813	 Loss: 4074.90193176
+2021-04-06 05:12:31,140 - root - INFO -   Epoch 87/150	 Time: 211.335	 Loss: 4074.52653503
+2021-04-06 05:16:03,633 - root - INFO -   Epoch 88/150	 Time: 212.492	 Loss: 4067.45108032
+2021-04-06 05:19:34,014 - root - INFO -   Epoch 89/150	 Time: 210.381	 Loss: 4059.98222351
+2021-04-06 05:23:04,247 - root - INFO -   Epoch 90/150	 Time: 210.233	 Loss: 4080.10607910
+2021-04-06 05:26:35,180 - root - INFO -   Epoch 91/150	 Time: 210.934	 Loss: 4063.02445984
+2021-04-06 05:30:05,121 - root - INFO -   Epoch 92/150	 Time: 209.940	 Loss: 4068.43571472
+2021-04-06 05:33:36,521 - root - INFO -   Epoch 93/150	 Time: 211.400	 Loss: 4060.04785156
+2021-04-06 05:37:08,040 - root - INFO -   Epoch 94/150	 Time: 211.519	 Loss: 4052.89598083
+2021-04-06 05:40:39,221 - root - INFO -   Epoch 95/150	 Time: 211.181	 Loss: 4040.09013367
+2021-04-06 05:44:09,430 - root - INFO -   Epoch 96/150	 Time: 210.209	 Loss: 4055.97441101
+2021-04-06 05:47:39,714 - root - INFO -   Epoch 97/150	 Time: 210.284	 Loss: 4055.88703918
+2021-04-06 05:51:10,877 - root - INFO -   Epoch 98/150	 Time: 211.163	 Loss: 4037.85025024
+2021-04-06 05:54:39,720 - root - INFO -   Epoch 99/150	 Time: 208.843	 Loss: 4035.30392456
+2021-04-06 05:58:10,542 - root - INFO -   Epoch 100/150	 Time: 210.822	 Loss: 4038.39764404
+2021-04-06 06:01:45,875 - root - INFO -   Epoch 101/150	 Time: 215.333	 Loss: 4033.81361389
+2021-04-06 06:05:23,098 - root - INFO -   Epoch 102/150	 Time: 217.223	 Loss: 4021.15072632
+2021-04-06 06:09:00,295 - root - INFO -   Epoch 103/150	 Time: 216.408	 Loss: 4023.27917480
+2021-04-06 06:12:31,572 - root - INFO -   Epoch 104/150	 Time: 211.277	 Loss: 4006.28694153
+2021-04-06 06:16:01,211 - root - INFO -   Epoch 105/150	 Time: 209.639	 Loss: 4017.13703918
+2021-04-06 06:19:29,490 - root - INFO -   Epoch 106/150	 Time: 208.279	 Loss: 4021.66265869
+2021-04-06 06:22:57,602 - root - INFO -   Epoch 107/150	 Time: 208.112	 Loss: 4005.64134216
+2021-04-06 06:26:27,359 - root - INFO -   Epoch 108/150	 Time: 209.757	 Loss: 4009.92762756
+2021-04-06 06:29:56,234 - root - INFO -   Epoch 109/150	 Time: 208.875	 Loss: 4006.60652161
+2021-04-06 06:33:25,327 - root - INFO -   Epoch 110/150	 Time: 209.093	 Loss: 3991.81729126
+2021-04-06 06:36:53,932 - root - INFO -   Epoch 111/150	 Time: 208.605	 Loss: 4004.60229492
+2021-04-06 06:40:22,563 - root - INFO -   Epoch 112/150	 Time: 208.630	 Loss: 3997.79159546
+2021-04-06 06:43:51,269 - root - INFO -   Epoch 113/150	 Time: 208.706	 Loss: 3984.40846252
+2021-04-06 06:47:19,892 - root - INFO -   Epoch 114/150	 Time: 208.623	 Loss: 3980.35148621
+2021-04-06 06:50:49,217 - root - INFO -   Epoch 115/150	 Time: 209.325	 Loss: 3987.33094788
+2021-04-06 06:54:17,658 - root - INFO -   Epoch 116/150	 Time: 208.441	 Loss: 3988.59658813
+2021-04-06 06:57:45,414 - root - INFO -   Epoch 117/150	 Time: 207.756	 Loss: 3979.61407471
+2021-04-06 07:01:16,696 - root - INFO -   Epoch 118/150	 Time: 211.282	 Loss: 3985.36941528
+2021-04-06 07:04:46,288 - root - INFO -   Epoch 119/150	 Time: 209.577	 Loss: 3963.46704102
+2021-04-06 07:08:14,094 - root - INFO -   Epoch 120/150	 Time: 207.806	 Loss: 3965.86325073
+2021-04-06 07:11:42,379 - root - INFO -   Epoch 121/150	 Time: 208.285	 Loss: 3970.98791504
+2021-04-06 07:15:10,861 - root - INFO -   Epoch 122/150	 Time: 208.481	 Loss: 3967.87210083
+2021-04-06 07:18:39,560 - root - INFO -   Epoch 123/150	 Time: 208.699	 Loss: 3957.30079651
+2021-04-06 07:22:08,378 - root - INFO -   Epoch 124/150	 Time: 208.818	 Loss: 3961.12820435
+2021-04-06 07:25:37,108 - root - INFO -   Epoch 125/150	 Time: 208.730	 Loss: 3954.81698608
+2021-04-06 07:29:06,302 - root - INFO -   Epoch 126/150	 Time: 209.195	 Loss: 3957.71502686
+2021-04-06 07:32:34,381 - root - INFO -   Epoch 127/150	 Time: 208.079	 Loss: 3953.05276489
+2021-04-06 07:36:03,838 - root - INFO -   Epoch 128/150	 Time: 209.457	 Loss: 3947.24850464
+2021-04-06 07:39:32,466 - root - INFO -   Epoch 129/150	 Time: 208.628	 Loss: 3942.35459900
+2021-04-06 07:43:06,694 - root - INFO -   Epoch 130/150	 Time: 214.213	 Loss: 3929.28155518
+2021-04-06 07:46:42,752 - root - INFO -   Epoch 131/150	 Time: 216.057	 Loss: 3936.55058289
+2021-04-06 07:50:13,151 - root - INFO -   Epoch 132/150	 Time: 210.400	 Loss: 3925.70877075
+2021-04-06 07:53:44,127 - root - INFO -   Epoch 133/150	 Time: 210.976	 Loss: 3925.44165039
+2021-04-06 07:57:13,993 - root - INFO -   Epoch 134/150	 Time: 209.866	 Loss: 3923.46258545
+2021-04-06 08:00:47,667 - root - INFO -   Epoch 135/150	 Time: 213.658	 Loss: 3919.18064880
+2021-04-06 08:04:20,599 - root - INFO -   Epoch 136/150	 Time: 212.932	 Loss: 3910.55683899
+2021-04-06 08:07:51,242 - root - INFO -   Epoch 137/150	 Time: 210.628	 Loss: 3917.34651184
+2021-04-06 08:11:21,702 - root - INFO -   Epoch 138/150	 Time: 210.460	 Loss: 3915.81976318
+2021-04-06 08:14:52,513 - root - INFO -   Epoch 139/150	 Time: 210.795	 Loss: 3903.00704956
+2021-04-06 08:18:23,872 - root - INFO -   Epoch 140/150	 Time: 211.360	 Loss: 3910.14511108
+2021-04-06 08:21:54,560 - root - INFO -   Epoch 141/150	 Time: 210.687	 Loss: 3899.03196716
+2021-04-06 08:25:24,452 - root - INFO -   Epoch 142/150	 Time: 209.893	 Loss: 3896.27661133
+2021-04-06 08:28:54,320 - root - INFO -   Epoch 143/150	 Time: 209.868	 Loss: 3880.63531494
+2021-04-06 08:32:23,870 - root - INFO -   Epoch 144/150	 Time: 209.550	 Loss: 3880.31541443
+2021-04-06 08:35:53,969 - root - INFO -   Epoch 145/150	 Time: 210.099	 Loss: 3892.05317688
+2021-04-06 08:39:25,091 - root - INFO -   Epoch 146/150	 Time: 211.122	 Loss: 3874.09532166
+2021-04-06 08:42:55,071 - root - INFO -   Epoch 147/150	 Time: 209.980	 Loss: 3880.74789429
+2021-04-06 08:46:25,468 - root - INFO -   Epoch 148/150	 Time: 210.397	 Loss: 3862.31808472
+2021-04-06 08:49:56,097 - root - INFO -   Epoch 149/150	 Time: 210.628	 Loss: 3856.18313599
+2021-04-06 08:53:26,643 - root - INFO -   Epoch 150/150	 Time: 210.546	 Loss: 3860.72264099
+2021-04-06 08:53:26,643 - root - INFO - Pretraining time: 31750.593
+2021-04-06 08:53:26,643 - root - INFO - Finished pretraining.
+2021-04-06 08:53:26,670 - root - INFO - Testing autoencoder...
+2021-04-06 08:54:53,166 - root - INFO - Test set Loss: 43157.43697917
+2021-04-06 08:54:53,179 - root - INFO - Test set AUC: 73.25%
+2021-04-06 08:54:53,179 - root - INFO - Autoencoder testing time: 86.509
+2021-04-06 08:54:53,180 - root - INFO - Finished testing autoencoder.
+2021-04-06 08:54:53,206 - root - INFO - Training optimizer: adam
+2021-04-06 08:54:53,206 - root - INFO - Training learning rate: 0.0001
+2021-04-06 08:54:53,206 - root - INFO - Training epochs: 150
+2021-04-06 08:54:53,207 - root - INFO - Training learning rate scheduler milestones: (50,)
+2021-04-06 08:54:53,207 - root - INFO - Training batch size: 128
+2021-04-06 08:54:53,207 - root - INFO - Training weight decay: 5e-07
+2021-04-06 08:54:53,210 - root - INFO - Initializing center c...
+2021-04-06 08:55:14,302 - root - INFO - Center c initialized.
+2021-04-06 08:55:14,302 - root - INFO - Starting training...
+2021-04-06 08:55:55,474 - root - INFO -   Epoch 1/150	 Time: 41.170	 Loss: 4.83308530
+2021-04-06 08:56:36,265 - root - INFO -   Epoch 2/150	 Time: 40.792	 Loss: 2.07909253
+2021-04-06 08:57:16,868 - root - INFO -   Epoch 3/150	 Time: 40.603	 Loss: 1.01490670
+2021-04-06 08:57:57,689 - root - INFO -   Epoch 4/150	 Time: 40.821	 Loss: 0.64157008
+2021-04-06 08:58:39,111 - root - INFO -   Epoch 5/150	 Time: 41.422	 Loss: 0.50458181
+2021-04-06 08:59:20,362 - root - INFO -   Epoch 6/150	 Time: 41.251	 Loss: 0.43230776
+2021-04-06 09:00:01,508 - root - INFO -   Epoch 7/150	 Time: 41.146	 Loss: 0.38161134
+2021-04-06 09:00:42,192 - root - INFO -   Epoch 8/150	 Time: 40.684	 Loss: 0.34719751
+2021-04-06 09:01:23,193 - root - INFO -   Epoch 9/150	 Time: 41.001	 Loss: 0.31928123
+2021-04-06 09:02:04,176 - root - INFO -   Epoch 10/150	 Time: 40.983	 Loss: 0.29737986
+2021-04-06 09:02:46,946 - root - INFO -   Epoch 11/150	 Time: 42.769	 Loss: 0.27725428
+2021-04-06 09:03:27,226 - root - INFO -   Epoch 12/150	 Time: 40.280	 Loss: 0.26130333
+2021-04-06 09:04:08,016 - root - INFO -   Epoch 13/150	 Time: 40.774	 Loss: 0.24588902
+2021-04-06 09:04:48,331 - root - INFO -   Epoch 14/150	 Time: 40.315	 Loss: 0.23366599
+2021-04-06 09:05:28,850 - root - INFO -   Epoch 15/150	 Time: 40.518	 Loss: 0.22290478
+2021-04-06 09:06:09,537 - root - INFO -   Epoch 16/150	 Time: 40.687	 Loss: 0.21240624
+2021-04-06 09:06:49,750 - root - INFO -   Epoch 17/150	 Time: 40.213	 Loss: 0.20484461
+2021-04-06 09:07:30,245 - root - INFO -   Epoch 18/150	 Time: 40.496	 Loss: 0.19641022
+2021-04-06 09:08:10,861 - root - INFO -   Epoch 19/150	 Time: 40.615	 Loss: 0.19058727
+2021-04-06 09:08:51,598 - root - INFO -   Epoch 20/150	 Time: 40.737	 Loss: 0.18382834
+2021-04-06 09:09:32,104 - root - INFO -   Epoch 21/150	 Time: 40.506	 Loss: 0.17806889
+2021-04-06 09:10:12,717 - root - INFO -   Epoch 22/150	 Time: 40.614	 Loss: 0.17266387
+2021-04-06 09:10:53,459 - root - INFO -   Epoch 23/150	 Time: 40.741	 Loss: 0.16704959
+2021-04-06 09:11:34,163 - root - INFO -   Epoch 24/150	 Time: 40.689	 Loss: 0.16212186
+2021-04-06 09:12:14,677 - root - INFO -   Epoch 25/150	 Time: 40.514	 Loss: 0.15744181
+2021-04-06 09:12:55,310 - root - INFO -   Epoch 26/150	 Time: 40.633	 Loss: 0.15282823
+2021-04-06 09:13:36,339 - root - INFO -   Epoch 27/150	 Time: 41.029	 Loss: 0.14895874
+2021-04-06 09:14:17,152 - root - INFO -   Epoch 28/150	 Time: 40.813	 Loss: 0.14503993
+2021-04-06 09:14:57,867 - root - INFO -   Epoch 29/150	 Time: 40.716	 Loss: 0.14102338
+2021-04-06 09:15:38,672 - root - INFO -   Epoch 30/150	 Time: 40.805	 Loss: 0.13756379
+2021-04-06 09:16:19,754 - root - INFO -   Epoch 31/150	 Time: 41.081	 Loss: 0.13379494
+2021-04-06 09:17:01,200 - root - INFO -   Epoch 32/150	 Time: 41.447	 Loss: 0.13050588
+2021-04-06 09:17:41,889 - root - INFO -   Epoch 33/150	 Time: 40.689	 Loss: 0.12801752
+2021-04-06 09:18:22,539 - root - INFO -   Epoch 34/150	 Time: 40.650	 Loss: 0.12459568
+2021-04-06 09:19:03,244 - root - INFO -   Epoch 35/150	 Time: 40.690	 Loss: 0.12159002
+2021-04-06 09:19:44,094 - root - INFO -   Epoch 36/150	 Time: 40.849	 Loss: 0.11862264
+2021-04-06 09:20:24,986 - root - INFO -   Epoch 37/150	 Time: 40.892	 Loss: 0.11599251
+2021-04-06 09:21:06,138 - root - INFO -   Epoch 38/150	 Time: 41.153	 Loss: 0.11352425
+2021-04-06 09:21:47,517 - root - INFO -   Epoch 39/150	 Time: 41.379	 Loss: 0.11118786
+2021-04-06 09:22:28,847 - root - INFO -   Epoch 40/150	 Time: 41.330	 Loss: 0.10915439
+2021-04-06 09:23:09,981 - root - INFO -   Epoch 41/150	 Time: 41.134	 Loss: 0.10632618
+2021-04-06 09:23:50,836 - root - INFO -   Epoch 42/150	 Time: 40.855	 Loss: 0.10400807
+2021-04-06 09:24:31,699 - root - INFO -   Epoch 43/150	 Time: 40.864	 Loss: 0.10191925
+2021-04-06 09:25:13,693 - root - INFO -   Epoch 44/150	 Time: 41.994	 Loss: 0.10006090
+2021-04-06 09:25:55,584 - root - INFO -   Epoch 45/150	 Time: 41.891	 Loss: 0.09803793
+2021-04-06 09:26:37,210 - root - INFO -   Epoch 46/150	 Time: 41.625	 Loss: 0.09638615
+2021-04-06 09:27:18,939 - root - INFO -   Epoch 47/150	 Time: 41.729	 Loss: 0.09442893
+2021-04-06 09:28:00,319 - root - INFO -   Epoch 48/150	 Time: 41.380	 Loss: 0.09282692
+2021-04-06 09:28:41,726 - root - INFO -   Epoch 49/150	 Time: 41.407	 Loss: 0.09109855
+2021-04-06 09:29:23,028 - root - INFO -   Epoch 50/150	 Time: 41.301	 Loss: 0.08987650
+2021-04-06 09:29:23,029 - root - INFO -   LR scheduler: new learning rate is 1e-05
+2021-04-06 09:30:04,727 - root - INFO -   Epoch 51/150	 Time: 41.698	 Loss: 0.08969236
+2021-04-06 09:30:46,261 - root - INFO -   Epoch 52/150	 Time: 41.534	 Loss: 0.08934702
+2021-04-06 09:31:28,446 - root - INFO -   Epoch 53/150	 Time: 42.184	 Loss: 0.08910251
+2021-04-06 09:32:10,118 - root - INFO -   Epoch 54/150	 Time: 41.673	 Loss: 0.08900368
+2021-04-06 09:32:51,330 - root - INFO -   Epoch 55/150	 Time: 41.211	 Loss: 0.08891034
+2021-04-06 09:33:32,965 - root - INFO -   Epoch 56/150	 Time: 41.634	 Loss: 0.08855168
+2021-04-06 09:34:14,437 - root - INFO -   Epoch 57/150	 Time: 41.472	 Loss: 0.08863668
+2021-04-06 09:34:55,997 - root - INFO -   Epoch 58/150	 Time: 41.559	 Loss: 0.08840033
+2021-04-06 09:35:37,621 - root - INFO -   Epoch 59/150	 Time: 41.624	 Loss: 0.08838547
+2021-04-06 09:36:19,218 - root - INFO -   Epoch 60/150	 Time: 41.597	 Loss: 0.08815086
+2021-04-06 09:37:00,532 - root - INFO -   Epoch 61/150	 Time: 41.315	 Loss: 0.08817433
+2021-04-06 09:37:42,213 - root - INFO -   Epoch 62/150	 Time: 41.681	 Loss: 0.08794870
+2021-04-06 09:38:23,397 - root - INFO -   Epoch 63/150	 Time: 41.182	 Loss: 0.08752547
+2021-04-06 09:39:05,054 - root - INFO -   Epoch 64/150	 Time: 41.658	 Loss: 0.08737364
+2021-04-06 09:39:46,636 - root - INFO -   Epoch 65/150	 Time: 41.582	 Loss: 0.08737795
+2021-04-06 09:40:28,390 - root - INFO -   Epoch 66/150	 Time: 41.754	 Loss: 0.08732582
+2021-04-06 09:41:09,957 - root - INFO -   Epoch 67/150	 Time: 41.566	 Loss: 0.08701942
+2021-04-06 09:41:50,751 - root - INFO -   Epoch 68/150	 Time: 40.793	 Loss: 0.08664026
+2021-04-06 09:42:32,043 - root - INFO -   Epoch 69/150	 Time: 41.292	 Loss: 0.08660538
+2021-04-06 09:43:13,345 - root - INFO -   Epoch 70/150	 Time: 41.302	 Loss: 0.08647833
+2021-04-06 09:43:54,823 - root - INFO -   Epoch 71/150	 Time: 41.478	 Loss: 0.08613976
