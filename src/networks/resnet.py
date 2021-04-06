@@ -52,17 +52,17 @@ class Encoder(BaseNet):
     
     def __init__(self):
         super(Encoder, self).__init__()
-        self.rep_dim = 32
+        self.rep_dim = 100
         
-        self.init_conv = nn.Conv2d(3, 16, 3, 1, 1, bias=False) # 16 32 32
+        self.init_conv = nn.Conv2d(3, 16, 3, 1, 1, bias=False) 
         self.BN = nn.BatchNorm2d(16)
-        self.rb1 = ResBlock(16, 16, 3, 2, 1, 'encode') # 16 16 16
-        self.rb2 = ResBlock(16, 32, 3, 1, 1, 'encode') # 32 16 16
-        self.rb3 = ResBlock(32, 32, 3, 2, 1, 'encode') # 32 8 8
-        self.rb4 = ResBlock(32, 48, 3, 1, 1, 'encode') # 48 8 8
-        self.rb5 = ResBlock(48, 48, 3, 2, 1, 'encode') # 48 4 4
-        self.rb6 = ResBlock(48, 64, 3, 2, 1, 'encode') # 64 2 2
-        self.fc1 = nn.Linear(64 * 2 * 2, self.rep_dim, bias=False)
+        self.rb1 = ResBlock(16, 16, 3, 2, 1, 'encode')
+        self.rb2 = ResBlock(16, 32, 3, 1, 1, 'encode')
+        self.rb3 = ResBlock(32, 32, 3, 2, 1, 'encode') 
+        self.rb4 = ResBlock(32, 48, 3, 1, 1, 'encode') 
+        self.rb5 = ResBlock(48, 48, 3, 2, 1, 'encode') 
+        self.rb6 = ResBlock(48, 2, 3, 2, 1, 'encode') 
+        self.fc1 = nn.Linear(2 * 40 * 40, self.rep_dim, bias=False)
         self.relu = nn.ReLU()
     
     def forward(self, inputs):
@@ -84,10 +84,10 @@ class Decoder(nn.Module):
     
     def __init__(self):
         super(Decoder, self).__init__()
-        self.rep_dim = 32
+        self.rep_dim = 100
         
-        self.fc1 = nn.Linear(self.rep_dim, 64 * 2 * 2, bias=False)
-        self.rb1 = ResBlock(64, 48, 2, 2, 0, 'decode') # 48 4 4
+        self.fc1 = nn.Linear(self.rep_dim, 2 * 40 * 40, bias=False)
+        self.rb1 = ResBlock(2, 48, 2, 2, 0, 'decode') # 48 4 4
         self.rb2 = ResBlock(48, 48, 2, 2, 0, 'decode') # 48 8 8
         self.rb3 = ResBlock(48, 32, 3, 1, 1, 'decode') # 32 8 8
         self.rb4 = ResBlock(32, 32, 2, 2, 0, 'decode') # 32 16 16
@@ -97,8 +97,9 @@ class Decoder(nn.Module):
         self.tanh = nn.Tanh()
         
     def forward(self, inputs):
+
         fc1 = self.fc1(inputs)
-        fc1 = fc1.view(fc1.size(0), 64, 2, 2)
+        fc1 = fc1.view(fc1.size(0), 2, 40, 40)
         rb1 = self.rb1(fc1)
         rb2 = self.rb2(rb1)
         rb3 = self.rb3(rb2)
