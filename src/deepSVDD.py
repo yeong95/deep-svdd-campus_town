@@ -85,13 +85,13 @@ class DeepSVDD(object):
         self.results['test_auc'] = self.trainer.test_auc
         self.results['test_time'] = self.trainer.test_time
         self.results['test_scores'] = self.trainer.test_scores
-    def t_sne(self, dataset: BaseADDataset, device: str = 'cuda', n_jobs_dataloader: int = 0):
+    def t_sne(self, dataset: BaseADDataset, device: str = 'cuda', n_jobs_dataloader: int = 0, data_path=None, xp_path=None, batch_size=32):
         """plot 2 dimension t_sne"""
         
         if self.trainer is None:
             self.trainer = DeepSVDDTrainer(self.objective, self.R, self.c, self.nu,
-                                           device=device, n_jobs_dataloader=n_jobs_dataloader)
-        self.trainer.t_sne(dataset, self.net, self.c)
+                                           device=device, n_jobs_dataloader=n_jobs_dataloader, batch_size=batch_size)
+        self.trainer.t_sne(dataset, self.net, self.c, data_path, xp_path)
 
     def pretrain(self, dataset: BaseADDataset, optimizer_name: str = 'adam', lr: float = 0.001, n_epochs: int = 100,
                  lr_milestones: tuple = (), batch_size: int = 128, weight_decay: float = 1e-6, device: str = 'cuda',
@@ -134,11 +134,11 @@ class DeepSVDD(object):
     def load_model(self, model_path, load_ae=False):
         """Load Deep SVDD model from model_path."""
 
-        model_dict = torch.load(model_path,map_location='cpu')
+        model_dict = torch.load(model_path)  # if use cpu ->map_location = 'cpu'
 
         self.R = model_dict['R']
         self.c = model_dict['c']
-        # self.net.load_state_dict(model_dict['net_dict'])
+        self.net.load_state_dict(model_dict['net_dict'])
         if load_ae:
             if self.ae_net is None:
                 self.ae_net = build_autoencoder(self.net_name)

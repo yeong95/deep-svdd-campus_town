@@ -174,73 +174,68 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     logger.info('Training weight decay: %g' % cfg.settings['weight_decay'])
 
     # Train model on dataset
-    deep_SVDD.train(dataset,
-                    optimizer_name=cfg.settings['optimizer_name'],
-                    lr=cfg.settings['lr'],
-                    n_epochs=cfg.settings['n_epochs'],
-                    lr_milestones=cfg.settings['lr_milestone'],
-                    batch_size=cfg.settings['batch_size'],
-                    weight_decay=cfg.settings['weight_decay'],
-                    device=device,
-                    n_jobs_dataloader=n_jobs_dataloader,
-                    export_model_path=xp_path)
+    # deep_SVDD.train(dataset,
+                  # optimizer_name=cfg.settings['optimizer_name'],
+                  # lr=cfg.settings['lr'],
+                  # n_epochs=cfg.settings['n_epochs'],
+                  # lr_milestones=cfg.settings['lr_milestone'],
+                  # batch_size=cfg.settings['batch_size'],
+                  # weight_decay=cfg.settings['weight_decay'],
+                  # device=device,
+                  # n_jobs_dataloader=n_jobs_dataloader,
+                  # export_model_path=xp_path)
     
     # plot t_sne
-    # deep_SVDD.t_sne(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader)
+    deep_SVDD.t_sne(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader, data_path=data_path, xp_path=xp_path)
     
     # Test model
-    deep_SVDD.test(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader)
+    # deep_SVDD.test(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader)
 
     # Plot most anomalous and most normal (within-class) test samples
-    indices, labels, scores = zip(*deep_SVDD.results['test_scores'])
-    indices, labels, scores = np.array(indices), np.array(labels), np.array(scores)
-    idx_sorted = indices[labels == 0][np.argsort(scores[labels == 0])]  # sorted from lowest to highest anomaly score in normal class
-    idx_sorted_anomal = indices[labels == 1][np.argsort(scores[labels == 1])]
-    if dataset_name in ('mnist', 'cifar10', 'campus'):
+    # indices, labels, scores = zip(*deep_SVDD.results['test_scores'])
+    # indices, labels, scores = np.array(indices), np.array(labels), np.array(scores)
+    # idx_sorted = indices[labels == 0][np.argsort(scores[labels == 0])]  # sorted from lowest to highest anomaly score in normal class
+    # idx_sorted_anomal = indices[labels == 1][np.argsort(scores[labels == 1])]
+    # if dataset_name in ('mnist', 'cifar10', 'campus'):
 
-        if dataset_name == 'mnist':
-            X_normals = dataset.test_set.test_data[idx_sorted[:32], ...].unsqueeze(1)
-            X_outliers = dataset.test_set.test_data[idx_sorted[-32:], ...].unsqueeze(1)
+    #     if dataset_name == 'mnist':
+    #         X_normals = dataset.test_set.test_data[idx_sorted[:32], ...].unsqueeze(1)
+    #         X_outliers = dataset.test_set.test_data[idx_sorted[-32:], ...].unsqueeze(1)
 
-        if dataset_name == 'cifar10':
-            X_normals = torch.tensor(np.transpose(dataset.test_set.test_data[idx_sorted[:32], ...], (0, 3, 1, 2)))
-            X_outliers = torch.tensor(np.transpose(dataset.test_set.test_data[idx_sorted[-32:], ...], (0, 3, 1, 2)))
+    #     if dataset_name == 'cifar10':
+    #         X_normals = torch.tensor(np.transpose(dataset.test_set.test_data[idx_sorted[:32], ...], (0, 3, 1, 2)))
+    #         X_outliers = torch.tensor(np.transpose(dataset.test_set.test_data[idx_sorted[-32:], ...], (0, 3, 1, 2)))
             
-        if dataset_name == 'campus':
-            test_score_path = os.path.join(xp_path, 'test_score.pickle')
-            with open(test_score_path, 'wb') as f:
-                pickle.dump(deep_SVDD.results['test_scores'], f, pickle.HIGHEST_PROTOCOL)
-            # test_data = dataset.test_set.test_data.reshape(140,1,640,640)
-            # X_normlas = torch.tensor(test_data[idx_sorted[:1],...])
-            # X_outliers = torch.tensor(test_data[idx_sorted[-1:],...])
-            # X_normlas_anomal = torch.tensor(test_data[idx_sorted_anomal[:1],...])
-            # X_outliers_anomal = torch.tensor(test_data[idx_sorted_anomal[-1:],...])
+    #     if dataset_name == 'campus':
+    #         test_score_path = os.path.join(xp_path, 'test_score.pickle')
+    #         with open(test_score_path, 'wb') as f:
+    #             pickle.dump(deep_SVDD.results['test_scores'], f, pickle.HIGHEST_PROTOCOL)
         
-        if dataset_name == 'campus':
-            fpr = dict()
-            tpr = dict()
-            roc_auc = dict()
-            fpr, tpr, threshold = roc_curve(labels, scores)
-            roc_auc = auc(fpr, tpr)
-            plt.figure()
-            lw=2
-            plt.plot(fpr,tpr, color='darkorange', lw=lw, label='ROC curve (area= %0.2f)' %roc_auc)  
-            plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
-            plt.xlim([0.0, 1.0])
-            plt.ylim([0.0, 1.05])
-            plt.xlabel('False Positive Rate')   
-            plt.ylabel('True Positive Rate')
-            plt.title('Receiver operating characteristic example')
-            plt.legend(loc="lower right")           
-            plt.savefig(os.path.join(xp_path,'auc_roc.png'))             
-        else:            
-            plot_images_grid(X_normals, export_img=xp_path + '/normals', title='Most normal examples', padding=2)
-            plot_images_grid(X_outliers, export_img=xp_path + '/outliers', title='Most anomalous examples', padding=2)
+    #     if dataset_name == 'campus':
+    #         fpr = dict()
+    #         tpr = dict()
+    #         roc_auc = dict()
+    #         fpr, tpr, threshold = roc_curve(labels, scores)
+    #         roc_auc = auc(fpr, tpr)
+    #         plt.figure()
+    #         lw=2
+    #         plt.plot(fpr,tpr, color='darkorange', lw=lw, label='ROC curve (area= %0.2f)' %roc_auc)  
+    #         plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
+    #         plt.xlim([0.0, 1.0])
+    #         plt.ylim([0.0, 1.05])
+    #         plt.xlabel('False Positive Rate')   
+    #         plt.ylabel('True Positive Rate')
+    #         plt.title('Receiver operating characteristic example')
+    #         plt.legend(loc="lower right")           
+    #         plt.savefig(os.path.join(xp_path,'auc_roc.png'))             
+    #     else:            
+    #         plot_images_grid(X_normals, export_img=xp_path + '/normals', title='Most normal examples', padding=2)
+    #         plot_images_grid(X_outliers, export_img=xp_path + '/outliers', title='Most anomalous examples', padding=2)
 
-    # Save results, model, and configuration
-    deep_SVDD.save_results(export_json=xp_path + '/results.json')
-    deep_SVDD.save_model(export_model=xp_path + '/model.tar')
-    cfg.save_config(export_json=xp_path + '/config.json')
+    # # Save results, model, and configuration
+    # deep_SVDD.save_results(export_json=xp_path + '/results.json')
+    # deep_SVDD.save_model(export_model=xp_path + '/model.tar')
+    # cfg.save_config(export_json=xp_path + '/config.json')
 
 
 if __name__ == '__main__':

@@ -169,13 +169,12 @@ class DeepSVDDTrainer(BaseTrainer):
 
         logger.info('Finished testing.')
     
-    def t_sne(self, dataset: BaseADDataset, net: BaseNet, center):
+    def t_sne(self, dataset: BaseADDataset, net: BaseNet, center, data_path, xp_path):
         logger = logging.getLogger()
         
         center = np.array(center).reshape(1,100)
         
-        data_path = r'../data/두부 데이터셋'
-        save_path = r'../log/tofu_test'
+        save_path = xp_path 
         with open(os.path.join(data_path,'test_class.pickle'), 'rb') as f:
             test_class = pickle.load(f)
         test_class = np.array(test_class)
@@ -189,11 +188,12 @@ class DeepSVDDTrainer(BaseTrainer):
         # t_sne
         logger.info('Start plot t_sne')
         t_sne_array = np.empty((0,100))
-        for data in test_loader:
-            inputs, labels, idx = data
-            inputs = inputs.to(self.device)
-            outputs = net(inputs)
-            t_sne_array = np.append(t_sne_array, outputs.detach().numpy(), axis=0)
+        with torch.no_grad():
+          for data in test_loader:
+              inputs, labels, idx = data
+              inputs = inputs.to(self.device)
+              outputs = net(inputs)
+              t_sne_array = np.append(t_sne_array, outputs.cpu().numpy(), axis=0)
 
         t_sne_array = np.append(t_sne_array,center, axis=0)
 
@@ -210,7 +210,7 @@ class DeepSVDDTrainer(BaseTrainer):
         # for c, label in zip(colors, set(test_class)):
         #     plt.scatter(tsne_results[test_class==label, 0], tsne_results[test_class==label, 1], c=c, label=label)
         plt.legend()
-        plt.savefig(os.path.join(save_path,'t_sne2.png'))        
+        plt.savefig(os.path.join(save_path,'t_sne.png'))        
         
         
     def init_center_c(self, train_loader: DataLoader, net: BaseNet, eps=0.1):
