@@ -24,9 +24,10 @@ from sklearn.metrics import roc_curve, auc
 ################################################################################
 @click.command()
 @click.argument('dataset_name', type=click.Choice(['mnist', 'cifar10', 'campus']))
-@click.argument('net_name', type=click.Choice(['mnist_LeNet', 'cifar10_LeNet', 'cifar10_LeNet_ELU', 'campus_LeNet']))
+@click.argument('net_name', type=click.Choice(['mnist_LeNet', 'cifar10_LeNet', 'cifar10_LeNet_ELU', 'campus_LeNet', 'resnet']))
 @click.argument('xp_path', type=click.Path(exists=True))
 @click.argument('data_path', type=click.Path(exists=True))
+@click.option('--load_data', type=bool, default=True, help='load pickle data')
 @click.option('--load_config', type=click.Path(exists=True), default=None,
               help='Config JSON-file path (default: None).')
 @click.option('--load_model', type=click.Path(exists=True), default=None,
@@ -62,7 +63,7 @@ from sklearn.metrics import roc_curve, auc
               help='Number of workers for data loading. 0 means  that the data will be loaded in the main process.')
 @click.option('--normal_class', type=int, default=0,
               help='Specify the normal class of the dataset (all other classes are considered anomalous).')
-def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, objective, nu, device, seed,
+def main(dataset_name, net_name, xp_path, data_path, load_data, load_config, load_model, objective, nu, device, seed,
          optimizer_name, lr, n_epochs, lr_milestone, batch_size, weight_decay, pretrain, ae_optimizer_name, ae_lr,
          ae_n_epochs, ae_lr_milestone, ae_batch_size, ae_weight_decay, n_jobs_dataloader, normal_class):
     """
@@ -123,7 +124,7 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     if dataset_name == 'campus':
         train_path = 'train/OK'
         test_path = 'test'
-        train_image, test_image, test_label = train_test_numpy_load(data_path,train_path,test_path)
+        train_image, test_image, test_label = train_test_numpy_load(data_path,train_path,test_path,load_data)
         dataset = load_campus_dataset(dataset_name, data_path, train_image, test_image, test_label)        
     else:
         dataset = load_dataset(dataset_name, data_path, normal_class)

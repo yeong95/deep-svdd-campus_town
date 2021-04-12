@@ -2,11 +2,17 @@ import pandas as pd
 import numpy as np
 import os
 from PIL import Image
+import pickle
 
-
-
-
-def train_test_numpy_load(data_path,train_path,test_path):
+def train_test_numpy_load(data_path,train_path,test_path,load):
+    if load:
+        with open(os.path.join(data_path,'train_image.pickle'), 'rb') as f:
+            train_image = pickle.load(f)
+        with open(os.path.join(data_path,'test_image.pickle'), 'rb') as f:
+            test_image = pickle.load(f)
+        with open(os.path.join(data_path,'test_label.pickle'), 'rb') as f:
+            test_label = pickle.load(f)
+        return train_image, test_image, test_label
     train_file_list = os.listdir(os.path.join(data_path,train_path))
     test_file_list = os.listdir(os.path.join(data_path,test_path))
     tmp_list=[]
@@ -52,6 +58,13 @@ def train_test_numpy_load(data_path,train_path,test_path):
     test_label[:10] = 1
     test_label[20:30] = 1
     test_label[40:60] = 1
+
+    with open(os.path.join(data_path,'train_image.pickle'),'wb') as f:
+        pickle.dump(train_image,f,pickle.HIGHEST_PROTOCOL)
+    with open(os.path.join(data_path,'test_image.pickle'),'wb') as f:
+        pickle.dump(test_image,f,pickle.HIGHEST_PROTOCOL)
+    with open(os.path.join(data_path,'test_label.pickle'),'wb') as f:
+        pickle.dump(test_label,f,pickle.HIGHEST_PROTOCOL)
     
     return train_image, test_image, test_label
 

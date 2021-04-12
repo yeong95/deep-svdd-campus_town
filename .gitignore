@@ -1,6 +1,9 @@
-# 라면 데이터
-라면 데이터/
 
+# vscode 
+.vscode/extensions/
+
+# data
+data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
