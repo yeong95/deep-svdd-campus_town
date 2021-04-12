@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt
 # %matplotlib inline 
 import scikitplot as skplt 
 
-test_score_path = r'/home/yeong95/svdd/deep-svdd-campus_town/log/tofu_test'
-data_path = r'/home/yeong95/svdd/deep-svdd-campus_town/data/두부 데이터셋'
+test_score_path = r'/content/deep-svdd-campus_town/log/tofu_test2'
+data_path = r'/content/drive/MyDrive/campustown_data/tofu_dataset'
 with open(os.path.join(test_score_path,'test_score.pickle'), 'rb') as f:
     test_score = pickle.load(f)
 with open(os.path.join(data_path,'test_label.pickle'), 'rb') as f:
@@ -27,7 +27,7 @@ pred_label[scores>new_threshold] = 1 # threshold보다 큰 것은 이상(label:1
 
 # plot confusion matrix
 skplt.metrics.plot_confusion_matrix(y_true=test_label,y_pred=pred_label)
-plt.savefig('confusion_matrix.png')
+plt.savefig(os.path.join(test_score_path, 'confusion_matrix.png'))
 
 # 클래스별 hit ratio(recall)
 recall_dict = dict()
@@ -37,4 +37,5 @@ for class_name in set(test_class):
     y_true = test_label[idx_]
     accuracy = accuracy_score(y_true, y_pred)
     recall_dict[class_name] = accuracy
+import pdb;pdb.set_trace()
     

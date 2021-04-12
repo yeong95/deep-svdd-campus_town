@@ -2,6 +2,7 @@ requests
 numpy
 scipy
 scikit-learn
+scikit-plot
 certifi
 chardet
 Click
