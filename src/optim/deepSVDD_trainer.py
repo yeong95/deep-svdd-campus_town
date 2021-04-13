@@ -121,7 +121,7 @@ class DeepSVDDTrainer(BaseTrainer):
         logger.info('Starting testing...')
         start_time = time.time()
         idx_label_score = []
-        net.eval()
+        # net.eval()
         with torch.no_grad():
             for data in test_loader:
                 inputs, labels, idx = data

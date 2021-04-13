@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 from PIL import Image
-import pickle
+import pickle5 as pickle
 
 def train_test_numpy_load(data_path,train_path,test_path,load):
     if load:
