@@ -9,6 +9,11 @@ import time
 import torch
 import torch.optim as optim
 import numpy as np
+import os
+import pickle5 as pickle
+
+from sklearn.manifold import TSNE
+import matplotlib.pyplot as plt
 
 
 class DeepSVDDTrainer(BaseTrainer):
@@ -121,7 +126,7 @@ class DeepSVDDTrainer(BaseTrainer):
         logger.info('Starting testing...')
         start_time = time.time()
         idx_label_score = []
-        # net.eval()
+        net.eval()
         with torch.no_grad():
             for data in test_loader:
                 inputs, labels, idx = data
@@ -153,6 +158,47 @@ class DeepSVDDTrainer(BaseTrainer):
         logger.info('Test set AUC: {:.2f}%'.format(100. * self.test_auc))
 
         logger.info('Finished testing.')
+    
+    def t_sne(self, dataset: BaseADDataset, net: BaseNet, data_path, xp_path):
+        logger = logging.getLogger()
+        
+        center = np.array(self.c.cpu()).reshape(1,100)
+        
+        save_path = xp_path 
+        with open(os.path.join(data_path,'test_label.pickle'), 'rb') as f:
+            test_class = pickle.load(f)
+        test_class = np.array(test_class)
+        test_class = np.append(test_class, 2) # 2: center 
+        
+
+        # Set device for network
+        net = net.to(self.device)
+        _, test_loader = dataset.loaders(batch_size=self.batch_size, num_workers=self.n_jobs_dataloader)
+        
+        # t_sne
+        logger.info('Start plot t_sne')
+        t_sne_array = np.empty((0,100))
+        with torch.no_grad():
+          for data in test_loader:
+              inputs, labels, idx = data
+              inputs = inputs.to(self.device)
+              outputs = net(inputs)
+              t_sne_array = np.append(t_sne_array, outputs.cpu().numpy(), axis=0)
+
+        t_sne_array = np.append(t_sne_array,center, axis=0)
+
+        tsne = TSNE(n_components=2, random_state=32)
+        tsne_results = tsne.fit_transform(t_sne_array)
+        plt.figure(figsize=(16,10))
+
+        normal_index = (test_class==0)
+        abnormal_index = (test_class==1)
+        plt.scatter(tsne_results[normal_index,0], tsne_results[normal_index,1], c='b', label='normal', s=1, marker=',')
+        plt.scatter(tsne_results[abnormal_index,0], tsne_results[abnormal_index,1], c='r', label='abnormal', s=1, marker=',')
+        plt.scatter(tsne_results[-1,0], tsne_results[-1,1], c='k', label='center', s=20, marker='D')
+
+        plt.legend()
+        plt.savefig(os.path.join(save_path,'t_sne.png'))     
 
     def init_center_c(self, train_loader: DataLoader, net: BaseNet, eps=0.1):
         """Initialize hypersphere center c as the mean from an initial forward pass on the data."""

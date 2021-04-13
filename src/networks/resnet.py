@@ -93,7 +93,7 @@ class Decoder(nn.Module):
         self.rb4 = ResBlock(32, 32, 2, 2, 0, 'decode') # 32 16 16
         self.rb5 = ResBlock(32, 16, 3, 1, 1, 'decode') # 16 16 16
         self.rb6 = ResBlock(16, 16, 2, 2, 0, 'decode') # 16 32 32
-        self.out_conv = nn.ConvTranspose2d(16, 3, 3, 1, 1, bias=False) # 3 32 32
+        self.out_conv = nn.ConvTranspose2d(16, 1, 3, 1, 1, bias=False) # 3 32 32
         self.tanh = nn.Tanh()
         
     def forward(self, inputs):

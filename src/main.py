@@ -156,7 +156,8 @@ def main(dataset_name, net_name, xp_path, data_path, load_data, load_config, loa
                            batch_size=cfg.settings['ae_batch_size'],
                            weight_decay=cfg.settings['ae_weight_decay'],
                            device=device,
-                           n_jobs_dataloader=n_jobs_dataloader)
+                           n_jobs_dataloader=n_jobs_dataloader,
+                           test_image=test_image)
 
     # Log training details
     logger.info('Training optimizer: %s' % cfg.settings['optimizer_name'])
@@ -176,15 +177,15 @@ def main(dataset_name, net_name, xp_path, data_path, load_data, load_config, loa
                     weight_decay=cfg.settings['weight_decay'],
                     device=device,
                     n_jobs_dataloader=n_jobs_dataloader)
-
+    # plot t_sne
+    # deep_SVDD.t_sne(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader, data_path=data_path, xp_path=xp_path)
+    
     # Test model
     deep_SVDD.test(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader)
 
     # Plot most anomalous and most normal (within-class) test samples
     indices, labels, scores = zip(*deep_SVDD.results['test_scores'])
     indices, labels, scores = np.array(indices), np.array(labels), np.array(scores)
-    idx_sorted = indices[labels == 0][np.argsort(scores[labels == 0])]  # sorted from lowest to highest anomaly score in normal class
-    idx_sorted_anomal = indices[labels == 1][np.argsort(scores[labels == 1])]
 
     if dataset_name in ('mnist', 'cifar10', 'campus'):
 
@@ -200,11 +201,6 @@ def main(dataset_name, net_name, xp_path, data_path, load_data, load_config, loa
             test_score_path = os.path.join(xp_path, 'test_score.pickle')
             with open(test_score_path, 'wb') as f:
                 pickle.dump(deep_SVDD.results['test_scores'], f, pickle.HIGHEST_PROTOCOL)
-            # test_data = dataset.test_set.test_data.reshape(140,1,640,640)
-            # X_normlas = torch.tensor(test_data[idx_sorted[:1],...])
-            # X_outliers = torch.tensor(test_data[idx_sorted[-1:],...])
-            # X_normlas_anomal = torch.tensor(test_data[idx_sorted_anomal[:1],...])
-            # X_outliers_anomal = torch.tensor(test_data[idx_sorted_anomal[-1:],...])
         
         if dataset_name == 'campus':
             fpr = dict()

@@ -9,6 +9,30 @@ import torch
 import torch.optim as optim
 import numpy as np
 
+from PIL import Image
+import matplotlib.pyplot as plt
+
+
+def check_autoencoder_quality(processed_image, raw_image, output_image):
+  min_ = -3.9348
+  max_ = 0.7229
+  mean_ = np.mean(raw_image)
+  tmp_raw_image = raw_image - mean_
+  x_scale = np.mean(np.absolute(tmp_raw_image))
+  unnormalized_image = processed_image*(max_-min_) + min_
+  unnormalized_image = unnormalized_image*x_scale + mean_
+  unnormalized_image = unnormalized_image.cpu().numpy().reshape(640,640).astype(np.uint8)
+  unnormalized_output = output_image*(max_-min_) + min_
+  unnormalized_output = unnormalized_output*x_scale + mean_
+  unnormalized_output = unnormalized_output.cpu().numpy().reshape(640,640).astype(np.uint8)
+  from IPython.core.debugger import set_trace
+  set_trace()
+  image = Image.fromarray(raw_image)
+  image.save("raw_image.png")
+  image2 = Image.fromarray(unnormalized_image, mode='L')
+  image2.save("reconstructed_raw_image.png")
+  image3 = Image.fromarray(unnormalized_output, mode='L')
+  image3.save("reconstructed_output_image.png")
 
 class AETrainer(BaseTrainer):
 
@@ -73,8 +97,9 @@ class AETrainer(BaseTrainer):
         logger.info('Finished pretraining.')
 
         return ae_net
+    
 
-    def test(self, dataset: BaseADDataset, ae_net: BaseNet):
+    def test(self, dataset: BaseADDataset, ae_net: BaseNet, test_image):
         logger = logging.getLogger()
 
         # Set device for network
@@ -91,10 +116,13 @@ class AETrainer(BaseTrainer):
         idx_label_score = []
         ae_net.eval()
         with torch.no_grad():
-            for data in test_loader:
+            for i, data in enumerate(test_loader):
                 inputs, labels, idx = data
                 inputs = inputs.to(self.device)
                 outputs = ae_net(inputs)
+                # import pdb;pdb.set_trace()
+                if labels==0:
+                  check_autoencoder_quality(inputs, test_image[i], outputs)
                 scores = torch.sum((outputs - inputs) ** 2, dim=tuple(range(1, outputs.dim())))
                 loss = torch.mean(scores)
 
@@ -118,3 +146,7 @@ class AETrainer(BaseTrainer):
         test_time = time.time() - start_time
         logger.info('Autoencoder testing time: %.3f' % test_time)
         logger.info('Finished testing autoencoder.')
+
+
+
+
