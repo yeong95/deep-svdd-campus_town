@@ -58,7 +58,7 @@ class DeepSVDDTrainer(BaseTrainer):
                                amsgrad=self.optimizer_name == 'amsgrad')
 
         # Set learning rate scheduler
-        scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=self.lr_milestones, gamma=0.1)
+        scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=self.lr_milestones, gamma=0.1)
 
         # Initialize hypersphere center c (if c not loaded)
         if self.c is None:
@@ -71,10 +71,6 @@ class DeepSVDDTrainer(BaseTrainer):
         start_time = time.time()
         net.train()
         for epoch in range(self.n_epochs):
-
-            scheduler.step()
-            if epoch in self.lr_milestones:
-                logger.info('  LR scheduler: new learning rate is %g' % float(scheduler.get_lr()[0]))
 
             loss_epoch = 0.0
             n_batches = 0
@@ -103,13 +99,18 @@ class DeepSVDDTrainer(BaseTrainer):
 
                 loss_epoch += loss.item()
                 n_batches += 1
-
+            
+            scheduler.step()
+            if epoch in list(range(0, epoch+1, self.lr_milestones)):
+                logger.info('  LR scheduler: new learning rate is %g' % float(scheduler.get_lr()[0]))
             # save model temporarily in middle of training 
 
             if (epoch+1)%10 ==0:
               os.makedirs(self.export_model+'/model_tmp_saved', exist_ok=True) 
               model_name = 'model_'+str(epoch+1)+'.tar'
-              torch.save({'net_dict' : net.state_dict()}, self.export_model+'/model_tmp_saved/'+model_name )
+              torch.save({'net_dict' : net.state_dict(),
+              'R':self.R,
+              'c':self.c}, self.export_model+'/model_tmp_saved/'+model_name)
 
             # log epoch statistics
             epoch_train_time = time.time() - epoch_start_time
@@ -175,7 +176,7 @@ class DeepSVDDTrainer(BaseTrainer):
         center = np.array(center).reshape(1,100)
         
         save_path = xp_path 
-        with open(os.path.join(data_path,'test_class.pickle'), 'rb') as f:
+        with open(os.path.join(data_path,'tripped_20_test_class.pickle'), 'rb') as f:
             test_class = pickle.load(f)
         test_class = np.array(test_class)
         test_class = np.append(test_class,'center')

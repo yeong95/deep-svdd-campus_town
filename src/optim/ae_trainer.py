@@ -31,17 +31,13 @@ class AETrainer(BaseTrainer):
                                amsgrad=self.optimizer_name == 'amsgrad')
 
         # Set learning rate scheduler
-        scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=self.lr_milestones, gamma=0.1)
+        scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=self.lr_milestones, gamma=0.1)
 
         # Training
         logger.info('Starting pretraining...')
         start_time = time.time()
         ae_net.train()
         for epoch in range(self.n_epochs):
-
-            scheduler.step()
-            if epoch in self.lr_milestones:
-                logger.info('  LR scheduler: new learning rate is %g' % float(scheduler.get_lr()[0]))
 
             loss_epoch = 0.0
             n_batches = 0
@@ -63,10 +59,18 @@ class AETrainer(BaseTrainer):
                 loss_epoch += loss.item()
                 n_batches += 1
 
+            scheduler.step()
+            if epoch in list(range(0, epoch+1, self.lr_milestones)):
+                logger.info('  LR scheduler: new learning rate is %g' % float(scheduler.get_lr()[0]))
+
             # log epoch statistics
             epoch_train_time = time.time() - epoch_start_time
             logger.info('  Epoch {}/{}\t Time: {:.3f}\t Loss: {:.8f}'
                         .format(epoch + 1, self.n_epochs, epoch_train_time, loss_epoch / n_batches))
+            
+            # if loss goes down to 500 then stop pretraining 
+            if (loss_epoch / n_batches) < 500:
+                break  
 
         pretrain_time = time.time() - start_time
         logger.info('Pretraining time: %.3f' % pretrain_time)
@@ -95,6 +99,14 @@ class AETrainer(BaseTrainer):
                 inputs, labels, idx = data
                 inputs = inputs.to(self.device)
                 outputs = ae_net(inputs)
+                # import pdb;pdb.set_trace()
+                # if labels==0:
+                #     check_autoencoder_quality(inputs, test_image[i], outputs, ck_idx)
+                #     ck_idx+=1
+                #     if ck_idx == 3 : break
+                #     continue
+                # else:
+                #     continue
                 scores = torch.sum((outputs - inputs) ** 2, dim=tuple(range(1, outputs.dim())))
                 loss = torch.mean(scores)
 

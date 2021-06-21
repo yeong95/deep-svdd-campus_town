@@ -9,20 +9,12 @@ import pickle
 from utils.config import Config
 from utils.visualization.plot_images_grid import plot_images_grid
 from deepSVDD import DeepSVDD
-from datasets.main import load_dataset, load_campus_dataset
-from datasets.load_image import train_test_numpy_load
-from sklearn.metrics import roc_auc_score
+from datasets.main import load_campus_dataset
+from datasets.load_image import tripped_train_test_numpy_load
 import matplotlib.pyplot as plt
 
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import roc_curve, auc
-
-
-import matplotlib.pyplot as plt
-from sklearn.metrics import roc_auc_score
-from sklearn.metrics import roc_curve, auc
-
-
 
 ################################################################################
 # Settings
@@ -48,7 +40,7 @@ from sklearn.metrics import roc_curve, auc
 @click.option('--lr', type=float, default=0.001,
               help='Initial learning rate for Deep SVDD network training. Default=0.001')
 @click.option('--n_epochs', type=int, default=50, help='Number of epochs to train.')
-@click.option('--lr_milestone', type=int, default=0, multiple=True,
+@click.option('--lr_milestone', type=int, default=50, 
               help='Lr scheduler milestones at which lr is multiplied by 0.1. Can be multiple and must be increasing.')
 @click.option('--batch_size', type=int, default=128, help='Batch size for mini-batch training.')
 @click.option('--weight_decay', type=float, default=1e-6,
@@ -60,18 +52,17 @@ from sklearn.metrics import roc_curve, auc
 @click.option('--ae_lr', type=float, default=0.001,
               help='Initial learning rate for autoencoder pretraining. Default=0.001')
 @click.option('--ae_n_epochs', type=int, default=100, help='Number of epochs to train autoencoder.')
-@click.option('--ae_lr_milestone', type=int, default=0, multiple=True,
+@click.option('--ae_lr_milestone', type=int, default=50,
               help='Lr scheduler milestones at which lr is multiplied by 0.1. Can be multiple and must be increasing.')
 @click.option('--ae_batch_size', type=int, default=128, help='Batch size for mini-batch autoencoder training.')
 @click.option('--ae_weight_decay', type=float, default=1e-6,
               help='Weight decay (L2 penalty) hyperparameter for autoencoder objective.')
 @click.option('--n_jobs_dataloader', type=int, default=0,
               help='Number of workers for data loading. 0 means  that the data will be loaded in the main process.')
-@click.option('--normal_class', type=int, default=0,
-              help='Specify the normal class of the dataset (all other classes are considered anomalous).')
+
 def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, objective, nu, device, seed,
          optimizer_name, lr, n_epochs, lr_milestone, batch_size, weight_decay, pretrain, ae_optimizer_name, ae_lr,
-         ae_n_epochs, ae_lr_milestone, ae_batch_size, ae_weight_decay, n_jobs_dataloader, normal_class, data_load):
+         ae_n_epochs, ae_lr_milestone, ae_batch_size, ae_weight_decay, n_jobs_dataloader, data_load):
     """
     Deep SVDD, a fully deep method for anomaly detection.
 
@@ -101,7 +92,6 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     logger.info('Export path is %s.' % xp_path)
 
     logger.info('Dataset: %s' % dataset_name)
-    logger.info('Normal class: %d' % normal_class)
     logger.info('Network: %s' % net_name)
 
     # If specified, load experiment config from JSON-file
@@ -130,11 +120,11 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     if dataset_name == 'campus':
         train_path = 'train/OK'
         test_path = 'test'
-        train_image, train_class, test_image, test_label, test_class = train_test_numpy_load(data_path,train_path,test_path,data_load)
+        saved_path = '/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/src/datasets'
+        train_image, train_class, test_image, test_label, test_class = tripped_train_test_numpy_load(data_path,
+                                                                                                     train_path,test_path,saved_path).load()
         logger.info('Train shape: {}' .format(train_image.shape))
         dataset = load_campus_dataset(dataset_name, data_path, train_image, test_image, test_label)        
-    else:
-        dataset = load_dataset(dataset_name, data_path, normal_class)
 
     # Initialize DeepSVDD model and set neural network \phi
     deep_SVDD = DeepSVDD(cfg.settings['objective'], cfg.settings['nu'])
@@ -175,15 +165,15 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
 
     # Train model on dataset
     # deep_SVDD.train(dataset,
-                  # optimizer_name=cfg.settings['optimizer_name'],
-                  # lr=cfg.settings['lr'],
-                  # n_epochs=cfg.settings['n_epochs'],
-                  # lr_milestones=cfg.settings['lr_milestone'],
-                  # batch_size=cfg.settings['batch_size'],
-                  # weight_decay=cfg.settings['weight_decay'],
-                  # device=device,
-                  # n_jobs_dataloader=n_jobs_dataloader,
-                  # export_model_path=xp_path)
+    #               optimizer_name=cfg.settings['optimizer_name'],
+    #               lr=cfg.settings['lr'],
+    #               n_epochs=cfg.settings['n_epochs'],
+    #               lr_milestones=cfg.settings['lr_milestone'],
+    #               batch_size=cfg.settings['batch_size'],
+    #               weight_decay=cfg.settings['weight_decay'],
+    #               device=device,
+    #               n_jobs_dataloader=n_jobs_dataloader,
+    #               export_model_path=xp_path)
     
     # plot t_sne
     # deep_SVDD.t_sne(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader, data_path=data_path, xp_path=xp_path)
@@ -230,7 +220,7 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
             plot_images_grid(X_normals, export_img=xp_path + '/normals', title='Most normal examples', padding=2)
             plot_images_grid(X_outliers, export_img=xp_path + '/outliers', title='Most anomalous examples', padding=2)
 
-    # # Save results, model, and configuration
+    # Save results, model, and configuration
     # deep_SVDD.save_results(export_json=xp_path + '/results.json')
     # deep_SVDD.save_model(export_model=xp_path + '/model.tar')
     # cfg.save_config(export_json=xp_path + '/config.json')

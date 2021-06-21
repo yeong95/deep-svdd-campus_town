@@ -1,9 +1,6 @@
-# 라면 데이터
-라면 데이터/
-
-# 두부 데이터
-두부 데이터셋/
-
+# 데이터
+./data
+./src/datasets/*.pickle
 # wsl
 .vscode/extensions/
 
