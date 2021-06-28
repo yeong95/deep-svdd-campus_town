@@ -29,7 +29,7 @@ import os
    
 class Campustown_Dataset(TorchvisionDataset):
 
-    def __init__(self, root, traindata=None, testdata=None, testlabel=None):
+    def __init__(self, root, traindata=None, validdata=None, validlabel=None, testdata=None, testlabel=None):
         super().__init__(root)
 
         self.n_classes = 2  # 0: normal, 1: outlier
@@ -43,8 +43,12 @@ class Campustown_Dataset(TorchvisionDataset):
                                         transforms.Normalize([min_max[0][0]],
                                                               [min_max[0][1]-min_max[0][0]])])
         
-        self.train_set = MyCampus(train=True, transform=transform, train_data=traindata, test_data=testdata, test_label=testlabel)
-        self.test_set = MyCampus(train=False, transform=transform, train_data=traindata, test_data=testdata, test_label=testlabel)
+        self.train_set = MyCampus(train=True, transform=transform, train_data=traindata, \
+            test_data=testdata, test_label=testlabel)
+        self.valid_set = MyCampus(train=False, transform=transform, train_data=traindata, \
+             test_data=validdata, test_label=validlabel)
+        self.test_set = MyCampus(train=False, transform=transform, train_data=traindata, \
+            test_data=testdata, test_label=testlabel)
     
 class MyCampus(Dataset):
     def __init__(self, train, transform=None, train_data=None, test_data=None, test_label=None):

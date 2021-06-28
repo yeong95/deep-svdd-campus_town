@@ -121,11 +121,11 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
         train_path = 'train/OK'
         test_path = 'test'
         saved_path = '/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/src/datasets'
-        train_image, train_class, test_image, test_label, test_class = tripped_train_test_numpy_load(data_path,
-                                                                                                     train_path,test_path,saved_path).load()
+        train_image, train_class, valid_image, valid_label, valid_class, test_image, test_label, test_class = \
+            tripped_train_test_numpy_load(data_path,train_path,test_path,saved_path).load()
         logger.info('Train shape: {}' .format(train_image.shape))
-        dataset = load_campus_dataset(dataset_name, data_path, train_image, test_image, test_label)        
-
+        dataset = load_campus_dataset(dataset_name, data_path, train_image, valid_image, valid_label, test_image, test_label)        
+    import pdb;pdb.set_trace()
     # Initialize DeepSVDD model and set neural network \phi
     deep_SVDD = DeepSVDD(cfg.settings['objective'], cfg.settings['nu'])
     deep_SVDD.set_network(net_name)
@@ -164,19 +164,19 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     logger.info('Training weight decay: %g' % cfg.settings['weight_decay'])
 
     # Train model on dataset
-    # deep_SVDD.train(dataset,
-    #               optimizer_name=cfg.settings['optimizer_name'],
-    #               lr=cfg.settings['lr'],
-    #               n_epochs=cfg.settings['n_epochs'],
-    #               lr_milestones=cfg.settings['lr_milestone'],
-    #               batch_size=cfg.settings['batch_size'],
-    #               weight_decay=cfg.settings['weight_decay'],
-    #               device=device,
-    #               n_jobs_dataloader=n_jobs_dataloader,
-    #               export_model_path=xp_path)
+    deep_SVDD.train(dataset,
+                  optimizer_name=cfg.settings['optimizer_name'],
+                  lr=cfg.settings['lr'],
+                  n_epochs=cfg.settings['n_epochs'],
+                  lr_milestones=cfg.settings['lr_milestone'],
+                  batch_size=cfg.settings['batch_size'],
+                  weight_decay=cfg.settings['weight_decay'],
+                  device=device,
+                  n_jobs_dataloader=n_jobs_dataloader,
+                  export_model_path=xp_path)
     
     # plot t_sne
-    # deep_SVDD.t_sne(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader, data_path=data_path, xp_path=xp_path)
+#     deep_SVDD.t_sne(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader, data_path=data_path, xp_path=xp_path)
     
     # Test model
     deep_SVDD.test(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader)
@@ -221,9 +221,9 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
             plot_images_grid(X_outliers, export_img=xp_path + '/outliers', title='Most anomalous examples', padding=2)
 
     # Save results, model, and configuration
-    # deep_SVDD.save_results(export_json=xp_path + '/results.json')
-    # deep_SVDD.save_model(export_model=xp_path + '/model.tar')
-    # cfg.save_config(export_json=xp_path + '/config.json')
+    deep_SVDD.save_results(export_json=xp_path + '/results.json')
+    deep_SVDD.save_model(export_model=xp_path + '/model.tar')
+    cfg.save_config(export_json=xp_path + '/config.json')
 
 
 if __name__ == '__main__':

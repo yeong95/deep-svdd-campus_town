@@ -19,13 +19,13 @@ def load_dataset(dataset_name, data_path, normal_class):
 
     return dataset
 
-def load_campus_dataset(datset_name, data_path, train_data, test_data, test_label):
+def load_campus_dataset(datset_name, data_path, train_data, valid_data, valid_label, test_data, test_label):
     
     implemented_datasets = ('campus')
     assert datset_name in implemented_datasets
     
     dataset = None
     
-    datset = Campustown_Dataset(data_path, train_data, test_data, test_label)
+    datset = Campustown_Dataset(data_path, train_data, valid_data, valid_label, test_data, test_label)
 
     return datset
