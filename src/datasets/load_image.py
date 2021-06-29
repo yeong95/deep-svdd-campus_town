@@ -165,7 +165,7 @@ class tripped_train_test_numpy_load:
         with open(os.path.join(self.saved_path,'tripped_20_test_class.pickle'), 'rb') as f:
             test_class = pickle.load(f)
             
-        return train_image, train_class, test_image, test_label, test_class 
+        return train_image, train_class, valid_image, valid_label, valid_class, test_image, test_label, test_class 
 
 
 

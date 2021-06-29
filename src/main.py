@@ -125,7 +125,7 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
             tripped_train_test_numpy_load(data_path,train_path,test_path,saved_path).load()
         logger.info('Train shape: {}' .format(train_image.shape))
         dataset = load_campus_dataset(dataset_name, data_path, train_image, valid_image, valid_label, test_image, test_label)        
-    import pdb;pdb.set_trace()
+
     # Initialize DeepSVDD model and set neural network \phi
     deep_SVDD = DeepSVDD(cfg.settings['objective'], cfg.settings['nu'])
     deep_SVDD.set_network(net_name)

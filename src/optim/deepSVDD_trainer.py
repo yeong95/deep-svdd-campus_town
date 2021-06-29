@@ -3,6 +3,7 @@ from base.base_dataset import BaseADDataset
 from base.base_net import BaseNet
 from torch.utils.data.dataloader import DataLoader
 from sklearn.metrics import roc_auc_score
+from utils.earlystopping import EarlyStopping
 
 import logging
 import time
@@ -66,6 +67,9 @@ class DeepSVDDTrainer(BaseTrainer):
             self.c = self.init_center_c(train_loader, net)
             logger.info('Center c initialized.')
 
+        # make early_stopping object 
+        early_stopping = EarlyStopping(patience = 15, verbose = True)
+        
         # Training
         logger.info('Starting training...')
         start_time = time.time()
@@ -98,13 +102,13 @@ class DeepSVDDTrainer(BaseTrainer):
                     self.R.data = torch.tensor(get_radius(dist, self.nu), device=self.device)
 
                 loss_epoch += loss.item()
-                n_batches += 1
+                n_batches += 1            
             
             scheduler.step()
             if epoch in list(range(0, epoch+1, self.lr_milestones)):
                 logger.info('  LR scheduler: new learning rate is %g' % float(scheduler.get_lr()[0]))
-            # save model temporarily in middle of training 
-
+             
+            # save model temporarily in middle of training
             if (epoch+1)%10 ==0:
               os.makedirs(self.export_model+'/model_tmp_saved', exist_ok=True) 
               model_name = 'model_'+str(epoch+1)+'.tar'
@@ -116,7 +120,28 @@ class DeepSVDDTrainer(BaseTrainer):
             epoch_train_time = time.time() - epoch_start_time
             logger.info('  Epoch {}/{}\t Time: {:.3f}\t Loss: {:.8f}'
                         .format(epoch + 1, self.n_epochs, epoch_train_time, loss_epoch / n_batches))
+            idx_label_score = []
+            for data in valid_loader:
+                inputs, labels, idx = data
+                inputs = inputs.to(self.device)
+                outputs = net(inputs)
+                dist = torch.sum((outputs - self.c) ** 2, dim=1)
+                scores = dist            
+                idx_label_score += list(zip(idx.cpu().data.numpy().tolist(),\
+                    labels.cpu().data.numpy().tolist(),\
+                    scores.cpu().data.numpy().tolist()))                        
+            _, labels, scores = zip(*idx_label_score)
+            labels = np.array(labels)
+            scores = np.array(scores)
+            auc_score = roc_auc_score(labels, scores)
+            logger.info('valid auc score: {}' .format(auc_score))
 
+            early_stopping(-auc_score, net)
+            if early_stopping.early_stop:
+                print("Early stopping")
+                break
+        
+        net.load_state_dict(torch.load('checkpoint.pt'))  # load best model from last checkpoint 
         self.train_time = time.time() - start_time
         logger.info('Training time: %.3f' % self.train_time)
 
