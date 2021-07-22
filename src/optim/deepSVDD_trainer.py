@@ -144,7 +144,6 @@ class DeepSVDDTrainer(BaseTrainer):
         net.load_state_dict(torch.load('checkpoint.pt'))  # load best model from last checkpoint 
         self.train_time = time.time() - start_time
         logger.info('Training time: %.3f' % self.train_time)
-
         logger.info('Finished training.')
 
         return net

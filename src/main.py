@@ -121,9 +121,12 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
         train_path = 'train/OK'
         test_path = 'test'
         saved_path = '/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/src/datasets'
+        name = 'Box_margin_60'
         train_image, train_class, valid_image, valid_label, valid_class, test_image, test_label, test_class = \
-            tripped_train_test_numpy_load(data_path,train_path,test_path,saved_path).load()
+            tripped_train_test_numpy_load(data_path,train_path,test_path,saved_path,name).load()
         logger.info('Train shape: {}' .format(train_image.shape))
+        logger.info('Valid shape: {}' .format(valid_image.shape))
+        logger.info('Test shape: {}' .format(test_image.shape))
         dataset = load_campus_dataset(dataset_name, data_path, train_image, valid_image, valid_label, test_image, test_label)        
 
     # Initialize DeepSVDD model and set neural network \phi
