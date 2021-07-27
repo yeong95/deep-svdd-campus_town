@@ -57,7 +57,7 @@ class DeepSVDD(object):
         self.net_name = net_name
         self.net = build_network(net_name)
 
-    def train(self, dataset: BaseADDataset, optimizer_name: str = 'adam', lr: float = 0.001, n_epochs: int = 50,
+    def train(self, trial, dataset: BaseADDataset, optimizer_name: str = 'adam', lr: float = 0.001, n_epochs: int = 50,
               lr_milestones: tuple = (), batch_size: int = 128, weight_decay: float = 1e-6, device: str = 'cuda',
               n_jobs_dataloader: int = 0, export_model_path=None):
         """Trains the Deep SVDD model on the training data."""
@@ -68,10 +68,12 @@ class DeepSVDD(object):
                                        weight_decay=weight_decay, device=device, n_jobs_dataloader=n_jobs_dataloader,
                                        export_model=export_model_path)
         # Get the model
-        self.net = self.trainer.train(dataset, self.net)
+        self.net, auc_score = self.trainer.train(trial, dataset, self.net)
         self.R = float(self.trainer.R.cpu().data.numpy())  # get float
         self.c = self.trainer.c.cpu().data.numpy().tolist()  # get list
         self.results['train_time'] = self.trainer.train_time
+
+        return auc_score
 
     def test(self, dataset: BaseADDataset, device: str = 'cuda', n_jobs_dataloader: int = 0):
         """Tests the Deep SVDD model on the test data."""
@@ -138,11 +140,13 @@ class DeepSVDD(object):
         model_dict = torch.load(model_path)  # if use cpu ->map_location = 'cpu'
         self.R = model_dict['R']
         self.c = model_dict['c']
-        self.net.load_state_dict(model_dict['net_dict'])
+        # self.net.load_state_dict(model_dict['net_dict'])
         if load_ae:
             if self.ae_net is None:
                 self.ae_net = build_autoencoder(self.net_name)
+            print("Loading autoencoder weight")
             self.ae_net.load_state_dict(model_dict['ae_net_dict'])
+            print("Finished loading autoencoder weight")
 
     def save_results(self, export_json):
         """Save results dict to a JSON-file."""

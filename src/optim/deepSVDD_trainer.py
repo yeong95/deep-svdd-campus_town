@@ -17,6 +17,8 @@ from sklearn.manifold import TSNE
 # %matplotlib inline
 import matplotlib.pyplot as plt
 
+import optuna
+
 class DeepSVDDTrainer(BaseTrainer):
 
     def __init__(self, objective, R, c, nu: float, optimizer_name: str = 'adam', lr: float = 0.001, n_epochs: int = 150,
@@ -45,10 +47,11 @@ class DeepSVDDTrainer(BaseTrainer):
         # saved model path 
         self.export_model = export_model
 
-    def train(self, dataset: BaseADDataset, net: BaseNet):
+    def train(self, trial, dataset: BaseADDataset, net: BaseNet):
         logger = logging.getLogger()
 
         # Set device for network
+        # net = torch.nn.DataParallel(net)
         net = net.to(self.device)
 
         # Get train data loader
@@ -109,17 +112,19 @@ class DeepSVDDTrainer(BaseTrainer):
                 logger.info('  LR scheduler: new learning rate is %g' % float(scheduler.get_lr()[0]))
              
             # save model temporarily in middle of training
-            if (epoch+1)%10 ==0:
-              os.makedirs(self.export_model+'/model_tmp_saved', exist_ok=True) 
-              model_name = 'model_'+str(epoch+1)+'.tar'
-              torch.save({'net_dict' : net.state_dict(),
-              'R':self.R,
-              'c':self.c}, self.export_model+'/model_tmp_saved/'+model_name)
+            # if (epoch+1)%10 ==0:
+            #   os.makedirs(self.export_model+'/model_tmp_saved', exist_ok=True) 
+            #   model_name = 'model_'+str(epoch+1)+'.tar'
+            #   torch.save({'net_dict' : net.state_dict(),
+            #   'R':self.R,
+            #   'c':self.c}, self.export_model+'/model_tmp_saved/'+model_name)
 
             # log epoch statistics
             epoch_train_time = time.time() - epoch_start_time
             logger.info('  Epoch {}/{}\t Time: {:.3f}\t Loss: {:.8f}'
                         .format(epoch + 1, self.n_epochs, epoch_train_time, loss_epoch / n_batches))
+            
+            # validation 
             idx_label_score = []
             for data in valid_loader:
                 inputs, labels, idx = data
@@ -141,17 +146,29 @@ class DeepSVDDTrainer(BaseTrainer):
                 print("Early stopping")
                 break
         
+            auc_score = -early_stopping.val_loss_min
+            # print("auc score: {}" .format(auc_score))
+
+            trial.report(auc_score, epoch)
+
+            # Handle pruning based on the intermediate value.
+            
+            if trial.should_prune():
+                raise optuna.exceptions.TrialPruned()
+        
         net.load_state_dict(torch.load('checkpoint.pt'))  # load best model from last checkpoint 
         self.train_time = time.time() - start_time
         logger.info('Training time: %.3f' % self.train_time)
         logger.info('Finished training.')
 
-        return net
+
+        return net, auc_score
 
     def test(self, dataset: BaseADDataset, net: BaseNet):
         logger = logging.getLogger() 
 
         # Set device for network
+        # net = torch.nn.DataParallel(net)
         net = net.to(self.device)
 
         # Get test data loader

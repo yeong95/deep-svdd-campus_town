@@ -1,32 +1,18 @@
 from torch.utils.data import Subset
 from PIL import Image
 import sys
-sys.path.append("/home/yeong95/svdd/deep-svdd-campus_town/src")
+# sys.path.append("/home/smart30/CAMPUS/CYK/campus/deep-svdd-campus_town/src")
+from .preprocessing import global_contrast_normalization
 from base.torchvision_dataset import TorchvisionDataset
-from .preprocessing import get_target_label_idx, global_contrast_normalization
 import numpy as np
 import torchvision.transforms as transforms
 import torch
 from torch.utils.data import Dataset
 import os 
+import pickle
 
 
-# data_path = r'/home/yeong95/svdd/deep-svdd-campus_town/data/두부 데이터셋'
-# with open(os.path.join(data_path,'train_image.pickle'), 'rb') as f:
-#     train_data = pickle.load(f)
 
-# #compute min-max
-# min_ = 10000
-# max_ = -10000
-# for data in train_data:
-#     torch_data = global_contrast_normalization(torch.from_numpy(data).type(torch.float32), 'l1')
-#     min_tmp = torch.min(torch_data)
-#     max_tmp = torch.max(torch_data)
-#     if min_ >= min_tmp:
-#         min_= min_tmp
-#     if max_ <= max_tmp:
-#         max_ = max_tmp
-   
 class Campustown_Dataset(TorchvisionDataset):
 
     def __init__(self, root, traindata=None, validdata=None, validlabel=None, testdata=None, testlabel=None):
@@ -35,7 +21,7 @@ class Campustown_Dataset(TorchvisionDataset):
         self.n_classes = 2  # 0: normal, 1: outlier
 
         # Pre-computed min and max values (after applying GCN) from train data per class
-        min_max = [(-2.9073, 2.5115)]
+        min_max = [(-3.6522862911224365, 2.08475399017334)]    # tripped_20
 
         # preprocessing GCN (with L1 norm) and min-max feature scaling to [0,1]
         transform = transforms.Compose([transforms.ToTensor(),
@@ -84,7 +70,23 @@ class MyCampus(Dataset):
             
         return img, target, index  # only line changed
 
+if  __name__ == '__main__':
+    with open('tripped_20_train_image.pickle', 'rb') as f:
+        train_data = pickle.load(f)
 
+    #compute min-max
+    min_ = 10000
+    max_ = -10000
+    for data in train_data:
+        torch_data = global_contrast_normalization(torch.from_numpy(data).type(torch.float32), 'l1')
+        min_tmp = torch.min(torch_data)
+        max_tmp = torch.max(torch_data)
+        if min_ >= min_tmp:
+            min_= min_tmp
+        if max_ <= max_tmp:
+            max_ = max_tmp
+    print("minimum: {}" .format(min_))
+    print("maximum: {}" .format(max_))
 
 
 # campus_dataset = Campustown_Dataset(data_path, train_data, test_data, test_label)

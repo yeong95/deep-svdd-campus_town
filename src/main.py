@@ -16,6 +16,10 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import roc_curve, auc
 
+from ray import tune
+from ray.tune import CLIReporter
+from ray.tune.schedulers import ASHAScheduler
+
 ################################################################################
 # Settings
 ################################################################################
@@ -121,7 +125,7 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
         train_path = 'train/OK'
         test_path = 'test'
         saved_path = '/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/src/datasets'
-        name = 'Box_margin_60'
+        name = 'tripped_20'
         train_image, train_class, valid_image, valid_label, valid_class, test_image, test_label, test_class = \
             tripped_train_test_numpy_load(data_path,train_path,test_path,saved_path,name).load()
         logger.info('Train shape: {}' .format(train_image.shape))
@@ -132,6 +136,7 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     # Initialize DeepSVDD model and set neural network \phi
     deep_SVDD = DeepSVDD(cfg.settings['objective'], cfg.settings['nu'])
     deep_SVDD.set_network(net_name)
+
     # If specified, load Deep SVDD model (radius R, center c, network weights, and possibly autoencoder weights)
     if load_model:
         deep_SVDD.load_model(model_path=load_model, load_ae=True)
@@ -159,27 +164,79 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
                            n_jobs_dataloader=n_jobs_dataloader)
 
     # Log training details
-    logger.info('Training optimizer: %s' % cfg.settings['optimizer_name'])
-    logger.info('Training learning rate: %g' % cfg.settings['lr'])
-    logger.info('Training epochs: %d' % cfg.settings['n_epochs'])
-    logger.info('Training learning rate scheduler milestones: %s' % (cfg.settings['lr_milestone'],))
-    logger.info('Training batch size: %d' % cfg.settings['batch_size'])
-    logger.info('Training weight decay: %g' % cfg.settings['weight_decay'])
+    # logger.info('Training optimizer: %s' % cfg.settings['optimizer_name'])
+    # logger.info('Training learning rate: %g' % cfg.settings['lr'])
+    # logger.info('Training epochs: %d' % cfg.settings['n_epochs'])
+    # logger.info('Training learning rate scheduler milestones: %s' % (cfg.settings['lr_milestone'],))
+    # logger.info('Training batch size: %d' % cfg.settings['batch_size'])
+    # logger.info('Training weight decay: %g' % cfg.settings['weight_decay'])
 
     # Train model on dataset
-    deep_SVDD.train(dataset,
-                  optimizer_name=cfg.settings['optimizer_name'],
-                  lr=cfg.settings['lr'],
-                  n_epochs=cfg.settings['n_epochs'],
-                  lr_milestones=cfg.settings['lr_milestone'],
-                  batch_size=cfg.settings['batch_size'],
-                  weight_decay=cfg.settings['weight_decay'],
-                  device=device,
-                  n_jobs_dataloader=n_jobs_dataloader,
-                  export_model_path=xp_path)
+    # deep_SVDD.train(dataset,
+    #               optimizer_name=cfg.settings['optimizer_name'],
+    #               lr=cfg.settings['lr'],
+    #               n_epochs=cfg.settings['n_epochs'],
+    #               lr_milestones=cfg.settings['lr_milestone'],
+    #               batch_size=cfg.settings['batch_size'],
+    #               weight_decay=cfg.settings['weight_decay'],
+    #               device=device,
+    #               n_jobs_dataloader=n_jobs_dataloader,
+    #               export_model_path=xp_path)
+
+    # Train model on dataset with ray tune
+    num_samples = 10
+    max_num_epochs = 15
+    config = {
+        "optimizer_name" : tune.choice(["adam", "amsgrad"]),
+        "lr" : tune.loguniform(1e-4, 1e-1),
+        "lr_milestone" : tune.choice([25,50,75]),
+        "batch_size" : tune.choice([2,4,8,16]),
+        "weight_decay" : tune.loguniform(1e-7, 1e-2)
+    }
+
+    scheduler = ASHAScheduler(
+        metric="loss",
+        mode="min",
+        max_t=max_num_epochs,  # 하나의 parameter set에 대해서 얼만큼 epoch을 설정할 것인가 
+        grace_period=1,
+        reduction_factor=2)
+
+    reporter = CLIReporter(
+        # parameter_columns=["l1", "l2", "lr", "batch_size"],
+        metric_columns=["loss", "training_iteration"])
+
+    def train_svdd(config, data=None):
+        deep_SVDD.train(data,
+                    optimizer_name=config['optimizer_name'],
+                    lr=config['lr'],
+                    n_epochs=cfg.settings['n_epochs'],
+                    lr_milestones=config['lr_milestone'],
+                    batch_size=config['batch_size'],
+                    weight_decay=config['weight_decay'],
+                    device=device,
+                    n_jobs_dataloader=n_jobs_dataloader,
+                    export_model_path=xp_path)
     
+    result = tune.run(
+        tune.with_parameters(train_svdd, data=dataset),
+        resources_per_trial={"cpu": 1, "gpu": 1},
+        config=config,
+        num_samples=num_samples,
+        scheduler=scheduler,
+        progress_reporter=reporter
+        )
+
+    best_trial = result.get_best_trial("loss", "min", "last")
+    logger.info("Best trial config: {}".format(best_trial.config))
+    logger.info("Best trial final validation loss(-auc score): {}".format(
+        best_trial.last_result["loss"]))
+    
+    best_checkpoint_dir = best_trial.checkpoint.value
+    deep_SVDD.load_model(model_path=os.path.join('optim', best_checkpoint_dir, "checkpoint"), load_ae=False)
+
+
     # plot t_sne
-#     deep_SVDD.t_sne(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader, data_path=data_path, xp_path=xp_path)
+    # deep_SVDD.t_sne(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader, data_path=data_path, xp_path=xp_path)
     
     # Test model
     deep_SVDD.test(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader)
