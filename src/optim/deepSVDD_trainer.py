@@ -146,10 +146,10 @@ class DeepSVDDTrainer(BaseTrainer):
                 print("Early stopping")
                 break
         
-            auc_score = -early_stopping.val_loss_min
-            # print("auc score: {}" .format(auc_score))
+            min_auc_score = -early_stopping.val_loss_min
+            # print("min auc score: {}" .format(min_auc_score))
 
-            trial.report(auc_score, epoch)
+            trial.report(min_auc_score, epoch)
 
             # Handle pruning based on the intermediate value.
             
@@ -162,7 +162,7 @@ class DeepSVDDTrainer(BaseTrainer):
         logger.info('Finished training.')
 
 
-        return net, auc_score
+        return net, min_auc_score
 
     def test(self, dataset: BaseADDataset, net: BaseNet):
         logger = logging.getLogger() 

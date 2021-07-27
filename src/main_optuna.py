@@ -188,60 +188,70 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
 
 
 
+    #########################################
     # Train model on dataset with optuna
-   
-    def objective(trial):        
+    #########################################
 
-        optimizer_name = trial.suggest_categorical("optimizer", ["adam", "amsgrad"])
-        lr = trial.suggest_float("lr", 1e-5, 1e-3, log=True)
-        weight_decay = trial.suggest_float("weight_decay", 1e-7, 1e-4, log=True)
-        # batch_size = trial.suggest_categorical("batch_size", [2,4,8,16])
+    # def objective(trial):        
 
-        logger.info('Training optimizer: %s' % optimizer_name)
-        logger.info('Training learning rate: %g' %lr)
-        logger.info('training weight decay: %g' % weight_decay)
+    #     optimizer_name = trial.suggest_categorical("optimizer", ["adam", "amsgrad"])
+    #     lr = trial.suggest_float("lr", 1e-5, 1e-3, log=True)
+    #     weight_decay = trial.suggest_float("weight_decay", 1e-7, 1e-4, log=True)
+    #     # batch_size = trial.suggest_categorical("batch_size", [2,4,8,16])
 
-        # import pdb;pdb.set_trace()
-        auc_score = deep_SVDD.train(trial,
-                dataset,
-                optimizer_name=optimizer_name,
-                lr=lr,
-                n_epochs=cfg.settings['n_epochs'],
-                lr_milestones=cfg.settings['lr_milestone'],
-                batch_size=cfg.settings['batch_size'],
-                weight_decay=weight_decay,
-                device=device,
-                n_jobs_dataloader=n_jobs_dataloader,
-                export_model_path=xp_path)
+    #     logger.info('Training optimizer: %s' % optimizer_name)
+    #     logger.info('Training learning rate: %g' %lr)
+    #     logger.info('training weight decay: %g' % weight_decay)
+
+    #     # import pdb;pdb.set_trace()
+    #     auc_score = deep_SVDD.train(trial,
+    #             dataset,
+    #             optimizer_name=optimizer_name,
+    #             lr=lr,
+    #             n_epochs=cfg.settings['n_epochs'],
+    #             lr_milestones=cfg.settings['lr_milestone'],
+    #             batch_size=cfg.settings['batch_size'],
+    #             weight_decay=weight_decay,
+    #             device=device,
+    #             n_jobs_dataloader=n_jobs_dataloader,
+    #             export_model_path=xp_path)
         
-        return auc_score
+    #     return auc_score
 
-    optuna.logging.get_logger("optuna").addHandler(logging.StreamHandler(sys.stdout))
-    study = optuna.create_study(direction="maximize")
-    study.optimize(objective, n_trials=20, n_jobs=1, gc_after_trial=True)
+    # optuna.logging.get_logger("optuna").addHandler(logging.StreamHandler(sys.stdout))
+    # study = optuna.create_study(direction="maximize")
+    # study.optimize(objective, n_trials=20, n_jobs=1, gc_after_trial=True)
 
-    pruned_trials = study.get_trials(deepcopy=False, states=[TrialState.PRUNED])
-    complete_trials = study.get_trials(deepcopy=False, states=[TrialState.COMPLETE])
+    # pruned_trials = study.get_trials(deepcopy=False, states=[TrialState.PRUNED])
+    # complete_trials = study.get_trials(deepcopy=False, states=[TrialState.COMPLETE])
 
-    print("Study statistics: ")
-    print("  Number of finished trials: ", len(study.trials))
-    print("  Number of pruned trials: ", len(pruned_trials))
-    print("  Number of complete trials: ", len(complete_trials))
+    # print("Study statistics: ")
+    # print("  Number of finished trials: ", len(study.trials))
+    # print("  Number of pruned trials: ", len(pruned_trials))
+    # print("  Number of complete trials: ", len(complete_trials))
 
-    print("Best trial:")
-    trial = study.best_trial
+    # print("Best trial:")
+    # trial = study.best_trial
 
-    print("  Value: ", trial.value)
+    # print("  Value: ", trial.value)
 
-    print("  Params: ")
-    for key, value in trial.params.items():
-        print("    {}: {}".format(key, value))
+    # print("  Params: ")
+    # for key, value in trial.params.items():
+    #     print("    {}: {}".format(key, value))
 
-    with open('best parameter.pickle', 'wb') as f:
-        pickle.dump(trial, f)
-    
-    # deep_SVDD.save_model(export_model=xp_path + '/model.tar')
-    sys.exit(0)
+    # with open('best parameter.pickle', 'wb') as f:
+    #     pickle.dump(trial, f)
+
+    # sys.exit(0)
+
+
+    ##############################################
+    # retrain with best parameters
+    ##############################################
+
+    with open('best parameter.pickle', 'rb') as f:
+        best_parameter = pickle.load(f)
+    import pdb; pdb.set_trace()
 
     # plot t_sne
     # deep_SVDD.t_sne(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader, data_path=data_path, xp_path=xp_path)
