@@ -251,7 +251,24 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
 
     with open('best parameter.pickle', 'rb') as f:
         best_parameter = pickle.load(f)
-    import pdb; pdb.set_trace()
+
+    best_optimizer = list(best_parameter.params.values())[0]
+    best_lr = list(best_parameter.params.values())[1]
+    best_weight_decay = list(best_parameter.params.values())[2]
+
+    # Train model on dataset
+    deep_SVDD.train(dataset,
+                  optimizer_name=best_optimizer,
+                  lr=best_lr,
+                  n_epochs=cfg.settings['n_epochs'],
+                  lr_milestones=cfg.settings['lr_milestone'],
+                  batch_size=cfg.settings['batch_size'],
+                  weight_decay=best_weight_decay,
+                  device=device,
+                  n_jobs_dataloader=n_jobs_dataloader,
+                  export_model_path=xp_path)
+
+
 
     # plot t_sne
     # deep_SVDD.t_sne(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader, data_path=data_path, xp_path=xp_path)
@@ -262,41 +279,28 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     # Plot most anomalous and most normal (within-class) test samples
     indices, labels, scores = zip(*deep_SVDD.results['test_scores'])
     indices, labels, scores = np.array(indices), np.array(labels), np.array(scores)
-    if dataset_name in ('mnist', 'cifar10', 'campus'):
 
-        if dataset_name == 'mnist':
-            X_normals = dataset.test_set.test_data[idx_sorted[:32], ...].unsqueeze(1)
-            X_outliers = dataset.test_set.test_data[idx_sorted[-32:], ...].unsqueeze(1)
-
-        if dataset_name == 'cifar10':
-            X_normals = torch.tensor(np.transpose(dataset.test_set.test_data[idx_sorted[:32], ...], (0, 3, 1, 2)))
-            X_outliers = torch.tensor(np.transpose(dataset.test_set.test_data[idx_sorted[-32:], ...], (0, 3, 1, 2)))
-            
-        if dataset_name == 'campus':
-            test_score_path = os.path.join(xp_path, 'test_score.pickle')
-            with open(test_score_path, 'wb') as f:
-                pickle.dump(deep_SVDD.results['test_scores'], f, pickle.HIGHEST_PROTOCOL)
+    if dataset_name == 'campus':
+        test_score_path = os.path.join(xp_path, 'test_score.pickle')
+        with open(test_score_path, 'wb') as f:
+            pickle.dump(deep_SVDD.results['test_scores'], f, pickle.HIGHEST_PROTOCOL)
         
-        if dataset_name == 'campus':
-            fpr = dict()
-            tpr = dict()
-            roc_auc = dict()
-            fpr, tpr, threshold = roc_curve(labels, scores)
-            roc_auc = auc(fpr, tpr)
-            plt.figure()
-            lw=2
-            plt.plot(fpr,tpr, color='darkorange', lw=lw, label='ROC curve (area= %0.2f)' %roc_auc)  
-            plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
-            plt.xlim([0.0, 1.0])
-            plt.ylim([0.0, 1.05])
-            plt.xlabel('False Positive Rate')   
-            plt.ylabel('True Positive Rate')
-            plt.title('Receiver operating characteristic example')
-            plt.legend(loc="lower right")           
-            plt.savefig(os.path.join(xp_path,'auc_roc.png'))             
-        else:            
-            plot_images_grid(X_normals, export_img=xp_path + '/normals', title='Most normal examples', padding=2)
-            plot_images_grid(X_outliers, export_img=xp_path + '/outliers', title='Most anomalous examples', padding=2)
+        fpr = dict()
+        tpr = dict()
+        roc_auc = dict()
+        fpr, tpr, threshold = roc_curve(labels, scores)
+        roc_auc = auc(fpr, tpr)
+        plt.figure()
+        lw=2
+        plt.plot(fpr,tpr, color='darkorange', lw=lw, label='ROC curve (area= %0.2f)' %roc_auc)  
+        plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
+        plt.xlim([0.0, 1.0])
+        plt.ylim([0.0, 1.05])
+        plt.xlabel('False Positive Rate')   
+        plt.ylabel('True Positive Rate')
+        plt.title('Receiver operating characteristic example')
+        plt.legend(loc="lower right")           
+        plt.savefig(os.path.join(xp_path,'auc_roc.png'))             
 
     # Save results, model, and configuration
     deep_SVDD.save_results(export_json=xp_path + '/results.json')

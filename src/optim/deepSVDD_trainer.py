@@ -47,7 +47,110 @@ class DeepSVDDTrainer(BaseTrainer):
         # saved model path 
         self.export_model = export_model
 
-    def train(self, trial, dataset: BaseADDataset, net: BaseNet):
+    def train(self, dataset: BaseADDataset, net: BaseNet):
+        logger = logging.getLogger()
+
+        # Set device for network
+        net = net.to(self.device)
+
+        # Get train data loader
+        train_loader, valid_loader, _ = dataset.loaders(batch_size=self.batch_size, num_workers=self.n_jobs_dataloader)
+
+        # Set optimizer (Adam optimizer for now)
+        optimizer = optim.Adam(net.parameters(), lr=self.lr, weight_decay=self.weight_decay,
+                               amsgrad=self.optimizer_name == 'amsgrad')
+
+        # Set learning rate scheduler
+        scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=self.lr_milestones, gamma=0.1)
+
+        # Initialize hypersphere center c (if c not loaded)
+        if self.c is None:
+            logger.info('Initializing center c...')
+            self.c = self.init_center_c(train_loader, net)
+            logger.info('Center c initialized.')
+
+        # make early_stopping object 
+        early_stopping = EarlyStopping(patience = 15, verbose = True)
+        
+        # Training
+        logger.info('Starting training...')
+        start_time = time.time()
+        net.train()
+        for epoch in range(self.n_epochs):
+
+            loss_epoch = 0.0
+            n_batches = 0
+            epoch_start_time = time.time()
+            for data in train_loader:
+                inputs, _, _ = data
+                inputs = inputs.to(self.device)
+
+                # Zero the network parameter gradients
+                optimizer.zero_grad()
+
+                # Update network parameters via backpropagation: forward + backward + optimize
+                outputs = net(inputs)
+                dist = torch.sum((outputs - self.c) ** 2, dim=1)
+                if self.objective == 'soft-boundary':
+                    scores = dist - self.R ** 2
+                    loss = self.R ** 2 + (1 / self.nu) * torch.mean(torch.max(torch.zeros_like(scores), scores))
+                else:
+                    loss = torch.mean(dist)
+                loss.backward()
+                optimizer.step()
+
+                # Update hypersphere radius R on mini-batch distances
+                if (self.objective == 'soft-boundary') and (epoch >= self.warm_up_n_epochs):
+                    self.R.data = torch.tensor(get_radius(dist, self.nu), device=self.device)
+
+                loss_epoch += loss.item()
+                n_batches += 1            
+            
+            scheduler.step()
+            if epoch in list(range(0, epoch+1, self.lr_milestones)):
+                logger.info('  LR scheduler: new learning rate is %g' % float(scheduler.get_lr()[0]))
+             
+            # save model temporarily in middle of training
+            if (epoch+1)%10 ==0:
+              os.makedirs(self.export_model+'/model_tmp_saved', exist_ok=True) 
+              model_name = 'model_'+str(epoch+1)+'.tar'
+              torch.save({'net_dict' : net.state_dict(),
+              'R':self.R,
+              'c':self.c}, self.export_model+'/model_tmp_saved/'+model_name)
+
+            # log epoch statistics
+            epoch_train_time = time.time() - epoch_start_time
+            logger.info('  Epoch {}/{}\t Time: {:.3f}\t Loss: {:.8f}'
+                        .format(epoch + 1, self.n_epochs, epoch_train_time, loss_epoch / n_batches))
+            idx_label_score = []
+            for data in valid_loader:
+                inputs, labels, idx = data
+                inputs = inputs.to(self.device)
+                outputs = net(inputs)
+                dist = torch.sum((outputs - self.c) ** 2, dim=1)
+                scores = dist            
+                idx_label_score += list(zip(idx.cpu().data.numpy().tolist(),\
+                    labels.cpu().data.numpy().tolist(),\
+                    scores.cpu().data.numpy().tolist()))                        
+            _, labels, scores = zip(*idx_label_score)
+            labels = np.array(labels)
+            scores = np.array(scores)
+            auc_score = roc_auc_score(labels, scores)
+            logger.info('valid auc score: {}' .format(auc_score))
+
+            early_stopping(-auc_score, net)
+            if early_stopping.early_stop:
+                print("Early stopping")
+                break
+        
+        net.load_state_dict(torch.load('checkpoint.pt'))  # load best model from last checkpoint 
+        self.train_time = time.time() - start_time
+        logger.info('Training time: %.3f' % self.train_time)
+        logger.info('Finished training.')
+
+        return net
+
+    def optuna_train(self, trial, dataset: BaseADDataset, net: BaseNet):
         logger = logging.getLogger()
 
         # Set device for network

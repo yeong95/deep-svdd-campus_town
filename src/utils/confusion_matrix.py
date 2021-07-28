@@ -10,17 +10,18 @@ import matplotlib.pyplot as plt
 import scikitplot as skplt 
 from PIL import Image
 from sklearn.metrics import roc_auc_score, recall_score, precision_score
+import sys
 
 
 test_score_path = r'/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/log/tofu_test'
 data_path = r'/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/src/datasets'
 with open(os.path.join(test_score_path,'test_score.pickle'), 'rb') as f:
     test_score = pickle.load(f)
-with open(os.path.join(data_path,'Box_margin_60_test_image.pickle'), 'rb') as f:
+with open(os.path.join(data_path,'tripped_20_test_image.pickle'), 'rb') as f:
     test_image = pickle.load(f)
-with open(os.path.join(data_path,'Box_margin_60_test_label.pickle'), 'rb') as f:
+with open(os.path.join(data_path,'tripped_20_test_label.pickle'), 'rb') as f:
     test_label = pickle.load(f)
-with open(os.path.join(data_path,'Box_margin_60_test_class.pickle'), 'rb') as f:
+with open(os.path.join(data_path,'tripped_20_test_class.pickle'), 'rb') as f:
     test_class = pickle.load(f)
 
 indices, labels, scores = zip(*test_score)
@@ -44,6 +45,9 @@ def plot_confusion_matrix(test_label,pred_label,test_score_path):
     print("recall: {}" .format(recall_score (test_label, pred_label)))
     print("preicision: {}" .format(precision_score(test_label, pred_label)))
 
+# plot_confusion_matrix(test_label,pred_label,test_score_path)
+
+
 # 클래스별 hit ratio(recall)
 wrong_save_path = '/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/log/wrong_image_sample'
 true_save_path = '/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/log/true_image_sample'
@@ -54,18 +58,18 @@ def class_recall_and_save_wrong_images(test_image, test_class,test_label,pred_la
         y_pred = pred_label[idx_]
         y_true = test_label[idx_]        
         # print("{} total count : {}" .format(class_name, len(y_true)))
-        if class_name in ['정상B','머리카락','유바']:
-            # save wrong prediction image
-            class_image = test_image[idx_][y_pred!=y_true]
-            for i, image in enumerate(class_image):
-                img = Image.fromarray(image)
-                img.save(os.path.join(wrong_save_path,(class_name+"_"+str(i)+".png")))
+        # if class_name in ['정상B','머리카락','유바']:
+        #     # save wrong prediction image
+        #     class_image = test_image[idx_][y_pred!=y_true]
+        #     for i, image in enumerate(class_image):
+        #         img = Image.fromarray(image)
+        #         img.save(os.path.join(wrong_save_path,(class_name+"_"+str(i)+".png")))
 
-            # save true prediction image
-            class_image = test_image[idx_][y_pred==y_true]
-            for i, image in enumerate(class_image):
-                img = Image.fromarray(image)
-                img.save(os.path.join(true_save_path,(class_name+"_"+str(i)+".png")))
+        #     # save true prediction image
+        #     class_image = test_image[idx_][y_pred==y_true]
+        #     for i, image in enumerate(class_image):
+        #         img = Image.fromarray(image)
+        #         img.save(os.path.join(true_save_path,(class_name+"_"+str(i)+".png")))
 
         accuracy = accuracy_score(y_true, y_pred)
         recall_dict[class_name] = accuracy
@@ -73,6 +77,7 @@ def class_recall_and_save_wrong_images(test_image, test_class,test_label,pred_la
     recall_df['class'] = recall_dict.keys()
     recall_df['recall'] = recall_dict.values()
     print(recall_df.sort_values(by=['recall']))
+    import pdb;pdb.set_trace()
 
 class_recall_and_save_wrong_images(test_image,test_class,test_label,pred_label,wrong_save_path,true_save_path)
 

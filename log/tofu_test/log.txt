@@ -1,0 +1,161 @@
+2021-07-28 00:05:36,768 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-07-28 00:05:36,768 - root - INFO - Data path is ./datasets.
+2021-07-28 00:05:36,768 - root - INFO - Export path is ../log/tofu_test.
+2021-07-28 00:05:36,768 - root - INFO - Dataset: campus
+2021-07-28 00:05:36,768 - root - INFO - Network: resnet
+2021-07-28 00:05:36,768 - root - INFO - Deep SVDD objective: one-class
+2021-07-28 00:05:36,768 - root - INFO - Nu-paramerter: 0.10
+2021-07-28 00:05:36,809 - root - INFO - Computation device: cuda
+2021-07-28 00:05:36,810 - root - INFO - Number of dataloader workers: 0
+2021-07-28 00:05:42,331 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-07-28 00:05:42,332 - root - INFO - Valid shape: (767, 640, 640, 3)
+2021-07-28 00:05:42,332 - root - INFO - Test shape: (950, 640, 640, 3)
+2021-07-28 00:05:44,169 - root - INFO - Loading model from ../log/tofu_test/pretrained_model.tar.
+2021-07-28 00:11:09,669 - root - INFO - Log file is ../log/tofu_test/log.txt.
+2021-07-28 00:11:09,669 - root - INFO - Data path is ./datasets.
+2021-07-28 00:11:09,669 - root - INFO - Export path is ../log/tofu_test.
+2021-07-28 00:11:09,669 - root - INFO - Dataset: campus
+2021-07-28 00:11:09,669 - root - INFO - Network: resnet
+2021-07-28 00:11:09,669 - root - INFO - Deep SVDD objective: one-class
+2021-07-28 00:11:09,669 - root - INFO - Nu-paramerter: 0.10
+2021-07-28 00:11:09,706 - root - INFO - Computation device: cuda
+2021-07-28 00:11:09,706 - root - INFO - Number of dataloader workers: 0
+2021-07-28 00:11:16,759 - root - INFO - Train shape: (1000, 640, 640, 3)
+2021-07-28 00:11:16,759 - root - INFO - Valid shape: (767, 640, 640, 3)
+2021-07-28 00:11:16,759 - root - INFO - Test shape: (950, 640, 640, 3)
+2021-07-28 00:11:18,879 - root - INFO - Loading model from ../log/tofu_test/pretrained_model.tar.
+2021-07-28 00:11:27,139 - root - INFO - Starting training...
+2021-07-28 00:11:49,653 - root - INFO -   LR scheduler: new learning rate is 4.66946e-05
+2021-07-28 00:11:49,653 - root - INFO -   Epoch 1/150	 Time: 22.514	 Loss: 3.66962641
+2021-07-28 00:11:56,798 - root - INFO - valid auc score: 0.8805452833535744
+2021-07-28 00:12:19,130 - root - INFO -   Epoch 2/150	 Time: 22.325	 Loss: 0.43097888
+2021-07-28 00:12:26,108 - root - INFO - valid auc score: 0.893843046818498
+2021-07-28 00:12:48,605 - root - INFO -   Epoch 3/150	 Time: 22.492	 Loss: 0.26674655
+2021-07-28 00:12:55,522 - root - INFO - valid auc score: 0.9014096038644707
+2021-07-28 00:13:17,882 - root - INFO -   Epoch 4/150	 Time: 22.354	 Loss: 0.19135038
+2021-07-28 00:13:25,074 - root - INFO - valid auc score: 0.9057148315434684
+2021-07-28 00:13:47,552 - root - INFO -   Epoch 5/150	 Time: 22.473	 Loss: 0.14950677
+2021-07-28 00:13:54,449 - root - INFO - valid auc score: 0.9154510595909009
+2021-07-28 00:14:16,747 - root - INFO -   Epoch 6/150	 Time: 22.292	 Loss: 0.12348704
+2021-07-28 00:14:23,560 - root - INFO - valid auc score: 0.9191899894927883
+2021-07-28 00:14:45,772 - root - INFO -   Epoch 7/150	 Time: 22.207	 Loss: 0.10583692
+2021-07-28 00:14:52,720 - root - INFO - valid auc score: 0.9181187997216271
+2021-07-28 00:15:15,131 - root - INFO -   Epoch 8/150	 Time: 22.410	 Loss: 0.09234133
+2021-07-28 00:15:22,151 - root - INFO - valid auc score: 0.923420165659157
+2021-07-28 00:15:44,367 - root - INFO -   Epoch 9/150	 Time: 22.210	 Loss: 0.08199142
+2021-07-28 00:15:51,737 - root - INFO - valid auc score: 0.920854768500198
+2021-07-28 00:16:14,274 - root - INFO -   Epoch 10/150	 Time: 22.537	 Loss: 0.07338224
+2021-07-28 00:16:21,383 - root - INFO - valid auc score: 0.9253783278522987
+2021-07-28 00:16:44,043 - root - INFO -   Epoch 11/150	 Time: 22.655	 Loss: 0.06642026
+2021-07-28 00:16:51,003 - root - INFO - valid auc score: 0.9242934923515687
+2021-07-28 00:17:13,465 - root - INFO -   Epoch 12/150	 Time: 22.462	 Loss: 0.06098705
+2021-07-28 00:17:20,621 - root - INFO - valid auc score: 0.9225195475076075
+2021-07-28 00:17:42,815 - root - INFO -   Epoch 13/150	 Time: 22.194	 Loss: 0.05663410
+2021-07-28 00:17:49,736 - root - INFO - valid auc score: 0.9275343531241897
+2021-07-28 00:18:11,701 - root - INFO -   Epoch 14/150	 Time: 21.960	 Loss: 0.05203464
+2021-07-28 00:18:18,646 - root - INFO - valid auc score: 0.9298780071776538
+2021-07-28 00:18:41,246 - root - INFO -   Epoch 15/150	 Time: 22.595	 Loss: 0.04830487
+2021-07-28 00:18:48,138 - root - INFO - valid auc score: 0.9282302853322053
+2021-07-28 00:19:10,574 - root - INFO -   Epoch 16/150	 Time: 22.435	 Loss: 0.04514129
+2021-07-28 00:19:17,798 - root - INFO - valid auc score: 0.9316280719948692
+2021-07-28 00:19:40,182 - root - INFO -   Epoch 17/150	 Time: 22.379	 Loss: 0.04251656
+2021-07-28 00:19:47,278 - root - INFO - valid auc score: 0.9300383445000886
+2021-07-28 00:20:09,689 - root - INFO -   Epoch 18/150	 Time: 22.410	 Loss: 0.04035882
+2021-07-28 00:20:16,895 - root - INFO - valid auc score: 0.9283803883574635
+2021-07-28 00:20:39,317 - root - INFO -   Epoch 19/150	 Time: 22.422	 Loss: 0.03797230
+2021-07-28 00:20:46,364 - root - INFO - valid auc score: 0.9253373906635919
+2021-07-28 00:21:08,609 - root - INFO -   Epoch 20/150	 Time: 22.244	 Loss: 0.03627253
+2021-07-28 00:21:15,636 - root - INFO - valid auc score: 0.9269407638879413
+2021-07-28 00:21:38,166 - root - INFO -   Epoch 21/150	 Time: 22.529	 Loss: 0.03436241
+2021-07-28 00:21:45,057 - root - INFO - valid auc score: 0.9270567525892772
+2021-07-28 00:22:07,206 - root - INFO -   Epoch 22/150	 Time: 22.149	 Loss: 0.03258810
+2021-07-28 00:22:14,236 - root - INFO - valid auc score: 0.9304272477928033
+2021-07-28 00:22:36,800 - root - INFO -   Epoch 23/150	 Time: 22.564	 Loss: 0.03142661
+2021-07-28 00:22:43,760 - root - INFO - valid auc score: 0.9310822428121119
+2021-07-28 00:23:06,267 - root - INFO -   Epoch 24/150	 Time: 22.506	 Loss: 0.02965252
+2021-07-28 00:23:13,399 - root - INFO - valid auc score: 0.9301816246605624
+2021-07-28 00:23:35,786 - root - INFO -   Epoch 25/150	 Time: 22.387	 Loss: 0.02848023
+2021-07-28 00:23:42,700 - root - INFO - valid auc score: 0.9303317276858206
+2021-07-28 00:24:04,948 - root - INFO -   Epoch 26/150	 Time: 22.247	 Loss: 0.02710697
+2021-07-28 00:24:12,003 - root - INFO - valid auc score: 0.9289193946754363
+2021-07-28 00:24:34,180 - root - INFO -   Epoch 27/150	 Time: 22.176	 Loss: 0.02639869
+2021-07-28 00:24:41,081 - root - INFO - valid auc score: 0.9317713521553429
+2021-07-28 00:25:03,427 - root - INFO -   Epoch 28/150	 Time: 22.340	 Loss: 0.02546647
+2021-07-28 00:25:10,406 - root - INFO - valid auc score: 0.9289535089993588
+2021-07-28 00:25:32,888 - root - INFO -   Epoch 29/150	 Time: 22.482	 Loss: 0.02429010
+2021-07-28 00:25:39,741 - root - INFO - valid auc score: 0.9286942401375489
+2021-07-28 00:26:02,030 - root - INFO -   Epoch 30/150	 Time: 22.289	 Loss: 0.02372160
+2021-07-28 00:26:09,035 - root - INFO - valid auc score: 0.9315461976174556
+2021-07-28 00:26:31,172 - root - INFO -   Epoch 31/150	 Time: 22.136	 Loss: 0.02267270
+2021-07-28 00:26:38,061 - root - INFO - valid auc score: 0.9292946522385819
+2021-07-28 00:27:00,392 - root - INFO -   Epoch 32/150	 Time: 22.331	 Loss: 0.02191213
+2021-07-28 00:27:07,442 - root - INFO - valid auc score: 0.9309935455699139
+2021-07-28 00:27:29,855 - root - INFO -   Epoch 33/150	 Time: 22.413	 Loss: 0.02119465
+2021-07-28 00:27:36,829 - root - INFO - valid auc score: 0.9295948582890984
+2021-07-28 00:27:59,508 - root - INFO -   Epoch 34/150	 Time: 22.679	 Loss: 0.02057975
+2021-07-28 00:28:06,436 - root - INFO - valid auc score: 0.9309730769755604
+2021-07-28 00:28:28,843 - root - INFO -   Epoch 35/150	 Time: 22.407	 Loss: 0.01988167
+2021-07-28 00:28:35,497 - root - INFO - valid auc score: 0.929676732666512
+2021-07-28 00:28:57,953 - root - INFO -   Epoch 36/150	 Time: 22.455	 Loss: 0.01916123
+2021-07-28 00:29:04,973 - root - INFO - valid auc score: 0.931068597082543
+2021-07-28 00:29:27,600 - root - INFO -   Epoch 37/150	 Time: 22.627	 Loss: 0.01877565
+2021-07-28 00:29:34,715 - root - INFO - valid auc score: 0.9332928510022789
+2021-07-28 00:29:57,101 - root - INFO -   Epoch 38/150	 Time: 22.381	 Loss: 0.01833717
+2021-07-28 00:30:04,078 - root - INFO - valid auc score: 0.9304886535758634
+2021-07-28 00:30:26,612 - root - INFO -   Epoch 39/150	 Time: 22.534	 Loss: 0.01754481
+2021-07-28 00:30:33,501 - root - INFO - valid auc score: 0.9282302853322053
+2021-07-28 00:30:56,006 - root - INFO -   Epoch 40/150	 Time: 22.505	 Loss: 0.01705736
+2021-07-28 00:31:02,899 - root - INFO - valid auc score: 0.9313142202147838
+2021-07-28 00:31:25,098 - root - INFO -   Epoch 41/150	 Time: 22.198	 Loss: 0.01660146
+2021-07-28 00:31:32,061 - root - INFO - valid auc score: 0.9337431600780535
+2021-07-28 00:31:54,346 - root - INFO -   Epoch 42/150	 Time: 22.279	 Loss: 0.01628382
+2021-07-28 00:32:01,431 - root - INFO - valid auc score: 0.9303999563336655
+2021-07-28 00:32:23,840 - root - INFO -   Epoch 43/150	 Time: 22.409	 Loss: 0.01598413
+2021-07-28 00:32:30,835 - root - INFO - valid auc score: 0.9271727412906131
+2021-07-28 00:32:53,323 - root - INFO -   Epoch 44/150	 Time: 22.488	 Loss: 0.01572115
+2021-07-28 00:33:00,581 - root - INFO - valid auc score: 0.9320033295580148
+2021-07-28 00:33:22,906 - root - INFO -   Epoch 45/150	 Time: 22.324	 Loss: 0.01511278
+2021-07-28 00:33:29,958 - root - INFO - valid auc score: 0.931798643614481
+2021-07-28 00:33:52,506 - root - INFO -   Epoch 46/150	 Time: 22.548	 Loss: 0.01489935
+2021-07-28 00:33:59,488 - root - INFO - valid auc score: 0.9270772211836305
+2021-07-28 00:34:21,667 - root - INFO -   Epoch 47/150	 Time: 22.179	 Loss: 0.01455428
+2021-07-28 00:34:28,766 - root - INFO - valid auc score: 0.9296835555312964
+2021-07-28 00:34:51,132 - root - INFO -   Epoch 48/150	 Time: 22.366	 Loss: 0.01409183
+2021-07-28 00:34:58,055 - root - INFO - valid auc score: 0.9339751374807255
+2021-07-28 00:35:20,574 - root - INFO -   Epoch 49/150	 Time: 22.513	 Loss: 0.01376159
+2021-07-28 00:35:27,773 - root - INFO - valid auc score: 0.9275479988537588
+2021-07-28 00:35:50,294 - root - INFO -   Epoch 50/150	 Time: 22.520	 Loss: 0.01354235
+2021-07-28 00:35:57,197 - root - INFO - valid auc score: 0.9318464036679721
+2021-07-28 00:36:19,628 - root - INFO -   LR scheduler: new learning rate is 4.66946e-06
+2021-07-28 00:36:19,628 - root - INFO -   Epoch 51/150	 Time: 22.430	 Loss: 0.01275974
+2021-07-28 00:36:26,533 - root - INFO - valid auc score: 0.9300519902296576
+2021-07-28 00:36:49,075 - root - INFO -   Epoch 52/150	 Time: 22.541	 Loss: 0.01271086
+2021-07-28 00:36:56,088 - root - INFO - valid auc score: 0.929690378396081
+2021-07-28 00:37:18,381 - root - INFO -   Epoch 53/150	 Time: 22.293	 Loss: 0.01263209
+2021-07-28 00:37:25,346 - root - INFO - valid auc score: 0.9316621863187915
+2021-07-28 00:37:47,655 - root - INFO -   Epoch 54/150	 Time: 22.308	 Loss: 0.01260312
+2021-07-28 00:37:54,805 - root - INFO - valid auc score: 0.9320306210171527
+2021-07-28 00:38:17,441 - root - INFO -   Epoch 55/150	 Time: 22.636	 Loss: 0.01256000
+2021-07-28 00:38:24,514 - root - INFO - valid auc score: 0.9306455794659062
+2021-07-28 00:38:47,033 - root - INFO -   Epoch 56/150	 Time: 22.519	 Loss: 0.01258187
+2021-07-28 00:38:54,006 - root - INFO - valid auc score: 0.9310754199473275
+2021-07-28 00:39:16,328 - root - INFO -   Epoch 57/150	 Time: 22.321	 Loss: 0.01269912
+2021-07-28 00:39:23,600 - root - INFO - valid auc score: 0.9310481284881896
+2021-07-28 00:39:46,179 - root - INFO -   Epoch 58/150	 Time: 22.578	 Loss: 0.01257829
+2021-07-28 00:39:52,951 - root - INFO - valid auc score: 0.9313073973499993
+2021-07-28 00:40:15,453 - root - INFO -   Epoch 59/150	 Time: 22.502	 Loss: 0.01244761
+2021-07-28 00:40:22,391 - root - INFO - valid auc score: 0.9313346888091372
+2021-07-28 00:40:44,747 - root - INFO -   Epoch 60/150	 Time: 22.355	 Loss: 0.01249532
+2021-07-28 00:40:51,838 - root - INFO - valid auc score: 0.9312187001078012
+2021-07-28 00:41:13,984 - root - INFO -   Epoch 61/150	 Time: 22.146	 Loss: 0.01239242
+2021-07-28 00:41:21,048 - root - INFO - valid auc score: 0.9315120832935333
+2021-07-28 00:41:43,609 - root - INFO -   Epoch 62/150	 Time: 22.560	 Loss: 0.01245367
+2021-07-28 00:41:50,689 - root - INFO - valid auc score: 0.9316894777779294
+2021-07-28 00:42:13,419 - root - INFO -   Epoch 63/150	 Time: 22.730	 Loss: 0.01249171
+2021-07-28 00:42:20,458 - root - INFO - valid auc score: 0.9304818307110789
+2021-07-28 00:42:20,464 - root - INFO - Training time: 1853.325
+2021-07-28 00:42:20,464 - root - INFO - Finished training.
+2021-07-28 00:42:20,469 - root - INFO - Starting testing...
+2021-07-28 00:42:29,643 - root - INFO - Testing time: 9.173
+2021-07-28 00:42:29,646 - root - INFO - Test set AUC: 93.94%
+2021-07-28 00:42:29,646 - root - INFO - Finished testing.

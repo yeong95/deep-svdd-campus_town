@@ -57,7 +57,7 @@ class DeepSVDD(object):
         self.net_name = net_name
         self.net = build_network(net_name)
 
-    def train(self, trial, dataset: BaseADDataset, optimizer_name: str = 'adam', lr: float = 0.001, n_epochs: int = 50,
+    def optuna_train(self, trial, dataset: BaseADDataset, optimizer_name: str = 'adam', lr: float = 0.001, n_epochs: int = 50,
               lr_milestones: tuple = (), batch_size: int = 128, weight_decay: float = 1e-6, device: str = 'cuda',
               n_jobs_dataloader: int = 0, export_model_path=None):
         """Trains the Deep SVDD model on the training data."""
@@ -68,12 +68,28 @@ class DeepSVDD(object):
                                        weight_decay=weight_decay, device=device, n_jobs_dataloader=n_jobs_dataloader,
                                        export_model=export_model_path)
         # Get the model
-        self.net, auc_score = self.trainer.train(trial, dataset, self.net)
+        self.net, auc_score = self.trainer.optuna_train(trial, dataset, self.net)
         self.R = float(self.trainer.R.cpu().data.numpy())  # get float
         self.c = self.trainer.c.cpu().data.numpy().tolist()  # get list
         self.results['train_time'] = self.trainer.train_time
 
         return auc_score
+
+    def train(self, dataset: BaseADDataset, optimizer_name: str = 'adam', lr: float = 0.001, n_epochs: int = 50,
+              lr_milestones: tuple = (), batch_size: int = 128, weight_decay: float = 1e-6, device: str = 'cuda',
+              n_jobs_dataloader: int = 0, export_model_path=None):
+        """Trains the Deep SVDD model on the training data."""
+        self.init_network_weights_from_pretraining()
+        self.optimizer_name = optimizer_name
+        self.trainer = DeepSVDDTrainer(self.objective, self.R, self.c, self.nu, optimizer_name, lr=lr,
+                                       n_epochs=n_epochs, lr_milestones=lr_milestones, batch_size=batch_size,
+                                       weight_decay=weight_decay, device=device, n_jobs_dataloader=n_jobs_dataloader,
+                                       export_model=export_model_path)
+        # Get the model
+        self.net = self.trainer.train(dataset, self.net)
+        self.R = float(self.trainer.R.cpu().data.numpy())  # get float
+        self.c = self.trainer.c.cpu().data.numpy().tolist()  # get list
+        self.results['train_time'] = self.trainer.train_time
 
     def test(self, dataset: BaseADDataset, device: str = 'cuda', n_jobs_dataloader: int = 0):
         """Tests the Deep SVDD model on the test data."""
