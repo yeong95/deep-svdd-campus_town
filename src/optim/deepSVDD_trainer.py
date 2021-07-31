@@ -48,6 +48,7 @@ class DeepSVDDTrainer(BaseTrainer):
         self.export_model = export_model
 
     def train(self, dataset: BaseADDataset, net: BaseNet):
+        
         logger = logging.getLogger()
 
         # Set device for network
@@ -194,7 +195,7 @@ class DeepSVDDTrainer(BaseTrainer):
 
                 # Update network parameters via backpropagation: forward + backward + optimize
                 outputs = net(inputs)
-                dist = torch.sum((outputs - self.c) ** 2, dim=1)
+                dist = torch.sum((outputs - selRf.c) ** 2, dim=1)
                 if self.objective == 'soft-boundary':
                     scores = dist - self.R ** 2
                     loss = self.R ** 2 + (1 / self.nu) * torch.mean(torch.max(torch.zeros_like(scores), scores))
@@ -272,18 +273,21 @@ class DeepSVDDTrainer(BaseTrainer):
 
         # Set device for network
         # net = torch.nn.DataParallel(net)
-        net = net.to(self.device)
 
         # Get test data loader
-        _, _, test_loader = dataset.loaders(batch_size=self.batch_size, num_workers=self.n_jobs_dataloader)
+        _, _, test_loader = dataset.loaders(batch_size=32, num_workers=self.n_jobs_dataloader)
+        
+        net = net.to(self.device)
 
         # Testing
         logger.info('Starting testing...')
         start_time = time.time()
         idx_label_score = []
-        # net.eval() : Traning mode (batchnorm에 영향)
+        
+        # net.eval() 
         with torch.no_grad():
             for data in test_loader:
+                #import pdb;pdb.set_trace()
                 inputs, labels, idx = data
                 inputs = inputs.to(self.device)
                 outputs = net(inputs)

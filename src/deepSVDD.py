@@ -156,7 +156,7 @@ class DeepSVDD(object):
         model_dict = torch.load(model_path)  # if use cpu ->map_location = 'cpu'
         self.R = model_dict['R']
         self.c = model_dict['c']
-        # self.net.load_state_dict(model_dict['net_dict'])
+        self.net.load_state_dict(model_dict['net_dict'])
         if load_ae:
             if self.ae_net is None:
                 self.ae_net = build_autoencoder(self.net_name)

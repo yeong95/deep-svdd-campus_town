@@ -5,73 +5,7 @@ import pickle
 from glob import glob
 from tqdm import tqdm
 
-def train_test_numpy_load(data_path,train_path,test_path,load):
-    
-    if load:
-        with open(os.path.join(data_path,'train_image.pickle'), 'rb') as f:
-            train_image = pickle.load(f)
-            train_image = train_image[:1000]
-        with open(os.path.join(data_path,'train_class.pickle'), 'rb') as f:
-            train_class = pickle.load(f)
-        with open(os.path.join(data_path,'test_image.pickle'), 'rb') as f:
-            test_image = pickle.load(f)
-        with open(os.path.join(data_path,'test_label.pickle'), 'rb') as f:
-            test_label = pickle.load(f)
-        with open(os.path.join(data_path,'test_class.pickle'), 'rb') as f:
-            test_class = pickle.load(f)
-        return train_image, train_class, test_image, test_label, test_class 
-    
-    os.chdir(os.path.join(data_path,train_path))
-    folders = [name for name in os.listdir(".") if os.path.isdir(name)]
-    
-    train_image = [] 
-    train_class = []    
-    test_image = []
-    test_label = []
-    test_class = []
-    
-    for fold in folders:
-        train_file_list = os.listdir(os.path.join(data_path,train_path,fold))
-        test_file_list = os.listdir(os.path.join(data_path,test_path,fold))
-        
-        
-        if fold in ['정상A', '정상B']:
-            for i, file in enumerate(train_file_list):
-                if i==500: break
-                img = os.path.join(data_path,train_path,fold,file)
-                image = np.asarray(Image.open(img).resize((640,640)))
-                train_image.append(image)                
-            train_class += [fold]*len(train_file_list)               
-            label = 0
-        else:
-            label = 1             
 
-        for file in test_file_list:
-            img = os.path.join(data_path,test_path,fold,file)
-            image = np.asarray(Image.open(img).resize((640,640)))
-            test_image.append(image)
-        test_class += [fold]*len(test_file_list)
-        test_label += [label]*len(test_file_list)   
-        
-    train_image = np.array(train_image)
-    test_image = np.array(test_image)
-    test_label = np.array(test_label)
-    
-    os.chdir(data_path)
-    with open('train_image.pickle','wb') as f:
-        pickle.dump(train_image,f,pickle.HIGHEST_PROTOCOL)
-    with open('train_class.pickle','wb') as f:
-        pickle.dump(train_class,f,pickle.HIGHEST_PROTOCOL)
-    with open('test_image.pickle','wb') as f:
-        pickle.dump(test_image,f,pickle.HIGHEST_PROTOCOL)
-    with open('test_label.pickle','wb') as f:
-        pickle.dump(test_label,f,pickle.HIGHEST_PROTOCOL)
-    with open('test_class.pickle','wb') as f:
-        pickle.dump(test_class,f,pickle.HIGHEST_PROTOCOL) 
-    
-    os.chdir('../src') # reset to original path   
-    
-    return train_image, train_class, test_image, test_label, test_class
 
 class tripped_train_test_numpy_load:
     def __init__(self, data_path, train_path, test_path, saved_path, name):
@@ -147,12 +81,13 @@ class tripped_train_test_numpy_load:
             valid_label = pickle.load(f)
         with open(os.path.join(self.saved_path,self.data_name+'_valid_class.pickle'), 'rb') as f:
             valid_class = pickle.load(f)
-        with open(os.path.join(self.saved_path,self.data_name+'_test_image.pickle'), 'rb') as f:
+        with open(os.path.join(self.saved_path,'200_test_image.pickle'), 'rb') as f:
             test_image = pickle.load(f)
-        with open(os.path.join(self.saved_path,self.data_name+'_test_label.pickle'), 'rb') as f:
-            test_label = pickle.load(f)
-        with open(os.path.join(self.saved_path,self.data_name+'_test_class.pickle'), 'rb') as f:
+        with open(os.path.join(self.saved_path,'200_test_label.pickle'), 'rb') as f:
+            test_label = pickle.load(f)        
+        with open(os.path.join(self.saved_path,'200_test_class.pickle'), 'rb') as f:
             test_class = pickle.load(f)
+            
             
         return train_image, train_class, valid_image, valid_label, valid_class, test_image, test_label, test_class 
 

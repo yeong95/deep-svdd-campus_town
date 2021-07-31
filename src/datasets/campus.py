@@ -41,7 +41,7 @@ class MyCampus(Dataset):
         self.train = train
         self.train_data = torch.from_numpy(train_data)
         self.test_data = torch.from_numpy(test_data)
-        self.test_label = torch.from_numpy(test_label)
+        self.test_label = torch.from_numpy(np.array(test_label))
         self.transform = transform
     def __len__(self):
         if self.train:

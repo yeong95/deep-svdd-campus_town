@@ -1,5 +1,10 @@
 #!/bin/bash
 
+
+#############################
+#optuna
+#############################
+
 # rm -r ../log/tofu_test/ ../log/load_tofu_test/
 # mkdir ../log/tofu_test ../log/load_tofu_test
 # python main_optuna.py campus resnet ../log/tofu_test ./datasets --data_load True --objective one-class \
@@ -9,6 +14,14 @@
 
 # load model 
 # rm ../log/tofu_test/log.txt
-python main_optuna.py campus resnet ../log/tofu_test ./datasets --data_load True --objective one-class \
+# python main_optuna.py campus resnet ../log/tofu_test ./datasets --data_load True --objective one-class \
+# --lr 0.0005 --n_epochs 150 --lr_milestone 50 --batch_size 16 --weight_decay 0.5e-6 --pretrain False \
+# --device cuda --load_model ../log/tofu_test/pretrained_model.tar;
+
+#############################
+# normal  train
+#############################
+rm ../log/tofu_test/*.png ../log/tofu_test/*.txt
+python main.py campus resnet ../log/tofu_test ./datasets --data_load True --objective one-class \
 --lr 0.0005 --n_epochs 150 --lr_milestone 50 --batch_size 16 --weight_decay 0.5e-6 --pretrain False \
---device cuda --load_model ../log/tofu_test/pretrained_model.tar;
+--device cuda --load_model ../log/tofu_test/model.tar;

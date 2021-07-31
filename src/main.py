@@ -16,9 +16,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import roc_curve, auc
 
-from ray import tune
-from ray.tune import CLIReporter
-from ray.tune.schedulers import ASHAScheduler
+
 
 ################################################################################
 # Settings
@@ -126,7 +124,7 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
         test_path = 'test'
         saved_path = '/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/src/datasets'
         name = 'tripped_20'
-        train_image, train_class, valid_image, valid_label, valid_class, test_image, test_label, test_class = \
+        train_image, _, valid_image, valid_label, _, test_image, test_label, test_class = \
             tripped_train_test_numpy_load(data_path,train_path,test_path,saved_path,name).load()
         logger.info('Train shape: {}' .format(train_image.shape))
         logger.info('Valid shape: {}' .format(valid_image.shape))
@@ -183,57 +181,6 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     #               n_jobs_dataloader=n_jobs_dataloader,
     #               export_model_path=xp_path)
 
-    # Train model on dataset with ray tune
-    num_samples = 10
-    max_num_epochs = 15
-    config = {
-        "optimizer_name" : tune.choice(["adam", "amsgrad"]),
-        "lr" : tune.loguniform(1e-4, 1e-1),
-        "lr_milestone" : tune.choice([25,50,75]),
-        "batch_size" : tune.choice([2,4,8,16]),
-        "weight_decay" : tune.loguniform(1e-7, 1e-2)
-    }
-
-    scheduler = ASHAScheduler(
-        metric="loss",
-        mode="min",
-        max_t=max_num_epochs,  # 하나의 parameter set에 대해서 얼만큼 epoch을 설정할 것인가 
-        grace_period=1,
-        reduction_factor=2)
-
-    reporter = CLIReporter(
-        # parameter_columns=["l1", "l2", "lr", "batch_size"],
-        metric_columns=["loss", "training_iteration"])
-
-    def train_svdd(config, data=None):
-        deep_SVDD.train(data,
-                    optimizer_name=config['optimizer_name'],
-                    lr=config['lr'],
-                    n_epochs=cfg.settings['n_epochs'],
-                    lr_milestones=config['lr_milestone'],
-                    batch_size=config['batch_size'],
-                    weight_decay=config['weight_decay'],
-                    device=device,
-                    n_jobs_dataloader=n_jobs_dataloader,
-                    export_model_path=xp_path)
-    
-    result = tune.run(
-        tune.with_parameters(train_svdd, data=dataset),
-        resources_per_trial={"cpu": 1, "gpu": 1},
-        config=config,
-        num_samples=num_samples,
-        scheduler=scheduler,
-        progress_reporter=reporter
-        )
-
-    best_trial = result.get_best_trial("loss", "min", "last")
-    logger.info("Best trial config: {}".format(best_trial.config))
-    logger.info("Best trial final validation loss(-auc score): {}".format(
-        best_trial.last_result["loss"]))
-    
-    best_checkpoint_dir = best_trial.checkpoint.value
-    deep_SVDD.load_model(model_path=os.path.join('optim', best_checkpoint_dir, "checkpoint"), load_ae=False)
-
 
     # plot t_sne
     # deep_SVDD.t_sne(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader, data_path=data_path, xp_path=xp_path)
@@ -244,46 +191,33 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     # Plot most anomalous and most normal (within-class) test samples
     indices, labels, scores = zip(*deep_SVDD.results['test_scores'])
     indices, labels, scores = np.array(indices), np.array(labels), np.array(scores)
-    if dataset_name in ('mnist', 'cifar10', 'campus'):
 
-        if dataset_name == 'mnist':
-            X_normals = dataset.test_set.test_data[idx_sorted[:32], ...].unsqueeze(1)
-            X_outliers = dataset.test_set.test_data[idx_sorted[-32:], ...].unsqueeze(1)
-
-        if dataset_name == 'cifar10':
-            X_normals = torch.tensor(np.transpose(dataset.test_set.test_data[idx_sorted[:32], ...], (0, 3, 1, 2)))
-            X_outliers = torch.tensor(np.transpose(dataset.test_set.test_data[idx_sorted[-32:], ...], (0, 3, 1, 2)))
-            
-        if dataset_name == 'campus':
-            test_score_path = os.path.join(xp_path, 'test_score.pickle')
-            with open(test_score_path, 'wb') as f:
-                pickle.dump(deep_SVDD.results['test_scores'], f, pickle.HIGHEST_PROTOCOL)
-        
-        if dataset_name == 'campus':
-            fpr = dict()
-            tpr = dict()
-            roc_auc = dict()
-            fpr, tpr, threshold = roc_curve(labels, scores)
-            roc_auc = auc(fpr, tpr)
-            plt.figure()
-            lw=2
-            plt.plot(fpr,tpr, color='darkorange', lw=lw, label='ROC curve (area= %0.2f)' %roc_auc)  
-            plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
-            plt.xlim([0.0, 1.0])
-            plt.ylim([0.0, 1.05])
-            plt.xlabel('False Positive Rate')   
-            plt.ylabel('True Positive Rate')
-            plt.title('Receiver operating characteristic example')
-            plt.legend(loc="lower right")           
-            plt.savefig(os.path.join(xp_path,'auc_roc.png'))             
-        else:            
-            plot_images_grid(X_normals, export_img=xp_path + '/normals', title='Most normal examples', padding=2)
-            plot_images_grid(X_outliers, export_img=xp_path + '/outliers', title='Most anomalous examples', padding=2)
+    if dataset_name == 'campus':
+        test_score_path = os.path.join(xp_path, 'test_score.pickle')
+        with open(test_score_path, 'wb') as f:
+            pickle.dump(deep_SVDD.results['test_scores'], f, pickle.HIGHEST_PROTOCOL)
+    
+        fpr = dict()
+        tpr = dict()
+        roc_auc = dict()
+        fpr, tpr, threshold = roc_curve(labels, scores)
+        roc_auc = auc(fpr, tpr)
+        plt.figure()
+        lw=2
+        plt.plot(fpr,tpr, color='darkorange', lw=lw, label='ROC curve (area= %0.2f)' %roc_auc)  
+        plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
+        plt.xlim([0.0, 1.0])
+        plt.ylim([0.0, 1.05])
+        plt.xlabel('False Positive Rate')   
+        plt.ylabel('True Positive Rate')
+        plt.title('Receiver operating characteristic example')
+        plt.legend(loc="lower right")           
+        plt.savefig(os.path.join(xp_path,'auc_roc.png'))             
 
     # Save results, model, and configuration
-    deep_SVDD.save_results(export_json=xp_path + '/results.json')
-    deep_SVDD.save_model(export_model=xp_path + '/model.tar')
-    cfg.save_config(export_json=xp_path + '/config.json')
+    # deep_SVDD.save_results(export_json=xp_path + '/results.json')
+    # deep_SVDD.save_model(export_model=xp_path + '/model.tar')
+    # cfg.save_config(export_json=xp_path + '/config.json')
 
 
 if __name__ == '__main__':
