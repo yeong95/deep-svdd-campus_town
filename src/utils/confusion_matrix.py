@@ -19,9 +19,14 @@ import sys
 def plot_confusion_matrix(test_label,pred_label,test_score_path):
     skplt.metrics.plot_confusion_matrix(y_true=test_label,y_pred=pred_label)
     plt.savefig(os.path.join(test_score_path, 'confusion_matrix.png'))
-    print("accuracy score: {}" .format(accuracy_score(test_label, pred_label)))
-    print("recall: {}" .format(recall_score (test_label, pred_label)))
-    print("preicision: {}" .format(precision_score(test_label, pred_label)))
+    accuracy = accuracy_score(test_label, pred_label)
+    recall = recall_score (test_label, pred_label)
+    precision = precision_score(test_label, pred_label)
+    print("accuracy score: {}" .format(accuracy))
+    print("recall: {}" .format(recall))
+    print("preicision: {}" .format(precision))
+
+    return accuracy, recall, precision
 
 
 
@@ -84,8 +89,16 @@ if __name__ == '__main__':
     pred_label[scores>best_threshold] = 1 # threshold보다 큰 것은 이상(label:1)
     print("fpr is {}" .format(fpr[best_index]))
     
-    plot_confusion_matrix(test_label,pred_label,test_score_path)
+    accuracy_score, recall_score, precision_score = plot_confusion_matrix(test_label,pred_label,test_score_path)
+    metric_dict = {}
+    metric_dict['accuracy'] = accuracy_score
+    metric_dict['recall'] = recall_score
+    metric_dict['precision'] = precision_score
+    with open(os.path.join(test_score_path, 'metric.pickle'), 'wb') as f:
+        pickle.dump(metric_dict, f, protocol=4)
+
     
+    sys.exit(0)    
     wrong_save_path = '/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/log/wrong_image_sample'
     true_save_path = '/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/log/true_image_sample'
 

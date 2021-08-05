@@ -32,9 +32,7 @@ def test_load(data_path, test_path):
     return tmp_list
 
 
-
-
-def cherry_pick_test_image(test_image, test_class, test_label, pred_label, test_name_list):
+def cherry_pick_test_image(test_image, test_class, test_score,  test_name_list):
 
 
     img_array = np.empty((0,640,640,3), dtype=np.int8) # np.int8로 꼭 설정 (이미지)
@@ -46,27 +44,38 @@ def cherry_pick_test_image(test_image, test_class, test_label, pred_label, test_
     for class_name in set(test_class):
         
         idx_ = (np.array(test_class)==class_name)
-        y_pred = pred_label[idx_]
-        y_true = test_label[idx_]        
+        class_idx = np.where(idx_)[0]
+        class_score = test_score[idx_]
+        class_score_idx = [(class_idx[i],class_score[i]) for i in range(len(class_idx))]
+
+        #import pdb;pdb.set_trace()   
 
         if class_name in ['정상A', '정상B']:
-            img = test_image[idx_][y_pred==y_true][:50]
+            sorted_set = sorted(class_score_idx, key=lambda x: x[1])  # 오름차순(ascending)
+            sorted_idx = [sorted_set[i][0] for i in range(50)]
+
+            img = test_image[sorted_idx]
             label = [0]*50
-            name_list += np.array(test_name_list)[idx_][y_pred==y_true][:50].tolist()
+            name_list += np.array(test_name_list)[sorted_idx].tolist()
             print("class {} : {}" .format(class_name, img.shape[0]))
             class_list += [class_name] * 50 
         else:
-            img = test_image[idx_][y_pred==y_true]
+            sorted_set = sorted(class_score_idx, key=lambda x: -x[1])  # 내림차순(descending)
+            
             if class_name in ['금속', '탄화물', '플라스틱', '상단불량E']:
-                img = img[:12]
-                label = [1]*12
-                name_list += np.array(test_name_list)[idx_][y_pred==y_true][:12].tolist()
-                class_list += [class_name] * 12
-            else:
-                img = img[:13]
+                sorted_idx = [sorted_set[i][0] for i in range(13)]
+
+                img = test_image[sorted_idx]
                 label = [1]*13
-                name_list += np.array(test_name_list)[idx_][y_pred==y_true][:13].tolist()
-                class_list += [class_name] * 13 
+                name_list += np.array(test_name_list)[sorted_idx].tolist()
+                class_list += [class_name] * 13
+            else:
+                sorted_idx = [sorted_set[i][0] for i in range(12)]
+
+                img = test_image[sorted_idx]
+                label = [1]*12
+                name_list += np.array(test_name_list)[sorted_idx].tolist()
+                class_list += [class_name] * 12 
             
             print("class {} : {}" .format(class_name, img.shape[0]))
         
@@ -81,9 +90,10 @@ def cherry_pick_test_image(test_image, test_class, test_label, pred_label, test_
 
 if __name__ == '__main__':
 
-    test_score_path = r'/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/log/tofu_test'
+    test_score_path = r'/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town'
     data_path = r'/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/src/datasets'
-    with open(os.path.join(test_score_path,'test_score.pickle'), 'rb') as f:
+
+    with open(os.path.join(test_score_path,'optuna_test_score.pickle'), 'rb') as f:
         test_score = pickle.load(f)
     with open(os.path.join(data_path,'tripped_20_test_image.pickle'), 'rb') as f:
         test_image = pickle.load(f)
@@ -111,7 +121,7 @@ if __name__ == '__main__':
 
     test_name_list = test_load(data_path, test_path)
     
-    img_array, label_list, class_list, name_list = cherry_pick_test_image(test_image, test_class, test_label, pred_label, test_name_list)
+    img_array, label_list, class_list, name_list = cherry_pick_test_image(test_image, test_class, scores,  test_name_list)
 
     print(img_array.shape)
     print(img_array.dtype)

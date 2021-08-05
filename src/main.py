@@ -115,8 +115,13 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     # Default device to 'cpu' if cuda is not available
     if not torch.cuda.is_available():
         device = 'cpu'
+    else:
+        device = torch.device(device)
     logger.info('Computation device: %s' % device)
     logger.info('Number of dataloader workers: %d' % n_jobs_dataloader)
+    #import pdb;pdb.set_trace()
+    torch.cuda.set_device(device)    
+    print ('Current cuda device ', torch.cuda.current_device()) 
 
     # Load data
     if dataset_name == 'campus':
@@ -162,24 +167,24 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
                            n_jobs_dataloader=n_jobs_dataloader)
 
     # Log training details
-    # logger.info('Training optimizer: %s' % cfg.settings['optimizer_name'])
-    # logger.info('Training learning rate: %g' % cfg.settings['lr'])
-    # logger.info('Training epochs: %d' % cfg.settings['n_epochs'])
-    # logger.info('Training learning rate scheduler milestones: %s' % (cfg.settings['lr_milestone'],))
-    # logger.info('Training batch size: %d' % cfg.settings['batch_size'])
-    # logger.info('Training weight decay: %g' % cfg.settings['weight_decay'])
+    logger.info('Training optimizer: %s' % cfg.settings['optimizer_name'])
+    logger.info('Training learning rate: %g' % cfg.settings['lr'])
+    logger.info('Training epochs: %d' % cfg.settings['n_epochs'])
+    logger.info('Training learning rate scheduler milestones: %s' % (cfg.settings['lr_milestone'],))
+    logger.info('Training batch size: %d' % cfg.settings['batch_size'])
+    logger.info('Training weight decay: %g' % cfg.settings['weight_decay'])
 
     # Train model on dataset
-    # deep_SVDD.train(dataset,
-    #               optimizer_name=cfg.settings['optimizer_name'],
-    #               lr=cfg.settings['lr'],
-    #               n_epochs=cfg.settings['n_epochs'],
-    #               lr_milestones=cfg.settings['lr_milestone'],
-    #               batch_size=cfg.settings['batch_size'],
-    #               weight_decay=cfg.settings['weight_decay'],
-    #               device=device,
-    #               n_jobs_dataloader=n_jobs_dataloader,
-    #               export_model_path=xp_path)
+    deep_SVDD.train(dataset,
+                  optimizer_name=cfg.settings['optimizer_name'],
+                  lr=cfg.settings['lr'],
+                  n_epochs=cfg.settings['n_epochs'],
+                  lr_milestones=cfg.settings['lr_milestone'],
+                  batch_size=cfg.settings['batch_size'],
+                  weight_decay=cfg.settings['weight_decay'],
+                  device=device,
+                  n_jobs_dataloader=n_jobs_dataloader,
+                  export_model_path=xp_path)
 
 
     # plot t_sne
@@ -187,7 +192,7 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
     
     # Test model
     deep_SVDD.test(dataset, device=device, n_jobs_dataloader=n_jobs_dataloader)
-
+   
     # Plot most anomalous and most normal (within-class) test samples
     indices, labels, scores = zip(*deep_SVDD.results['test_scores'])
     indices, labels, scores = np.array(indices), np.array(labels), np.array(scores)
@@ -215,9 +220,9 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
         plt.savefig(os.path.join(xp_path,'auc_roc.png'))             
 
     # Save results, model, and configuration
-    # deep_SVDD.save_results(export_json=xp_path + '/results.json')
-    # deep_SVDD.save_model(export_model=xp_path + '/model.tar')
-    # cfg.save_config(export_json=xp_path + '/config.json')
+    deep_SVDD.save_results(export_json=xp_path + '/results.json')
+    deep_SVDD.save_model(export_model=xp_path + '/normal_100_trained_model.tar')
+    cfg.save_config(export_json=xp_path + '/config.json')
 
 
 if __name__ == '__main__':

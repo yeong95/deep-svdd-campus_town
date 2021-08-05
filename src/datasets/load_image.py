@@ -71,7 +71,7 @@ class tripped_train_test_numpy_load:
     def load(self):
         with open(os.path.join(self.saved_path,self.data_name+'_train_image.pickle'), 'rb') as f:
             train_image = pickle.load(f)
-            index_ = np.random.choice(3666, 1000, replace=False) 
+            index_ = np.random.choice(3666, 100, replace=False) 
             train_image = train_image[index_]
         with open(os.path.join(self.saved_path,self.data_name+'_train_class.pickle'), 'rb') as f:
             train_class = pickle.load(f)

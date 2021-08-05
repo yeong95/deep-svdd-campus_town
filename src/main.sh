@@ -1,27 +1,24 @@
 #!/bin/bash
 
-
-#############################
-#optuna
-#############################
-
-# rm -r ../log/tofu_test/ ../log/load_tofu_test/
-# mkdir ../log/tofu_test ../log/load_tofu_test
-# python main_optuna.py campus resnet ../log/tofu_test ./datasets --data_load True --objective one-class \
-# --lr 0.0005 --n_epochs 1 --lr_milestone 50 --batch_size 8 --weight_decay 0.5e-6 --pretrain False \
-# --ae_lr 0.001 --ae_n_epochs 200 --ae_lr_milestone 200 --ae_batch_size 8 --ae_weight_decay 0.5e-3 \
-# --device cuda;
-
-# load model 
-# rm ../log/tofu_test/log.txt
-# python main_optuna.py campus resnet ../log/tofu_test ./datasets --data_load True --objective one-class \
-# --lr 0.0005 --n_epochs 150 --lr_milestone 50 --batch_size 16 --weight_decay 0.5e-6 --pretrain False \
-# --device cuda --load_model ../log/tofu_test/pretrained_model.tar;
-
 #############################
 # normal  train
 #############################
-rm ../log/tofu_test/*.png ../log/tofu_test/*.txt
-python main.py campus resnet ../log/tofu_test ./datasets --data_load True --objective one-class \
---lr 0.0005 --n_epochs 150 --lr_milestone 50 --batch_size 16 --weight_decay 0.5e-6 --pretrain False \
---device cuda --load_model ../log/tofu_test/model.tar;
+rm ../log/tofu_test/log*.txt  ../log/tofu_test/metric*.pickle ../log/tofu_test/confusion_matrix*.png
+for var in {1..10}
+do
+    python main.py campus resnet ../log/tofu_test ./datasets --data_load True --objective one-class \
+    --lr 0.00001 --n_epochs 50 --lr_milestone 50 --batch_size 16 --weight_decay 0.5e-6 --pretrain False \
+    --device cuda:1 --load_model ../log/tofu_test/model.tar;
+   
+    python utils/confusion_matrix.py
+
+    rm -r ../log/tofu_test/model_tmp_saved
+    mv ../log/tofu_test/log.txt ../log/tofu_test/log$var.txt
+    mv ../log/tofu_test/confusion_matrix.png ../log/tofu_test/confusion_matrix$var.png
+    mv ../log/tofu_test/metric.pickle ../log/tofu_test/metric$var.pickle
+    mv ../log/tofu_test/test_score.pickle ../log/tofu_test/test_score$var.pickle
+done
+
+
+#rm ../log/tofu_test/*.png ../log/tofu_test/*.txt ../log/tofu_test/*.json
+

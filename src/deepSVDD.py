@@ -57,29 +57,11 @@ class DeepSVDD(object):
         self.net_name = net_name
         self.net = build_network(net_name)
 
-    def optuna_train(self, trial, dataset: BaseADDataset, optimizer_name: str = 'adam', lr: float = 0.001, n_epochs: int = 50,
-              lr_milestones: tuple = (), batch_size: int = 128, weight_decay: float = 1e-6, device: str = 'cuda',
-              n_jobs_dataloader: int = 0, export_model_path=None):
-        """Trains the Deep SVDD model on the training data."""
-
-        self.optimizer_name = optimizer_name
-        self.trainer = DeepSVDDTrainer(self.objective, self.R, self.c, self.nu, optimizer_name, lr=lr,
-                                       n_epochs=n_epochs, lr_milestones=lr_milestones, batch_size=batch_size,
-                                       weight_decay=weight_decay, device=device, n_jobs_dataloader=n_jobs_dataloader,
-                                       export_model=export_model_path)
-        # Get the model
-        self.net, auc_score = self.trainer.optuna_train(trial, dataset, self.net)
-        self.R = float(self.trainer.R.cpu().data.numpy())  # get float
-        self.c = self.trainer.c.cpu().data.numpy().tolist()  # get list
-        self.results['train_time'] = self.trainer.train_time
-
-        return auc_score
-
     def train(self, dataset: BaseADDataset, optimizer_name: str = 'adam', lr: float = 0.001, n_epochs: int = 50,
               lr_milestones: tuple = (), batch_size: int = 128, weight_decay: float = 1e-6, device: str = 'cuda',
               n_jobs_dataloader: int = 0, export_model_path=None):
         """Trains the Deep SVDD model on the training data."""
-        self.init_network_weights_from_pretraining()
+
         self.optimizer_name = optimizer_name
         self.trainer = DeepSVDDTrainer(self.objective, self.R, self.c, self.nu, optimizer_name, lr=lr,
                                        n_epochs=n_epochs, lr_milestones=lr_milestones, batch_size=batch_size,
@@ -153,7 +135,7 @@ class DeepSVDD(object):
     def load_model(self, model_path, load_ae=False):
         """Load Deep SVDD model from model_path."""
 
-        model_dict = torch.load(model_path)  # if use cpu ->map_location = 'cpu'
+        model_dict = torch.load(model_path, map_location= 'cpu')  # if use cpu ->map_location = 'cpu'
         self.R = model_dict['R']
         self.c = model_dict['c']
         self.net.load_state_dict(model_dict['net_dict'])
