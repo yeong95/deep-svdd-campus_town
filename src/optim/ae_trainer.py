@@ -69,8 +69,8 @@ class AETrainer(BaseTrainer):
                         .format(epoch + 1, self.n_epochs, epoch_train_time, loss_epoch / n_batches))
             
             # if loss goes down to 500 then stop pretraining 
-            if (loss_epoch / n_batches) < 500:
-                break  
+            # if (loss_epoch / n_batches) < 500:
+            #     break  
 
         pretrain_time = time.time() - start_time
         logger.info('Pretraining time: %.3f' % pretrain_time)

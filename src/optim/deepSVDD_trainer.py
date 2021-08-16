@@ -12,6 +12,7 @@ import torch.optim as optim
 import numpy as np
 import os
 import pickle
+import copy
 
 from sklearn.manifold import TSNE
 # %matplotlib inline
@@ -74,6 +75,9 @@ class DeepSVDDTrainer(BaseTrainer):
         logger.info('Starting training...')
         start_time = time.time()
         net.train()
+
+        best_model_wts = copy.deepcopy(net.state_dict())
+        best_auc = 0.0
         for epoch in range(self.n_epochs):
 
             loss_epoch = 0.0
@@ -136,12 +140,20 @@ class DeepSVDDTrainer(BaseTrainer):
             auc_score = roc_auc_score(labels, scores)
             logger.info('valid auc score: {}' .format(auc_score))
 
-            early_stopping(-auc_score, net)
-            if early_stopping.early_stop:
-                print("Early stopping")
-                break
+            if auc_score > best_auc:
+                best_auc = auc_score
+                best_model_wts = copy.deepcopy(net.state_dict())
+
+            # early_stopping(-auc_score, net)
+            # if early_stopping.early_stop:
+            #     print("Early stopping")
+            #     break
+        # load best model from last checkpoint (earlystopping)
+        # net.load_state_dict(torch.load('checkpoint.pt'))  
         
-        net.load_state_dict(torch.load('checkpoint.pt'))  # load best model from last checkpoint 
+        # load best model 
+        net.load_state_dict(best_model_wts)
+
         self.train_time = time.time() - start_time
         logger.info('Training time: %.3f' % self.train_time)
         logger.info('Finished training.')
@@ -241,7 +253,7 @@ class DeepSVDDTrainer(BaseTrainer):
     def init_center_c(self, train_loader: DataLoader, net: BaseNet, eps=0.1):
         """Initialize hypersphere center c as the mean from an initial forward pass on the data."""
         n_samples = 0
-        c = torch.zeros(net.rep_dim, device=self.device)
+        c = torch.zeros(3200, device=self.device)
 
         net.eval()
         with torch.no_grad():

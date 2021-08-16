@@ -21,7 +21,7 @@ from sklearn.metrics import roc_curve, auc
 ################################################################################
 @click.command()
 @click.argument('dataset_name', type=click.Choice(['mnist', 'cifar10', 'campus']))
-@click.argument('net_name', type=click.Choice(['mnist_LeNet', 'cifar10_LeNet', 'cifar10_LeNet_ELU', 'campus_LeNet', 'resnet']))
+@click.argument('net_name', type=click.Choice(['resnet', 'efficientnet']))
 @click.argument('xp_path', type=click.Path(exists=True))
 @click.argument('data_path', type=click.Path(exists=True))
 @click.option('--load_config', type=click.Path(exists=True), default=None,
@@ -121,7 +121,7 @@ def main(dataset_name, net_name, xp_path, data_path, load_config, load_model, ob
         train_path = 'train/OK'
         test_path = 'test'
         saved_path = '/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/src/datasets'
-        name = 'Box_margin_60'
+        name = 'tripped_20'
         train_image, train_class, valid_image, valid_label, valid_class, test_image, test_label, test_class = \
             tripped_train_test_numpy_load(data_path,train_path,test_path,saved_path,name).load()
         logger.info('Train shape: {}' .format(train_image.shape))
