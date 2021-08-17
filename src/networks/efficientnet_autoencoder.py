@@ -8,21 +8,21 @@ from base.base_net import BaseNet
 class Efficientnet_encoder(BaseNet):
     def __init__(self):
         super().__init__()
-        self.model = EfficientNetAutoEncoder.from_pretrained('efficientnet-b0')
+        self.model = EfficientNetAutoEncoder.from_name('efficientnet-b0')
         self.rep_dim = 100
         
 
     def forward(self, inputs):
         x = self.model.extract_features(inputs)
         x = x.flatten(start_dim=1)
-        x = nn.Linear(x.shape[1], self.rep_dim, bias=False)(x)
+        x = nn.Linear(x.shape[1], self.rep_dim, bias=False).cuda()(x)
 
         return x
 
 class Efficientnet_autoencoder(BaseNet):
     def __init__(self):
         super().__init__()
-        self.model = EfficientNetAutoEncoder.from_pretrained('efficientnet-b0')
+        self.model = EfficientNetAutoEncoder.from_name('efficientnet-b0')
        
     def forward(self, inputs):
         ae_output, _= self.model(inputs)        

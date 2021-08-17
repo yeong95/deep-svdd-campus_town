@@ -253,7 +253,7 @@ class DeepSVDDTrainer(BaseTrainer):
     def init_center_c(self, train_loader: DataLoader, net: BaseNet, eps=0.1):
         """Initialize hypersphere center c as the mean from an initial forward pass on the data."""
         n_samples = 0
-        c = torch.zeros(3200, device=self.device)
+        c = torch.zeros(net.rep_dim, device=self.device)
 
         net.eval()
         with torch.no_grad():

@@ -419,11 +419,11 @@ class EfficientNetAutoEncoder(EfficientNet):
         block_args = self._last_block_args
         
         Conv2d = get_same_padding_conv2d(image_size=image_size)
-        self._feature_downsample = Conv2d(self._last_out_channels, 2, kernel_size=1, bias=False)
-        self._downsample_bn = nn.BatchNorm2d(num_features=2, momentum=bn_mom, eps=bn_eps)
-        self._feature_upsample = Conv2d(2, self._last_out_channels, kernel_size=1, bias=False)
+        self._feature_downsample = Conv2d(self._last_out_channels, 8, kernel_size=1, bias=False)
+        self._downsample_bn = nn.BatchNorm2d(num_features=8, momentum=bn_mom, eps=bn_eps)
+        self._feature_upsample = Conv2d(8, self._last_out_channels, kernel_size=1, bias=False)
         self._upsample_bn = nn.BatchNorm2d(num_features=self._last_out_channels, momentum=bn_mom, eps=bn_eps)
-        self.feature_size = 2 * image_size[0]**2
+        self.feature_size = 8 * image_size[0]**2
 
         # EfficientNet Decoder
         # use dynamic image size for decoder
@@ -524,10 +524,12 @@ class EfficientNetAutoEncoder(EfficientNet):
         x = self.extract_features(inputs)
         
         # Pooling and final linear layer
-        x = x.flatten(start_dim=1)
-        latent_rep = nn.Linear(x.shape[1], self.rep_dim, bias=False)(x)
+        latent_rep = x.flatten(start_dim=1)
+        size_ = latent_rep.shape[1]
+        latent_rep = nn.Linear(latent_rep.shape[1], self.rep_dim, bias=False).cuda()(latent_rep)
 
         # Deconvolution - decoder        
-        x = nn.Linear(self.rep_dim, x.shape[1], bias=False)(latent_rep)
+        x = nn.Linear(self.rep_dim, size_, bias=False).cuda()(latent_rep)
+        x = x.view(x.size(0), 8, 20, 20)
         x = self.decode_features(x)
         return x, latent_rep

@@ -1,6 +1,7 @@
 # 데이터
 data
 src/datasets/*.pickle
+log/tofu_test/model_tmp_saved
 # wsl
 .vscode/extensions/
 

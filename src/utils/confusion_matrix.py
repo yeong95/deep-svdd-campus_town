@@ -11,16 +11,18 @@ import scikitplot as skplt
 from PIL import Image
 from sklearn.metrics import roc_auc_score, recall_score, precision_score
 
+import sys
+
 
 test_score_path = r'/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/log/tofu_test'
 data_path = r'/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/src/datasets'
 with open(os.path.join(test_score_path,'test_score.pickle'), 'rb') as f:
     test_score = pickle.load(f)
-with open(os.path.join(data_path,'Box_margin_60_test_image.pickle'), 'rb') as f:
+with open(os.path.join(data_path,'tripped_20_test_image.pickle'), 'rb') as f:
     test_image = pickle.load(f)
-with open(os.path.join(data_path,'Box_margin_60_test_label.pickle'), 'rb') as f:
+with open(os.path.join(data_path,'tripped_20_test_label.pickle'), 'rb') as f:
     test_label = pickle.load(f)
-with open(os.path.join(data_path,'Box_margin_60_test_class.pickle'), 'rb') as f:
+with open(os.path.join(data_path,'tripped_20_test_class.pickle'), 'rb') as f:
     test_class = pickle.load(f)
 
 indices, labels, scores = zip(*test_score)
@@ -43,6 +45,9 @@ def plot_confusion_matrix(test_label,pred_label,test_score_path):
     print("accuracy score: {}" .format(accuracy_score(test_label, pred_label)))
     print("recall: {}" .format(recall_score (test_label, pred_label)))
     print("preicision: {}" .format(precision_score(test_label, pred_label)))
+
+plot_confusion_matrix(test_label, pred_label, test_score_path)
+sys.exit(0)
 
 # 클래스별 hit ratio(recall)
 wrong_save_path = '/workspace/CAMPUS/CYK/campus/deep-svdd-campus_town/log/wrong_image_sample'
